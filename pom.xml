@@ -7,11 +7,12 @@
 	<artifactId>fleet</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
-		<module>fleet-web</module>
-		<module>fleet-model</module>
-		<module>fleet-repositories</module>
-		<module>fleet-services</module>
+		<module>web</module>
+		<module>domain</module>
+		<module>repositories</module>
+		<module>services</module>
 		<module>ear</module>
+		<module>web-services</module>
 	</modules>
 	<packaging>pom</packaging>
 

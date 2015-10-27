@@ -9,11 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>fleet-model</artifactId>
-
-    <dependencies>
-
-    </dependencies>
+    <artifactId>web-services</artifactId>
 
 
 </project>
