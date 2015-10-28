@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.realdolmen</groupId>
-            <artifactId>fleet-model</artifactId>
+            <artifactId>model</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
