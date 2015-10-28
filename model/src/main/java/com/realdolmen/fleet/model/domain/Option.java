@@ -19,6 +19,9 @@ public class Option {
     @Size(min=1,max = 50)
     private String optionName;
 
+    private Integer amount;
+
+    private Integer price;
     //other variables
 
 
