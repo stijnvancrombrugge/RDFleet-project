@@ -1,5 +1,6 @@
 package com.realdolmen.fleet.repositories.repository;
 
+
 import com.realdolmen.fleet.model.domain.Option;
 import org.springframework.data.jpa.repository.JpaRepository;
 
