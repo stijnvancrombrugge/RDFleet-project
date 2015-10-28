@@ -9,9 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.realdolmen</groupId>
-    <artifactId>web</artifactId>
-    <packaging>war</packaging>
+    <artifactId>security</artifactId>
 
 
 </project>

@@ -34,6 +34,9 @@ public class User extends AbstractEntity{
     @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$")
     private String email;
 
+    @Basic(optional = false)
+    private String role;
+
     private String businessUnit;
 
     private int phoneNumber;
@@ -41,11 +44,12 @@ public class User extends AbstractEntity{
     @Temporal(TemporalType.DATE)
     private LocalDate birthDate;
 
-    public User(String username, String password, String email, LocalDate birthDate) {
+    public User(String username, String password, String email, LocalDate birthDate, String role) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.birthDate = birthDate;
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -110,5 +114,13 @@ public class User extends AbstractEntity{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

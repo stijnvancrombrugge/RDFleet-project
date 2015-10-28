@@ -11,6 +11,6 @@ import java.time.LocalDate;
 public class FleetManager extends User{
 
     public FleetManager(String username, String password, String email, LocalDate birthDate) {
-        super(username, password, email, birthDate);
+        super(username, password, email, birthDate, "FleetManager");
     }
 }
