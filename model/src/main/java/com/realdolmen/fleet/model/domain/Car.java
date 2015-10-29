@@ -38,6 +38,7 @@ public class Car extends AbstractEntity{
     @Basic(optional = true)
     private int basicPrice;
 
+
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<OptionPack> optionPacks;
 
@@ -54,6 +55,7 @@ public class Car extends AbstractEntity{
         this.line = line;
         this.optionPacks = new ArrayList<>();
     }
+
 
     public Car() {
         this.optionPacks = new ArrayList<>();

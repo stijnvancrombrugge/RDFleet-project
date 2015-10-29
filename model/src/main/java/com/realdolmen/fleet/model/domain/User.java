@@ -1,20 +1,20 @@
 package com.realdolmen.fleet.model.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import org.hibernate.validator.constraints.Email;
+
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Created by SVCAX33 on 28/10/2015.
  */
 
 @Entity
-public class User extends AbstractEntity{
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class User extends AbstractEntity{
 
     @Size(min = 1, max = 50)
     private String firstName;
@@ -24,6 +24,7 @@ public class User extends AbstractEntity{
 
     @Size(min = 1, max = 100)
     @Basic(optional = false)
+    @Column(unique = true)
     private String username;
 
     @Size(min=1, max = 50)
@@ -31,7 +32,7 @@ public class User extends AbstractEntity{
     private String password;
 
     @Basic(optional = false)
-    @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$")
+    @Email
     private String email;
 
     private String businessUnit;
@@ -39,9 +40,9 @@ public class User extends AbstractEntity{
     private int phoneNumber;
 
     @Temporal(TemporalType.DATE)
-    private LocalDate birthDate;
+    private Date birthDate;
 
-    public User(String username, String password, String email, LocalDate birthDate) {
+    public User(String username, String password, String email, Date birthDate) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -96,11 +97,11 @@ public class User extends AbstractEntity{
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 

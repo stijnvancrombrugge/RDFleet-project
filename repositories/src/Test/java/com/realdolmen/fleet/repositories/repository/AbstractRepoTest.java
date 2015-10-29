@@ -1,7 +1,6 @@
 package com.realdolmen.fleet.repositories.repository;
 
-import com.realdolmen.fleet.model.domain.Option;
-import com.realdolmen.fleet.model.domain.OptionPack;
+
 import com.realdolmen.fleet.repositories.config.TestConfig;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,12 +23,33 @@ import javax.validation.ConstraintViolationException;
 @Transactional
 public abstract class AbstractRepoTest extends Assert {
 
+
+
+
     @Autowired
     private CarRepository carRepository;
     @Autowired
     private OptionRepository optionRepository;
     @Autowired
     private OptionPackRepository optionPackRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private OrderRepository orderRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    public UserRepository getUserRepository() {
+        return userRepository;
+    }
+
+    public OrderRepository getOrderRepository() {
+        return orderRepository;
+    }
+
+    public CategoryRepository getCategoryRepository() {
+        return categoryRepository;
+    }
 
     public CarRepository getCarRepository() {
         return carRepository;
@@ -43,28 +63,10 @@ public abstract class AbstractRepoTest extends Assert {
         return optionPackRepository;
     }
 
+
     @Before
-    public void setUp() throws Exception {
+    public abstract void setUp()throws Exception;
 
-        System.out.println("Is this shit doing what it is supose to do?");
-        Option option1 = new Option("MP3 player");
-        optionRepository.save(option1);
-        Option option2 = new Option("Audio System");
-        optionRepository.save(option2);
-
-        Option option3 = new Option("Audio System Advanced");
-        optionRepository.save(option3);
-
-        OptionPack pack = new OptionPack("Economic line");
-        getOptionPackRepository().save(pack);
-
-        OptionPack pack1 = new OptionPack("Business Pack");
-        getOptionPackRepository().save(pack1);
-
-        OptionPack pack2 = new OptionPack("Executive line");
-        getOptionPackRepository().save(pack2);
-
-    }
 
     /**
      * Create a valid entity.
@@ -89,10 +91,18 @@ public abstract class AbstractRepoTest extends Assert {
     @Test
     public abstract void shouldReturnAllEntities()throws Exception;
     /**
-     * Update a list of abstractEntities.
-     * @result use the correct repository.flushAndSave() method each AbstractEntity type will successfully return a list of entities with size 3
-     * <note>if setUp is changed, change the test</note>
+     * Update a object of abstractEntity.
+     * @result use the correct repository.flushAndSave() method to update a variable of the requested object
+     *
      */
     @Test
     public abstract void shouldUpdateAnEntity()throws Exception;
+    /**
+     * Delete an entity.
+     * @result use the right repository to delete the entity and will be deleted without any errors,
+     *         and AbstractEntity.getId() will be <code>null</code>
+     */
+    @Test
+    public abstract void shouldDeleteAnEntity()throws Exception;
+
 }

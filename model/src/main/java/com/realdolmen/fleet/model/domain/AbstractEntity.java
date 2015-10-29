@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 
 @MappedSuperclass
-public class AbstractEntity implements Serializable {
+public abstract class AbstractEntity implements Serializable {
 
     private int version;
 

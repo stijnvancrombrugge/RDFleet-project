@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
  * Created by SDOAX36 on 28/10/2015.
  */
 @Entity
+@Table(name = "options")
 public class Option extends AbstractEntity{
 
 
