@@ -1,81 +1,44 @@
 package com.realdolmen.fleet.repositories.repository;
 
-import com.realdolmen.fleet.repositories.config.TestConfig;
 import com.realdolmen.fleet.model.domain.Option;
-import org.junit.Assert;
+
+import com.realdolmen.fleet.model.domain.OptionPack;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
 
 /**
  * Created by SDOAX36 on 28/10/2015.
- */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = TestConfig.class)
-@ActiveProfiles("test")
-@Transactional
-public class OptionRepoTest extends Assert{
+*/
+public class OptionRepoTest extends AbstractRepoTest{
 
-    @Autowired
-    OptionRepository repository;
+    private int idToCheckFirst;
+    private int idToCheckSecond;
+    private int idToCheckThird;
 
-   @Before
-    public void init()
-    {
+    @Override
+    public void setUp() throws Exception {
+
+        System.out.println("Is this shit doing what it is supose to do?");
         Option option1 = new Option("MP3 player");
-        repository.save(option1);
+        getOptionRepository().save(option1);
+        idToCheckFirst = option1.getId();
         Option option2 = new Option("Audio System");
-        repository.save(option2);
+        getOptionRepository().save(option2);
+        idToCheckSecond = option2.getId();
+        Option option3 = new Option("Audio System Advanced");
+        getOptionRepository().save(option3);
+        idToCheckThird = option3.getId();
 
-    }
-
-    @Test
-    public void shouldPersistOption()throws Exception
-    {
-        Option option1 = new Option("MP3 player");
-        repository.save(option1);
-        assertNotNull(option1.getId());
-
-    }
-
-    @Test
-    public void shouldRetrieveAnOptionByID()throws Exception
-    {
-        Option option = repository.findOne(1);
-        assertEquals(option.getOptionName(), "MP3 player");
-        Option option1 = repository.findOne(2);
-        assertEquals(option1.getOptionName(), "Audio System");
-    }
-
-    @Test
-    public void shouldRetrieveListOfOptions()throws Exception
-    {
-        List<Option>optionsList = repository.findAll();
-        assertEquals(optionsList.size(),2);
-    }
-
-    @Test
-    public void shouldUpdateOptionName()throws Exception
-    {
-        Option option = repository.findOne(1);
-        option.setOptionName("MP3 Bose system");
-        repository.save(option);
-        assertEquals(repository.findOne(1).getOptionName(),option.getOptionName());
     }
 
     @Test(expected = ConstraintViolationException.class)
     public void shouldNotSaveOptionWithoutOptionName()throws Exception
     {
         Option option = new Option();
-        repository.save(option);
+        getOptionRepository().save(option);
         assertNull(option.getId());
     }
 
@@ -83,9 +46,43 @@ public class OptionRepoTest extends Assert{
     public void shouldNotSaveOptionWithOptionNameToLong()throws Exception
     {
         Option option = new Option("dmlskfjqsdmklfjqsdmlkfjsdmlkjfsdmlqkjfmlsdkjfsdmlkqjfqmlsdkjfmlqsdkjfsdmljkfsdmlkfjqsmldkjfqsdmlkfjqsdmlkfjsdmlkfjsdmlkjfmsdljkfqmlsdkfj");
-        repository.save(option);
+        getOptionRepository().save(option);
         assertNull(option.getId());
     }
 
 
+    @Override
+    public void shouldCreateEntity() throws Exception {
+        Option option1 = new Option("MP3 player");
+        getOptionRepository().save(option1);
+        assertNotNull(option1.getId());
+    }
+
+    @Override
+    public void shouldReturnOnlyOneEntityById() throws Exception {
+        Option option = getOptionRepository().findOne(idToCheckFirst);
+        assertEquals(option.getOptionName(), "MP3 player");
+        Option option1 = getOptionRepository().findOne(idToCheckSecond);
+        assertEquals(option1.getOptionName(), "Audio System");
+    }
+
+    @Override
+    public void shouldReturnAllEntities() throws Exception {
+        List<Option>optionsList = getOptionRepository().findAll();
+        assertEquals(optionsList.size(),3);
+    }
+
+    @Override
+    public void shouldUpdateAnEntity() throws Exception {
+        Option option = getOptionRepository().findOne(idToCheckFirst);
+        option.setOptionName("MP3 Bose system");
+        //getOptionRepository().saveAndFlush(option);
+        assertEquals(getOptionRepository().findOne(idToCheckFirst).getOptionName(),option.getOptionName());
+    }
+
+    @Override
+    public void shouldDeleteAnEntity() throws Exception {
+       getOptionRepository().delete(idToCheckFirst);
+       assertNull(getOptionRepository().findOne(idToCheckFirst));
+    }
 }
