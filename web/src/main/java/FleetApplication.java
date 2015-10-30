@@ -9,7 +9,7 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
  * Created by SDOAX36 on 27/10/2015.
  */
 @SpringBootApplication
-@ComponentScan("com.realdolmen.fleet")
+@ComponentScan(basePackages = "com.realdolmen.fleet")
 public class FleetApplication{
 
 

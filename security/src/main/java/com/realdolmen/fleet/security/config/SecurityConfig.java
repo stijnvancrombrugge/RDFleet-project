@@ -18,7 +18,6 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebMvcSecurity
-@Profile("production")
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
@@ -30,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select username, password, true from User where username=?")
-                .authoritiesByUsernameQuery("select username, role from User where username=?")
+                .authoritiesByUsernameQuery("select username, 'ROLE_USER' from User where username=?")
                 .passwordEncoder(new StandardPasswordEncoder("53cr3t"));
     }
 
@@ -42,9 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .rememberMe().tokenValiditySeconds(1000).and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index").and()
                 .authorizeRequests()
-                .antMatchers("/fleet/**").hasRole("FleetManager")
-                .antMatchers("/employee/**").hasRole("Employee")
+                /*.antMatchers("/fleetHome").hasRole("FleetManager")
+                .antMatchers("/employee/**").hasRole("Employee")*/
                 .anyRequest().permitAll();
-
     }
 }
