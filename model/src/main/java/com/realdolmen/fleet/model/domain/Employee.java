@@ -21,10 +21,12 @@ public class Employee extends User{
     private List<Order> orders;
 
     public Employee(String username, String password, Date birthDate, String email, Category category) {
-        super(username, password, email, birthDate, "Employee");
+        super(username, password, email, birthDate, "ROLE_USER");
         this.category = category;
         orders = new ArrayList<>();
     }
+
+    protected Employee(){}
 
     public Category getCategory() {
         return category;

@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class FleetHomeController {
 
-    @RequestMapping(value= "/fleet/fleetHome", method = RequestMethod.GET)
+    @RequestMapping(value= "/fleet/home", method = RequestMethod.GET)
     public String fleetHome(){
         System.out.println("Controlling");
-        return "/fleet/fleetHome";
+        return "/fleet/index";
     }
 }

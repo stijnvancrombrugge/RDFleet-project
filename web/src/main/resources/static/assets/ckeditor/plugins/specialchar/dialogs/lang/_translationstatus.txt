@@ -1,0 +1,20 @@
+Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.html or http://ckeditor.com/license
+
+cs.static.js      Found: 118 Missing: 0
+cy.static.js      Found: 118 Missing: 0
+de.static.js      Found: 118 Missing: 0
+el.static.js      Found: 16 Missing: 102
+eo.static.js      Found: 118 Missing: 0
+et.static.js      Found: 31 Missing: 87
+fa.static.js      Found: 24 Missing: 94
+fi.static.js      Found: 23 Missing: 95
+fr.static.js      Found: 118 Missing: 0
+hr.static.js      Found: 23 Missing: 95
+it.static.js      Found: 118 Missing: 0
+nb.static.js      Found: 118 Missing: 0
+nl.static.js      Found: 118 Missing: 0
+no.static.js      Found: 118 Missing: 0
+tr.static.js      Found: 118 Missing: 0
+ug.static.js      Found: 39 Missing: 79
+zh-cn.static.js   Found: 118 Missing: 0
