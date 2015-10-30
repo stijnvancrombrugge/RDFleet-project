@@ -1,5 +1,6 @@
 package com.realdolmen.fleet.repositories.config;
 
+import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -22,6 +23,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@EntityScan(basePackages = "com.realdolmen.fleet.model")
 @EnableJpaRepositories(basePackages = "com.realdolmen.fleet.repositories")
 public class JpaConfig {
     @Bean

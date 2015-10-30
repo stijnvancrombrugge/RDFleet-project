@@ -16,5 +16,6 @@ public class FleetApplication{
     public static void main(String[]args)
     {
         ConfigurableApplicationContext context = new SpringApplicationBuilder(FleetApplication.class).profiles("production").run();
+        //SpringApplication.run(FleetApplication.class,args);
     }
 }

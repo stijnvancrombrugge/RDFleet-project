@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 public class FleetManager extends User{
 
-    public FleetManager(String username, String password, String email, LocalDate birthDate) {
+    public FleetManager(String username, String password, String email, Date birthDate) {
         super(username, password, email, birthDate, "FleetManager");
     }
 }

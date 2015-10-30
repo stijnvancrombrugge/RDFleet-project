@@ -10,6 +10,43 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>web-services</artifactId>
+    <dependencies>
 
+        <dependency>
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-ws</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.realdolmen</groupId>
+            <artifactId>model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
+    <build>
+       <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>jaxb2-maven-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+                <execution>
+                    <id>xjc</id>
+                    <goals>
+                        <goal>xjc</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <schemaDirectory>src/main/resources/</schemaDirectory>
+                <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+                <clearOutputDir>false</clearOutputDir>
+            </configuration>
+        </plugin>
+       </plugins>
+    </build>
 </project>
