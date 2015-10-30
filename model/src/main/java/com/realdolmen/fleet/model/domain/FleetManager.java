@@ -1,7 +1,8 @@
 package com.realdolmen.fleet.model.domain;
 
 import javax.persistence.Entity;
-import java.time.LocalDate;
+
+import java.util.Date;
 
 /**
  * Created by SVCAX33 on 28/10/2015.

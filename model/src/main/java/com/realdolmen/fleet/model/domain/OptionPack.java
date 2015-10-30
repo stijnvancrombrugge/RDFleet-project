@@ -10,11 +10,8 @@ import java.util.List;
  * Created by SDOAX36 on 28/10/2015.
  */
 @Entity
-public class OptionPack {
+public class OptionPack extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
     @NotNull
     @Column(length = 100)
@@ -40,9 +37,6 @@ public class OptionPack {
         options.add(option);
     }
 
-    public Integer getId() {
-        return id;
-    }
 
 
 

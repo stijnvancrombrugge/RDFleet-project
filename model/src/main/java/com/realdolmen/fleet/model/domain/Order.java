@@ -1,55 +1,50 @@
 package com.realdolmen.fleet.model.domain;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * Created by SVCAX33 on 28/10/2015.
  */
 
 @Entity
+@Table(name = "Orders")
 public class Order extends AbstractEntity {
 
-    @Basic(optional = false)
-    private int price;
 
-    @Basic(optional = false)
+    //@NotNull
     @Column(unique = true)
+    //@GeneratedValue(strategy = )
     private String orderCode;
 
-    @Basic(optional = false)
+    @NotNull
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Car car;
 
-    @Basic(optional = false)
-    private boolean currentCar;
+    @NotNull
+    private Boolean currentCar;
 
-    @Basic(optional = false)
+    @NotNull
     @Temporal(TemporalType.DATE)
-    private LocalDate orderDate;
+    private Date orderDate;
 
+    public Order() {
+        orderDate = new Date();
+    }
 
+    public Order( Car car, Boolean currentCar) {
 
-    public Order(int price, String orderCode, Car car, boolean currentCar, LocalDate orderDate) {
-        this.price = price;
-        this.orderCode = orderCode;
         this.car = car;
         this.currentCar = currentCar;
-        this.orderDate = orderDate;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
+        this.orderDate = new Date();
     }
 
     public String getOrderCode() {
         return orderCode;
     }
 
-    public void setOrderCode(String orderCode) {
+    private void setOrderCode(String orderCode) {
         this.orderCode = orderCode;
     }
 
@@ -61,7 +56,7 @@ public class Order extends AbstractEntity {
         this.car = car;
     }
 
-    public boolean isCurrentCar() {
+    public Boolean isCurrentCar() {
         return currentCar;
     }
 
@@ -69,11 +64,17 @@ public class Order extends AbstractEntity {
         this.currentCar = currentCar;
     }
 
-    public LocalDate getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    @PostPersist
+    private void generateCode()
+    {
+        setOrderCode(getId()+"ORDER"+car.getId()+car.getModel());
     }
 }

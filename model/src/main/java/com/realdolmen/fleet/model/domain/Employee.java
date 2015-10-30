@@ -1,8 +1,9 @@
 package com.realdolmen.fleet.model.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,13 +14,16 @@ import java.util.List;
 public class Employee extends User{
 
     @Basic(optional = false)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Category category;
 
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Order> orders;
 
-    public Employee(String username, String password, LocalDate birthDate, String email, Category category) {
+    public Employee(String username, String password, Date birthDate, String email, Category category) {
         super(username, password, email, birthDate, "Employee");
         this.category = category;
+        orders = new ArrayList<>();
     }
 
     public Category getCategory() {
@@ -34,7 +38,18 @@ public class Employee extends User{
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+
+/*    public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }*/
+
+    public void addOrder(Order order)
+    {
+        orders.add(order);
     }
+    public void removeOrder(Order order)
+    {
+        orders.remove(order);
+    }
+
 }

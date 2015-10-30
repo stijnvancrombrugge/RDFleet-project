@@ -29,7 +29,7 @@ public class JpaConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/templates.fleet");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/fleet");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
         return dataSource;
@@ -47,7 +47,7 @@ public class JpaConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("com.realdolmen.templates.fleet.repositories");
+        em.setPackagesToScan("com.realdolmen.fleet.repositories");
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(additionalProperties());

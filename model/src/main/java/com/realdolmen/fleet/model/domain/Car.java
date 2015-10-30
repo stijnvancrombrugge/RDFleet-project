@@ -9,11 +9,9 @@ import java.util.List;
  * Created by SDOAX36 on 28/10/2015.
  */
 @Entity
-public class Car {
+public class Car extends AbstractEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+
     @NotNull
     private String model;
     @NotNull
@@ -40,6 +38,7 @@ public class Car {
     @Basic(optional = true)
     private int basicPrice;
 
+
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<OptionPack> optionPacks;
 
@@ -57,17 +56,11 @@ public class Car {
         this.optionPacks = new ArrayList<>();
     }
 
+
     public Car() {
         this.optionPacks = new ArrayList<>();
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    private void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getModel() {
         return model;
