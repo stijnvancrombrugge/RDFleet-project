@@ -21,7 +21,7 @@ public class Employee extends User{
     private List<Order> orders;
 
     public Employee(String username, String password, Date birthDate, String email, Category category) {
-        super(username, password, email, birthDate);
+        super(username, password, email, birthDate, "Employee");
         this.category = category;
         orders = new ArrayList<>();
     }

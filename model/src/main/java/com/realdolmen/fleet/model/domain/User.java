@@ -35,6 +35,9 @@ public abstract class User extends AbstractEntity{
     @Email
     private String email;
 
+    @Basic(optional = false)
+    private String role;
+
     private String businessUnit;
 
     private int phoneNumber;
@@ -42,11 +45,12 @@ public abstract class User extends AbstractEntity{
     @Temporal(TemporalType.DATE)
     private Date birthDate;
 
-    public User(String username, String password, String email, Date birthDate) {
+    public User(String username, String password, String email, Date birthDate, String role) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.birthDate = birthDate;
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -111,5 +115,13 @@ public abstract class User extends AbstractEntity{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
