@@ -11,5 +11,12 @@
 
     <artifactId>security</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.realdolmen</groupId>
+            <artifactId>repositories</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

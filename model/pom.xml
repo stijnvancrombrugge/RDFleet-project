@@ -9,7 +9,6 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.realdolmen</groupId>
     <artifactId>model</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
