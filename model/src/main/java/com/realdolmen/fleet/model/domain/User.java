@@ -126,4 +126,5 @@ public class User extends AbstractEntity{
     public void setRole(String role) {
         this.role = role;
     }
+
 }

@@ -30,16 +30,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 /*.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select username, password, true from User where username=?")
+<<<<<<< HEAD
                 .authoritiesByUsernameQuery("select username, 'ROLE_USER' from User where username=?");
                 //.passwordEncoder(new StandardPasswordEncoder("53cr3t"));
                 */
+=======
+                .authoritiesByUsernameQuery("select username, role from User where username=?");
+                //.passwordEncoder(new StandardPasswordEncoder("53cr3t"));
+>>>>>>> refs/remotes/origin/master
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .formLogin()
-                .loginPage("/index").and()
+                .loginPage("/index").usernameParameter("username").passwordParameter("password").and()
                 .rememberMe().tokenValiditySeconds(1000).and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index").and()
                 .authorizeRequests()
