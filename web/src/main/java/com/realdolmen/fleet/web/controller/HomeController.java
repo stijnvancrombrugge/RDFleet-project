@@ -29,7 +29,7 @@ public class HomeController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
-        return "login";
+        return "index";
     }
 
     @RequestMapping(value = "/error", method = RequestMethod.GET)
@@ -39,7 +39,7 @@ public class HomeController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginUserRedirect(User user) {
-        userRepository.save(user);
+        //userRepository.save(user);
 
         System.out.println(user.getFirstName());
         if (user.getRole().equals("ROLE_USER")){

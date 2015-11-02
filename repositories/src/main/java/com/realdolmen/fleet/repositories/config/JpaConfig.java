@@ -24,11 +24,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-<<<<<<< HEAD
 @EntityScan(basePackages = "com.realdolmen.fleet.model")
-=======
-@EntityScan(basePackages = "com.realdolmen.fleet.model.domain")
->>>>>>> refs/remotes/origin/master
 @EnableJpaRepositories(basePackages = "com.realdolmen.fleet.repositories")
 public class JpaConfig {
     @Bean
@@ -66,7 +62,7 @@ public class JpaConfig {
     @Profile("production")
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "create");
+        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
     }

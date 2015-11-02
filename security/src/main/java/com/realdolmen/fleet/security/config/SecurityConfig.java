@@ -1,5 +1,6 @@
 package com.realdolmen.fleet.security.config;
 
+import com.realdolmen.fleet.services.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -20,16 +21,18 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
-    DataSource dataSource;
+    UserDetailService service;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth
-                .jdbcAuthentication()
+                .userDetailsService(service);
+                /*.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select username, password, true from User where username=?")
-                .authoritiesByUsernameQuery("select username, 'ROLE_USER' from User where username=?")
-                .passwordEncoder(new StandardPasswordEncoder("53cr3t"));
+                .authoritiesByUsernameQuery("select username, 'ROLE_USER' from User where username=?");
+                //.passwordEncoder(new StandardPasswordEncoder("53cr3t"));
+                */
     }
 
     @Override
