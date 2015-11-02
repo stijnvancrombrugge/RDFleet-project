@@ -19,13 +19,12 @@ public class Category extends AbstractEntity {
     @Basic(optional = false)
     private int categoryClass;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+   /* @OneToMany(cascade = CascadeType.PERSIST)
     private List<CarModel> cars;
-
+    */
 
     public Category(int categoryClass) {
         this.categoryClass = categoryClass;
-        this.cars = new ArrayList<>();
     }
 
     public int getCategoryClass() {
@@ -38,23 +37,12 @@ public class Category extends AbstractEntity {
 
 
 
-    public List<CarModel> getCars() {
-        return cars;
-    }
+
 
     /*public void setCars(List<Car> cars) {
         this.cars = cars;
     }
     */
-
-    public void addCar(CarModel car)
-    {
-        cars.add(car);
-    }
-    public void removeCar(CarModel car)
-    {
-        cars.remove(car);
-    }
 
 
 }

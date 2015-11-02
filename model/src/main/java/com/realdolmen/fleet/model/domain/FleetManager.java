@@ -12,10 +12,8 @@ import java.util.Date;
 public class FleetManager extends User{
 
     public FleetManager(String username, String password, String email, Date birthDate) {
-<<<<<<< HEAD
-        super(username, password, email, birthDate, "FleetManager");
-=======
+
         super(username, password, email, birthDate, "ROLE_ADMIN");
->>>>>>> refs/remotes/origin/master
+
     }
 }
