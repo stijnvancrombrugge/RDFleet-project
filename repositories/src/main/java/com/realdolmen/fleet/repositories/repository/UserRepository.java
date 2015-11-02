@@ -9,9 +9,7 @@ import java.util.Optional;
  * Created by SDOAX36 on 28/10/2015.
  */
 public interface UserRepository extends JpaRepository<User,Integer> {
-<<<<<<< HEAD
     Optional<User> findByUsername(String username);
-=======
-    User findByUsername(String username);
->>>>>>> refs/remotes/origin/master
+
+
 }
