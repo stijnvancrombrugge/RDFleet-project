@@ -24,7 +24,7 @@ public class CarModel extends AbstractEntity{
     private String mark;
 
     @NotNull
-    private Integer category;
+    private Category category;
 
     @NotNull
     private int horsePower;
@@ -42,7 +42,7 @@ public class CarModel extends AbstractEntity{
     public CarModel() {
     }
 
-    public CarModel(String model, String mark, int horsePower, int cilinder, int motorType, int gears, int emission, String line,Integer category) {
+    public CarModel(String model, String mark, int horsePower, int cilinder, int motorType, int gears, int emission, String line,Category category) {
         this.model = model;
         this.mark = mark;
         this.horsePower = horsePower;
@@ -54,15 +54,15 @@ public class CarModel extends AbstractEntity{
         this.category = category;
     }
 
-    public Integer getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Integer category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
-    public CarModel(byte[] image, String dealerName, String model, String mark, int horsePower, int cilinder, int motorType, int gears, int emission, String line,Integer category) {
+    public CarModel(byte[] image, String dealerName, String model, String mark, int horsePower, int cilinder, int motorType, int gears, int emission, String line,Category category) {
         this.image = image;
         this.dealerName = dealerName;
         this.model = model;
