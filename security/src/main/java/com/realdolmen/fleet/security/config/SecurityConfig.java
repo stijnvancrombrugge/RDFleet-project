@@ -11,6 +11,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
+
 /**
  * Created by SVCAX33 on 28/10/2015.
  */
@@ -22,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     DataSource dataSource;
 
-    @Override
+    @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth
                 .jdbcAuthentication()
@@ -38,10 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .formLogin()
                 .loginPage("/index").usernameParameter("username").passwordParameter("password").and()
                 .rememberMe().tokenValiditySeconds(1000).and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index").and()
-                .authorizeRequests()
-                .antMatchers("/fleet/**").hasRole("FleetManager")
-                .antMatchers("/employee/**").hasRole("Employee")
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").and()
+                .authorizeRequests()/*
+                .antMatchers("/fleet/**").hasRole("ADMIN")
+                .antMatchers("/employee/**").hasRole("USER")*/
                 .anyRequest().permitAll().and().httpBasic();
     }
 }

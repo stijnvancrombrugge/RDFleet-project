@@ -25,7 +25,7 @@ public class HomeController {
         this.userRepository = userRepository;
     }
 
-    @RequestMapping(value = {"/", "/index", "/home"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index", "/home", "/login"}, method = RequestMethod.GET)
     public String login() {
         return "login";
     }
@@ -34,7 +34,7 @@ public class HomeController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginUserRedirect() {
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findByUsername(auth.getName());
         System.out.println(auth.getName());
         System.out.println(user.getFirstName());
@@ -44,8 +44,8 @@ public class HomeController {
         else if(user.getRole().equals("ROLE_ADMIN"))
         {
             return "fleet/home";
-        }
-        return "index";
+        }*/
+        return "redirect:employee/home";
     }
 
 }
