@@ -1,5 +1,6 @@
 package com.realdolmen.fleet.webservices.endpoints.services;
 
+import com.realdolmen.fleet.model.domain.Category;
 import com.realdolmen.fleet.webservices.endpoints.CarModelXml;
 
 /**

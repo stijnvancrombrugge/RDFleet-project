@@ -1,5 +1,6 @@
-package com.realdolmen.fleet.security.config;
+package com.realdolmen.fleet.security.config.Config;
 
+import com.realdolmen.fleet.security.config.Handlers.UserSuccessHandler;
 import com.realdolmen.fleet.services.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -23,23 +24,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     UserDetailService service;
 
+   @Autowired
+    UserSuccessHandler successHandler;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth
                 .userDetailsService(service);
-
+                //password encoder should be placed here
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .formLogin()
-                .loginPage("/index").usernameParameter("username").passwordParameter("password").and()
-                .rememberMe().tokenValiditySeconds(1000).and()
+                .loginPage("/login")
+                .successHandler(successHandler)
+                //.defaultSuccessUrl("/employee/home")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .and()
+                .rememberMe()
+                .tokenValiditySeconds(1000)
+                .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index").and()
                 .authorizeRequests()
-                .antMatchers("/fleet/**").hasRole("FleetManager")
-                .antMatchers("/employee/**").hasRole("Employee")
+                .antMatchers("/fleet/**").access("hasRole('ADMIN')")
+                .antMatchers("/employee/**").access("hasRole('USER')")
                 .anyRequest().permitAll().and().httpBasic();
     }
 }
