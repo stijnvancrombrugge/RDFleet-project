@@ -11,8 +11,12 @@
 
     <artifactId>services</artifactId>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+>>>>>>> refs/remotes/origin/master
+=======
+
 >>>>>>> refs/remotes/origin/master
     <dependencies>
         <dependency>
@@ -21,6 +25,9 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/master
         <dependency>
             <groupId>com.realdolmen</groupId>
             <artifactId>model</artifactId>
@@ -28,8 +35,11 @@
         </dependency>
     </dependencies>
 
+<<<<<<< HEAD
 =======
     </dependencies>
+>>>>>>> refs/remotes/origin/master
+=======
 >>>>>>> refs/remotes/origin/master
 
 </project>

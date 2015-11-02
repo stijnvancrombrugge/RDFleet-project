@@ -13,7 +13,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
-
 /**
  * Created by SVCAX33 on 28/10/2015.
  */
@@ -23,9 +22,12 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
-    DataSource dataSource;
+    UserDetailService service;
 
+<<<<<<< HEAD
 <<<<<<< HEAD:security/src/main/java/com/realdolmen/fleet/security/config/Config/SecurityConfig.java
+=======
+>>>>>>> refs/remotes/origin/master
    @Autowired
     UserSuccessHandler successHandler;
 
@@ -33,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth
                 .userDetailsService(service);
+<<<<<<< HEAD
                 //password encoder should be placed here
 =======
     @Autowired
@@ -45,13 +48,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         //.passwordEncoder(new StandardPasswordEncoder("53cr3t"));
 
 >>>>>>> refs/remotes/origin/master:security/src/main/java/com/realdolmen/fleet/security/config/SecurityConfig.java
+=======
+        //password encoder should be placed here
+>>>>>>> refs/remotes/origin/master
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .formLogin()
+<<<<<<< HEAD
 <<<<<<< HEAD:security/src/main/java/com/realdolmen/fleet/security/config/Config/SecurityConfig.java
+=======
+>>>>>>> refs/remotes/origin/master
                 .loginPage("/login")
                 .successHandler(successHandler)
                 //.defaultSuccessUrl("/employee/home")
@@ -65,6 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                 .antMatchers("/fleet/**").access("hasRole('ADMIN')")
                 .antMatchers("/employee/**").access("hasRole('USER')")
+<<<<<<< HEAD
 =======
                 .loginPage("/index").usernameParameter("username").passwordParameter("password").and()
                 .rememberMe().tokenValiditySeconds(1000).and()
@@ -73,6 +83,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/fleet/**").hasRole("ADMIN")
                 .antMatchers("/employee/**").hasRole("USER")*/
 >>>>>>> refs/remotes/origin/master:security/src/main/java/com/realdolmen/fleet/security/config/SecurityConfig.java
+=======
+>>>>>>> refs/remotes/origin/master
                 .anyRequest().permitAll().and().httpBasic();
     }
 }

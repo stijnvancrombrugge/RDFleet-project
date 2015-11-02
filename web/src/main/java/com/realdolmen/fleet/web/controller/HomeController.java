@@ -22,7 +22,6 @@ public class HomeController {
     @Autowired
     private UserRepository userRepository;
 
-
     @RequestMapping(value = {"/", "/index", "/home", "/login"}, method = RequestMethod.GET)
     public String login() {
         return "login";
@@ -30,10 +29,14 @@ public class HomeController {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> refs/remotes/origin/master
     @RequestMapping(value = "/employee",method = RequestMethod.GET)
     public String empHome(){
         System.out.println(" Employee home get method activated");
         return "/employee/index";
+<<<<<<< HEAD
 =======
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginUserRedirect() {
@@ -52,5 +55,8 @@ public class HomeController {
        
        return "404";
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> refs/remotes/origin/master
     }
+
 }
