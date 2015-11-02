@@ -30,6 +30,8 @@ public class Category extends AbstractEntity {
         this.categoryClass = categoryClass;
     }
 
+    protected Category(){}
+
     public int getCategoryClass() {
         return categoryClass;
     }

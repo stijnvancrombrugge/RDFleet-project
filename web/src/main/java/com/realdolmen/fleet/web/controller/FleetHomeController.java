@@ -13,7 +13,7 @@ public class FleetHomeController {
 
     @RequestMapping(value= "/fleet/home", method = RequestMethod.GET)
     public String fleetHome(){
-        System.out.println("Controlling");
         return "/fleet/index";
     }
+
 }

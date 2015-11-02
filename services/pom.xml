@@ -10,13 +10,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>services</artifactId>
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
     <dependencies>
         <dependency>
             <groupId>com.realdolmen</groupId>
             <artifactId>repositories</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>com.realdolmen</groupId>
             <artifactId>model</artifactId>
@@ -24,5 +28,8 @@
         </dependency>
     </dependencies>
 
+=======
+    </dependencies>
+>>>>>>> refs/remotes/origin/master
 
 </project>
