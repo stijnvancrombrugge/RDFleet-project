@@ -4945,3 +4945,16 @@ span.customSelect.changed {
 .customSelectInner {
     background:url(../img/customSelect-arrow.gif) no-repeat center right;
 }
+
+
+.my-car-picture{
+    width: 400px;
+    height: 200px;
+    border-radius: 2%;
+}
+
+.large-profile-picture{
+    width: 200px;
+    height: 200px;
+    -webkit-border-radius: 50%;
+}

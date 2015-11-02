@@ -38,7 +38,7 @@ public class CarModelEndPoint  {
     {
         return new CarModelBuilder()
                 .setId(model.getId())
-                .setCategory(model.getCategory())
+                .setCategory(model.getCategory().getCategoryClass())
                 .setCilinder(model.getCilinder())
                 .setEmission(model.getEmission())
                 .setGears(model.getGears())

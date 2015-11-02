@@ -1,5 +1,9 @@
 package com.realdolmen.fleet.web.controller;
 
+import com.realdolmen.fleet.model.domain.Employee;
+import com.realdolmen.fleet.model.domain.User;
+import com.realdolmen.fleet.repositories.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,13 +15,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class EmployeeController {
 
-    @RequestMapping(value = "/employee/home", method = RequestMethod.GET)
-    public String home(){
-        return "/employee/index";
+    private UserRepository userRepository;
+    @Autowired
+    public EmployeeController(UserRepository userRepository) { // inject repository
+        this.userRepository = userRepository;
     }
 
-    @RequestMapping(value = "/employee/profile", method = RequestMethod.GET)
-    public String profile(){
-        return "/employee/profile";
+    @RequestMapping(value = {"/employee/home", "/employee/index"}, method = RequestMethod.GET)
+    public Employee profile(){
+        return (Employee)userRepository.findByUsername("stijn").get();
     }
+
+
 }

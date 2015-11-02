@@ -22,12 +22,16 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
-    UserDetailService service;
+    DataSource dataSource;
 
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth
-                .userDetailsService(service);
+                .jdbcAuthentication()
+                .dataSource(dataSource)
+                .usersByUsernameQuery("select username, password, true from User where username=?")
+                .authoritiesByUsernameQuery("select username, role from User where username=?");
+        //.passwordEncoder(new StandardPasswordEncoder("53cr3t"));
 
     }
 
