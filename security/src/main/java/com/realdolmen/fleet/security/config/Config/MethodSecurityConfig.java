@@ -1,4 +1,4 @@
-package com.realdolmen.fleet.security.config;
+package com.realdolmen.fleet.security.config.Config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

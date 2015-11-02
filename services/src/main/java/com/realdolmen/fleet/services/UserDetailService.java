@@ -9,7 +9,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+import javax.websocket.server.ServerEndpoint;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +19,7 @@ import java.util.Optional;
 /**
  * Created by SDOAX36 on 2/11/2015.
  */
+@Service
 public class UserDetailService implements UserDetailsService {
 
 
@@ -34,10 +37,10 @@ public class UserDetailService implements UserDetailsService {
             User realUser = user.get();
             List<GrantedAuthority> authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority(realUser.getRole()));
-            System.out.println("LoadUserByUsername : " + realUser.getId() + " should be logged in");
+            System.out.println("LoadUserByUsername : " + realUser.getId() + " should be logged in as "+realUser.getRole()+" autorities "+authorities.get(0));
             return new org.springframework.security.core.userdetails.User(realUser.getUsername(),realUser.getPassword(),authorities);
 
         }
-        throw new UsernameNotFoundException("User "+s+" Not foud");
+        throw new UsernameNotFoundException("User "+s+" Not found");
     }
 }

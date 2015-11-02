@@ -1,5 +1,6 @@
-package com.realdolmen.fleet.security.config;
+package com.realdolmen.fleet.security.config.Config;
 
+import com.realdolmen.fleet.security.config.Handlers.UserSuccessHandler;
 import com.realdolmen.fleet.services.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +13,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
-
 /**
  * Created by SVCAX33 on 28/10/2015.
  */
@@ -22,29 +22,35 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
-    DataSource dataSource;
+    UserDetailService service;
 
-    @Autowired
+   @Autowired
+    UserSuccessHandler successHandler;
+
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth
-                .jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, true from User where username=?")
-                .authoritiesByUsernameQuery("select username, role from User where username=?");
-        //.passwordEncoder(new StandardPasswordEncoder("53cr3t"));
-
+                .userDetailsService(service);
+        //password encoder should be placed here
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .formLogin()
-                .loginPage("/index").usernameParameter("username").passwordParameter("password").and()
-                .rememberMe().tokenValiditySeconds(1000).and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").and()
-                .authorizeRequests()/*
-                .antMatchers("/fleet/**").hasRole("ADMIN")
-                .antMatchers("/employee/**").hasRole("USER")*/
+                .loginPage("/login")
+                .successHandler(successHandler)
+                //.defaultSuccessUrl("/employee/home")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .and()
+                .rememberMe()
+                .tokenValiditySeconds(1000)
+                .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index").and()
+                .authorizeRequests()
+                .antMatchers("/fleet/**").access("hasRole('ADMIN')")
+                .antMatchers("/employee/**").access("hasRole('USER')")
                 .anyRequest().permitAll().and().httpBasic();
     }
 }
