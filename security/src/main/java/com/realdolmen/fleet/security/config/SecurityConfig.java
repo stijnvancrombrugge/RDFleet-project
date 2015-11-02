@@ -27,17 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth
                 .userDetailsService(service);
-                /*.jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, true from User where username=?")
-<<<<<<< HEAD
-                .authoritiesByUsernameQuery("select username, 'ROLE_USER' from User where username=?");
-                //.passwordEncoder(new StandardPasswordEncoder("53cr3t"));
-                */
-=======
-                .authoritiesByUsernameQuery("select username, role from User where username=?");
-                //.passwordEncoder(new StandardPasswordEncoder("53cr3t"));
->>>>>>> refs/remotes/origin/master
+
     }
 
     @Override
