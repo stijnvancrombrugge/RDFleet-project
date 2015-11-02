@@ -22,8 +22,6 @@ public class Order extends AbstractEntity {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Car car;
 
-    @NotNull
-    private Boolean currentCar;
 
     @NotNull
     @Temporal(TemporalType.DATE)
@@ -36,7 +34,6 @@ public class Order extends AbstractEntity {
     public Order( Car car) {
 
         this.car = car;
-        this.currentCar = false;
         this.orderDate = new Date();
     }
 
@@ -56,13 +53,6 @@ public class Order extends AbstractEntity {
         this.car = car;
     }
 
-    public Boolean isCurrentCar() {
-        return currentCar;
-    }
-
-    public void setCurrentCar(boolean currentCar) {
-        this.currentCar = currentCar;
-    }
 
     public Date getOrderDate() {
         return orderDate;

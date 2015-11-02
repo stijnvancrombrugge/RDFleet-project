@@ -20,6 +20,9 @@ public class Employee extends User{
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Order> orders;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private CurrentCar currentCar;
+
     public Employee(String username, String password, Date birthDate, String email, Category category) {
         super(username, password, email, birthDate, "ROLE_USER");
         this.category = category;
@@ -54,4 +57,11 @@ public class Employee extends User{
         orders.remove(order);
     }
 
+    public CurrentCar getCurrentCar() {
+        return currentCar;
+    }
+
+    public void setCurrentCar(CurrentCar currentCar) {
+        this.currentCar = currentCar;
+    }
 }

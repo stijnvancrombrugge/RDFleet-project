@@ -289,46 +289,46 @@
                           <div class="panel-body">
                               <div class="tab-content">
                                   <div id="recent-activity" class="tab-pane active">
-                                      <section class="panel">
+                                      <section class="panel" th:if="${carViewModel != null}">
                                           <div class="bio-graph-heading"> <div class="row"><img class="my-car-picture" src="/img/Audi_A1_wit.jpg"/></div></div>
                                           <div class="panel-body bio-graph-info">
                                               <h1>My Car</h1>
                                               <div class="row">
                                                 <div class="bio-row">
-                                                  <p><span>Mark </span>: test </p>
+                                                  <p><span>Mark </span>: <th th:text="${carModelViewModel.mark}"></th></p>
                                                 </div>
                                                 <div class="bio-row">
-                                                  <p><span>Model </span>: test </p>
+                                                  <p><span>Model </span>: <th th:text="${carModelViewModel.model}"></th></p>
                                                 </div>
                                                 <div class="bio-row">
-                                                  <p><span>Category </span>: test </p>
+                                                  <p><span>Category </span>: <th th:text="${carModelViewModel.category.categoryClass}"></th></p>
                                                 </div>
                                                   <div class="bio-row">
-                                                      <p><span>Line </span>: test </p>
+                                                      <p><span>Line </span>: <th th:text="${carModelViewModel.line}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>License Plate </span>: test </p>
+                                                      <p><span>License Plate </span>: <th th:text="${carViewModel.licensePlate}"></th> </p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Color </span>: test</p>
+                                                      <p><span>Color </span>: <th th:text="${carViewModel.color}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Kilometers</span>: test</p>
+                                                      <p><span>Kilometers</span>: <th th:text="${carViewModel.kilometers}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Horsepower </span>: test</p>
+                                                      <p><span>Horsepower </span>: <th th:text="${carModelViewModel.horsePower}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Cilinder </span>: test</p>
+                                                      <p><span>Cilinder </span>: <th th:text="${carModelViewModel.cilinder}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Motor Type </span>: test</p>
+                                                      <p><span>Motor Type </span>: <th th:text="${carModelViewModel.motorType}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Gears </span>: test</p>
+                                                      <p><span>Gears </span>: <th th:text="${carModelViewModel.gears}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Emission </span>: test</p>
+                                                      <p><span>Emission </span>: <th th:text="${carModelViewModel.emission}"></th></p>
                                                   </div>
                                               </div>
                                               <h1>Options</h1>
@@ -342,6 +342,9 @@
                                               </div>
                                           </div>
                                       </section>
+                                      <section th:if="${carViewModel == null}">
+                                          <div class="bio-graph-heading">You currently don't own a fleet car</div>
+                                      </section>
 
                                   </div>
                                   <!-- profile -->
@@ -354,28 +357,28 @@
                                           <h1>Profile Info</h1>
                                           <div class="row">
                                               <div class="bio-row">
-                                                  <p><span>First Name </span>: <th th:text="${employee.firstName}"></th></p>
+                                                  <p><span>First Name </span>: <th th:text="${employeeViewModel.firstName}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Last Name </span>: <th th:text="${employee.lastName}"></th></p>
+                                                  <p><span>Last Name </span>: <th th:text="${employeeViewModel.lastName}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Business Unit </span>: <th th:text="${employee.businessUnit}"></th></p>
+                                                  <p><span>Business Unit </span>: <th th:text="${employeeViewModel.businessUnit}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Category</span>: <th th:text="${employee.category.categoryClass}"></th></p>
+                                                  <p><span>Category</span>: <th th:text="${employeeViewModel.category.categoryClass}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Username </span>: <th th:text="${employee.username}"></th></p>
+                                                  <p><span>Username </span>: <th th:text="${employeeViewModel.username}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Email </span>: <th th:text="${employee.email}"></th></p>
+                                                  <p><span>Email </span>: <th th:text="${employeeViewModel.email}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Birth Date</span>: <th th:text="${employee.birthDate}"></th></p>
+                                                  <p><span>Birth Date</span>: <th th:text="${employeeViewModel.birthDate}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Mobile </span>: <th th:text="${employee.phoneNumber}"></th></p>
+                                                  <p><span>Mobile </span>: <th th:text="${employeeViewModel.phoneNumber}"></th></p>
                                               </div>
                                           </div>
                                       </div>
