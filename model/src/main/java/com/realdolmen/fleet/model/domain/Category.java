@@ -1,5 +1,7 @@
 package com.realdolmen.fleet.model.domain;
 
+import com.realdolmen.fleet.model.Models.CarModel;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -17,13 +19,12 @@ public class Category extends AbstractEntity {
     @Basic(optional = false)
     private int categoryClass;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    private List<Car> cars;
-
+   /* @OneToMany(cascade = CascadeType.PERSIST)
+    private List<CarModel> cars;
+    */
 
     public Category(int categoryClass) {
         this.categoryClass = categoryClass;
-        this.cars = new ArrayList<>();
     }
 
     public int getCategoryClass() {
@@ -36,23 +37,12 @@ public class Category extends AbstractEntity {
 
 
 
-    public List<Car> getCars() {
-        return cars;
-    }
+
 
     /*public void setCars(List<Car> cars) {
         this.cars = cars;
     }
     */
-
-    public void addCar(Car car)
-    {
-        cars.add(car);
-    }
-    public void removeCar(Car car)
-    {
-        cars.remove(car);
-    }
 
 
 }

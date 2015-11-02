@@ -33,10 +33,10 @@ public class Order extends AbstractEntity {
         orderDate = new Date();
     }
 
-    public Order( Car car, Boolean currentCar) {
+    public Order( Car car) {
 
         this.car = car;
-        this.currentCar = currentCar;
+        this.currentCar = false;
         this.orderDate = new Date();
     }
 
@@ -75,6 +75,6 @@ public class Order extends AbstractEntity {
     @PostPersist
     private void generateCode()
     {
-        setOrderCode(getId()+"ORDER"+car.getId()+car.getModel());
+        setOrderCode(getId()+"ORDER"+car.getId()+car.getCarModel().getModel());
     }
 }

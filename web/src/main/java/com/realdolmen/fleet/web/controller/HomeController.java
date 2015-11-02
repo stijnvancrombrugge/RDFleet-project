@@ -27,7 +27,7 @@ public class HomeController {
 
     @RequestMapping(value = {"/", "/index", "/home", "/login"}, method = RequestMethod.GET)
     public String login() {
-        return "login";
+        return "index";
     }
 
 
@@ -45,7 +45,8 @@ public class HomeController {
         {
             return "fleet/home";
         }*/
-        return "redirect:employee/home";
+       
+       return "404";
     }
 
 }

@@ -1,6 +1,8 @@
 package com.realdolmen.fleet.repositories.repository;
 
+import com.realdolmen.fleet.model.Models.CarModel;
 import com.realdolmen.fleet.model.domain.Car;
+import com.realdolmen.fleet.model.domain.Category;
 
 import java.util.List;
 
@@ -10,17 +12,19 @@ import java.util.List;
 public class CarRepositoryTest extends AbstractRepoTest{
 
     private int idToCheckFirst,idToCheckSecond,idToCheckThird;
-
+//TODO : re-make unit tests
 
     @Override
     public void setUp() throws Exception {
-        Car car1 = new Car("A3","Audi","Black",0,110,1600,5,5,5,"S-line");
+        //String model, String mark, int horsePower, int cilinder, int motorType, int gears, int emission, String line,Category category
+        Car car1 = new Car(new CarModel("A1","Audi",140,1400,11,5,11,"Ecoline",new Category(1)),"Yellow",0,"EES-456",0);
         getCarRepository().save(car1);
         idToCheckFirst = car1.getId();
-        Car car2 = new Car("golf","Volkswagen","Black",0,110,1600,5,5,5,"S-line");
+       // CarModel carModel, String color, int kilometers, String licensePlate, int basicPrice
+        Car car2 = new Car(new CarModel("golf","Volkswagen",110,1600,5,5,5,"S-line",new Category(2)),"Yellow",0,"EES-456",0);
         getCarRepository().save(car2);
         idToCheckSecond = car2.getId();
-        Car car3 = new Car("Octavia","Skoda","Black",0,110,1600,5,5,5,"S-line");
+        Car car3 = new Car(new CarModel("Octavia","Skoda",110,1600,5,5,5,"S-line",new Category(2)),"Green",0,"ADD-456",0);
         getCarRepository().save(car3);
         idToCheckThird = car3.getId();
 
@@ -28,16 +32,19 @@ public class CarRepositoryTest extends AbstractRepoTest{
 
     @Override
     public void shouldCreateEntity() throws Exception {
-        Car car1 = new Car("Audi","A3","Black",0,110,1600,5,5,5,"S-line");
+       //Car car1 = new Car("Audi","A3","Black",0,110,1600,5,5,5,"S-line");
+        int size = getCarRepository().findAll().size();
+        Car car1 = new Car(new CarModel("A1","Audi",140,1400,11,5,11,"Ecoline",new Category(1)),"Yellow",0,"EES-456",0);
         getCarRepository().save(car1);
         assertNotNull(car1.getId());
+        assertEquals(getCarRepository().findAll().size(),size+1);
     }
 
     @Override
     public void shouldReturnOnlyOneEntityById() throws Exception {
         Car car = getCarRepository().findOne(idToCheckFirst);
-        assertEquals(car.getMark(),"Audi");
-        assertEquals(car.getModel(),"A3");
+        assertEquals(car.getCarModel().getMark(),"Audi");
+        assertEquals(car.getCarModel().getModel(),"A1");
 
     }
 

@@ -65,34 +65,5 @@ public class CategoryRepositoryTest extends AbstractRepoTest {
         assertEquals(getCategoryRepository().findAll().size(),size-1);
     }
 
-    @Test
-    public void shouldAddCarToCategory()throws Exception{
 
-        int size = getCarRepository().findAll().size();
-        Category category = getCategoryRepository().findOne(idToCheckFirst);
-        category.addCar(new Car("A3", "Audi", "Black", 0, 110, 1600, 5, 5, 5, "S-line"));
-        assertEquals(getCarRepository().findAll().size(), size + 1);
-        assertEquals(getCategoryRepository().findOne(idToCheckFirst).getCars().size(),1);
-    }
-
-    @Test
-    public void shouldRemoveCarFromCategoryCarShouldRemaineInDataBaseButShouldBeRemovedFromCategoryCarList()throws Exception
-    {
-        Category category = getCategoryRepository().findOne(idToCheckFirst);
-        Car car1 = new Car("A3","Audi","Black",0,110,1600,5,5,5,"S-line");
-        getCarRepository().save(car1);
-        int carId = car1.getId();
-        category.addCar(car1);
-        Car car2 = new Car("golf","Volkswagen","Black",0,110,1600,5,5,5,"S-line");
-        getCarRepository().save(car2);
-        category.addCar(car2);
-        Car car3 = new Car("Octavia","Skoda","Black",0,110,1600,5,5,5,"S-line");
-        getCarRepository().save(car3);
-        category.addCar(car3);
-
-        category.removeCar(car1);
-        assertNotNull(getCarRepository().findOne(carId));
-
-        assertEquals(getCategoryRepository().findOne(idToCheckFirst).getCars().size(),2);
-    }
 }

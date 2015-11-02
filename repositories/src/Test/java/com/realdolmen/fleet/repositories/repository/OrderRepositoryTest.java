@@ -2,7 +2,9 @@ package com.realdolmen.fleet.repositories.repository;
 
 
 
+import com.realdolmen.fleet.model.Models.CarModel;
 import com.realdolmen.fleet.model.domain.Car;
+import com.realdolmen.fleet.model.domain.Category;
 import com.realdolmen.fleet.model.domain.Order;
 import org.junit.Test;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -17,15 +19,15 @@ public class OrderRepositoryTest extends AbstractRepoTest {
 
     private int idToCheckFirst,idToCheckSecond,idToCheckThird;
     private String code1,code2;
-
+//TODO : car is changed so we need to change the code
     @Override
     public void setUp() throws Exception {
-        Order order1 = new Order(new Car("A3","Audi","Black",0,110,1600,5,5,5,"S-line"),false);
+        Order order1 = new Order(new Car(new CarModel("A1","Audi",140,1400,11,5,11,"Ecoline",new Category(1)),"Yellow",0,"EES-456",0));
         getOrderRepository().save(order1);
         idToCheckFirst = order1.getId();
         code1 = order1.getOrderCode();
         System.out.println("Order code 1 = " + order1.getOrderCode());
-        Order order2 = new Order(new Car("A3","Audi","Black",0,110,1600,5,5,5,"S-line"),false);
+        Order order2 = new Order(new Car(new CarModel("A1","Audi",140,1400,11,5,11,"Ecoline",new Category(1)),"Yellow",0,"EES-456",0));
         getOrderRepository().save(order2);
         idToCheckSecond = order2.getId();
         code2 = order2.getOrderCode();
@@ -38,7 +40,7 @@ public class OrderRepositoryTest extends AbstractRepoTest {
     public void shouldCreateEntity() throws Exception {
 
         int size = getOrderRepository().findAll().size();
-        Order order1 = new Order(new Car("A3", "Audi", "Black", 0, 110, 1600, 5, 5, 5, "S-line"),false);
+        Order order1 = new Order(new Car(new CarModel("A1","Audi",140,1400,11,5,11,"Ecoline",new Category(1)),"Yellow",0,"EES-456",0));
         getOrderRepository().save(order1);
         System.out.println("order id = "+order1.getId()+" car id = "+order1.getCar().getId());
         assertNotNull(order1.getId());

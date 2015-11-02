@@ -24,7 +24,12 @@ import javax.validation.ConstraintViolationException;
 public abstract class AbstractRepoTest extends Assert {
 
 
+    @Autowired
+    private CarModelRepository carModelRepository;
 
+    public CarModelRepository getCarModelRepository() {
+        return carModelRepository;
+    }
 
     @Autowired
     private CarRepository carRepository;

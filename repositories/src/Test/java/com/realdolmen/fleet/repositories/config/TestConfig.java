@@ -21,13 +21,13 @@ import java.util.Properties;
 @ComponentScan(basePackages = "com.realdolmen.fleet.repositories")
 public class TestConfig {
 
-   /*  @Bean
+     @Bean
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
                 .build();
     }
-*/
+/*
   @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -37,13 +37,13 @@ public class TestConfig {
         dataSource.setPassword("root");
         return dataSource;
     }
-
+*/
     @Bean
     Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-       // properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        //properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
         return properties;
     }
 }
