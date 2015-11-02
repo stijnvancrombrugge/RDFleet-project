@@ -28,10 +28,35 @@ public class HomeController {
     }
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/Steven
     @RequestMapping(value = "/employee",method = RequestMethod.GET)
     public String empHome(){
         System.out.println(" Employee home get method activated");
         return "/employee/index";
+<<<<<<< HEAD
+=======
+=======
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String loginUserRedirect() {
+
+        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByUsername(auth.getName());
+        System.out.println(auth.getName());
+        System.out.println(user.getFirstName());
+        if (user.getRole().equals("ROLE_USER")){
+            return "employee/home";
+        }
+        else if(user.getRole().equals("ROLE_ADMIN"))
+        {
+            return "fleet/home";
+        }*/
+       
+       return "404";
+>>>>>>> refs/remotes/origin/master
+>>>>>>> refs/remotes/origin/Steven
     }
 
 }
