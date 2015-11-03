@@ -6,20 +6,29 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by SDOAX36 on 28/10/2015.
  */
 public class UserRepositoryTest extends AbstractRepoTest {
 
-    private int id;
+    private int idToCheckFirst,idToCheckSecond,idToCheckThird;
 
     @Override
     public void setUp() throws Exception {
 
         User user1 = new Employee("sdoax361","password",new Date(),"slsdjkf@smdljf.be",new Category(1));
         getUserRepository().save(user1);
-        id = user1.getId();
+        idToCheckFirst = user1.getId();
+
+        User user2 = new Employee("sdoax363","password",new Date(),"slsdjkf@smdljfsqdf.be",new Category(1));
+        getUserRepository().save(user2);
+        idToCheckSecond= user2.getId();
+//(String username, String password, String email, Date birthDate)
+        User user3 = new FleetManager("sdoax36sqf1","password","slsdjkf@smdljf.be",new Date());
+        getUserRepository().save(user3);
+        idToCheckFirst = user3.getId();
     }
 
     @Override
@@ -33,8 +42,8 @@ public class UserRepositoryTest extends AbstractRepoTest {
     @Override
     public void shouldReturnOnlyOneEntityById() throws Exception {
 
-        assertEquals(getUserRepository().findOne(id).getUsername(), "sdoax361");
-        assertEquals(getUserRepository().findOne(id).getEmail(), "slsdjkf@smdljf.be");
+        assertEquals(getUserRepository().findOne(idToCheckFirst).getUsername(), "sdoax361");
+        assertEquals(getUserRepository().findOne(idToCheckFirst).getEmail(), "slsdjkf@smdljf.be");
     }
 
     @Override
@@ -46,12 +55,12 @@ public class UserRepositoryTest extends AbstractRepoTest {
     @Override
     public void shouldUpdateAnEntity() throws Exception {
 
-        User user = getUserRepository().findOne(id);
+        User user = getUserRepository().findOne(idToCheckFirst);
         user.setFirstName("Steven");
         user.setLastName("De Cock");
 
-        assertEquals(getUserRepository().findOne(id).getFirstName(), "Steven");
-        assertEquals(getUserRepository().findOne(id).getLastName(),"De Cock");
+        assertEquals(getUserRepository().findOne(idToCheckFirst).getFirstName(), "Steven");
+        assertEquals(getUserRepository().findOne(idToCheckFirst).getLastName(),"De Cock");
 
     }
 
@@ -60,8 +69,8 @@ public class UserRepositoryTest extends AbstractRepoTest {
 
         int size = getUserRepository().findAll().size();
         //should be 1
-        getUserRepository().delete(id);
-        assertNull(getUserRepository().findOne(id));
+        getUserRepository().delete(idToCheckFirst);
+        assertNull(getUserRepository().findOne(idToCheckFirst));
         assertEquals(getUserRepository().findAll().size(),size-1);
 
     }
@@ -81,16 +90,6 @@ public class UserRepositoryTest extends AbstractRepoTest {
         getUserRepository().save(user);
         assertNull(user.getId());
     }
-    @Test
-    public void shouldAddANewOrderToTheList()throws Exception
-    {
-/*        Employee user =(Employee)getUserRepository().findOne(id);
-        Order order = new Order(new Car("Octavia","Skoda","Black",0,110,1600,5,5,5,"S-line"),false);
-        getOrderRepository().save(order);
-        user.addOrder(order);
-        getUserRepository().saveAndFlush(user);
-        assertNotNull(order.getId());
-        assertEquals(getOrderRepository().findAll().size(),1);*/
 
-    }
+
 }

@@ -19,7 +19,7 @@ public class Category extends AbstractEntity {
     @Basic(optional = false)
     private int categoryClass;
 
-   /* @OneToMany(cascade = CascadeType.PERSIST)
+    /* @OneToMany(cascade = CascadeType.PERSIST)
     private List<CarModel> cars;
     */
 
