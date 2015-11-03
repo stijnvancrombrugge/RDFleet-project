@@ -13,12 +13,15 @@ public class OptionPackViewModel {
 
     private int id;
     private String name;
-    List<OptionViewModel> optionViewModelList;
+    List<Option> optionList;
 
     public OptionPackViewModel(OptionPack optionPack){
         this.id = optionPack.getId();
         this.name = optionPack.getName();
-        this.optionViewModelList = new ArrayList<>();
+        this.optionList = new ArrayList<>();
+        for(Option option: optionPack.getOptions()){
+            optionList.add(option);
+        }
     }
 
     public int getId() {
@@ -37,11 +40,11 @@ public class OptionPackViewModel {
         this.name = name;
     }
 
-    public List<OptionViewModel> getOptionViewModelList() {
-        return optionViewModelList;
+    public List<Option> getOptionList() {
+        return optionList;
     }
 
-    public void setOptionViewModelList(List<OptionViewModel> optionViewModelList) {
-        this.optionViewModelList = optionViewModelList;
+    public void setOptionList(List<Option> optionList) {
+        this.optionList = optionList;
     }
 }

@@ -292,7 +292,9 @@
                                       <section class="panel" th:if="${carViewModel != null}">
                                           <div class="bio-graph-heading"> <div class="row"><img class="my-car-picture" src="/img/Audi_A1_wit.jpg"/></div></div>
                                           <div class="panel-body bio-graph-info">
-                                              <h1>My Car</h1>
+                                              <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
+                                                  <h1>My Car</h1>
+                                              </div>
                                               <div class="row">
                                                 <div class="bio-row">
                                                   <p><span>Mark </span>: <th th:text="${carModelViewModel.mark}"></th></p>
@@ -331,13 +333,15 @@
                                                       <p><span>Emission </span>: <th th:text="${carModelViewModel.emission}"></th></p>
                                                   </div>
                                               </div>
-                                              <h1>Options</h1>
-                                              <div class="row">
-                                                  <div class="bio-row">
-                                                      <p><span>Option pack 1 </span>: test</p>
+                                              <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
+                                                  <h1>Options</h1>
+                                              </div>
+                                              <div th:each="optionPack:${optionPackViewModelList}">
+                                                  <h1 style="margin-left: 200px;" th:text="${optionPack.name}"></h1>
+                                                  <div class="row">
+                                                  <div class="bio-row" th:each="option:${optionPack.optionList}">
+                                                      <p><span th:text="${option.amount}"></span><span th:text="${option.optionName}"></span> </p>
                                                   </div>
-                                                  <div class="bio-row">
-                                                      <p><span>Option pack 2 </span>: test</p>
                                                   </div>
                                               </div>
                                           </div>
@@ -354,7 +358,9 @@
                                           <img src="/img/profile-widget-avatar.jpg" class="large-profile-picture" alt=""/>
                                       </div>
                                       <div class="panel-body bio-graph-info">
-                                          <h1>Profile Info</h1>
+                                          <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
+                                            <h1>Profile Info</h1>
+                                          </div>
                                           <div class="row">
                                               <div class="bio-row">
                                                   <p><span>First Name </span>: <th th:text="${employeeViewModel.firstName}"></th></p>
