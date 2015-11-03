@@ -59,11 +59,11 @@ public class UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
             roles.add(a.getAuthority());
         }
 
-        if(roles.contains("USER"))
+        if(roles.contains("ROLE_USER"))
         {
             url = "/employee/"+id;
         }
-        else if(roles.contains("ADMIN"))
+        else if(roles.contains("ROLE_ADMIN"))
         {
             url= "/fleet/"+id;
         }

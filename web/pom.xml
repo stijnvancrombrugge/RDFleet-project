@@ -20,6 +20,11 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>services</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>com.realdolmen</groupId>
             <artifactId>repositories</artifactId>
             <version>0.0.1-SNAPSHOT</version>

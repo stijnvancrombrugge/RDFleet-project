@@ -4958,3 +4958,17 @@ span.customSelect.changed {
     height: 200px;
     -webkit-border-radius: 50%;
 }
+
+.mark-image{
+    width: 250px;
+    height: 225px;
+    padding: 20px;
+    border: 1px solid #acdef6;
+    border-radius: 10%;
+    margin: 30px;
+}
+
+.mark-image:hover{
+   background-color: #acdef6;
+    cursor: pointer;
+}
