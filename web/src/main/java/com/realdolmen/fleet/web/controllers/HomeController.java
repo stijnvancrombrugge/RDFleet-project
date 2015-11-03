@@ -1,4 +1,4 @@
-package com.realdolmen.fleet.web.controller;
+package com.realdolmen.fleet.web.controllers;
 
 import com.realdolmen.fleet.model.domain.User;
 import com.realdolmen.fleet.repositories.repository.UserRepository;

@@ -67,7 +67,6 @@ public class OrderRepositoryTest extends AbstractRepoTest {
     public void shouldUpdateAnEntity() throws Exception {
 
         Order order = getOrderRepository().findOne(idToCheckFirst);
-        order.setCurrentCar(true);
         order.setOrderDate(new Date());
         assertEquals(getOrderRepository().findOne(idToCheckFirst).getOrderDate(), order.getOrderDate());
     }
