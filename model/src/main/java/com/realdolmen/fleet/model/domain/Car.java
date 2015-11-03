@@ -46,6 +46,8 @@ public class Car extends AbstractEntity{
         optionPacks = new ArrayList<>();
     }
 
+    protected Car (){}
+
     public List<OptionPack> getOptionPacks() {
         return optionPacks;
     }
