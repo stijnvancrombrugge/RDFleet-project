@@ -3,6 +3,8 @@ package com.realdolmen.fleet.web.controllers;
 import com.realdolmen.fleet.model.domain.Category;
 import com.realdolmen.fleet.model.domain.Employee;
 import com.realdolmen.fleet.repositories.repository.*;
+import com.realdolmen.fleet.services.EmployeeService;
+import com.realdolmen.fleet.services.UserDetailService;
 import com.realdolmen.fleet.web.viewmodels.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,27 +23,35 @@ import java.util.List;
 public class EmployeeController {
 
 
-    private UserRepository userRepository;
+    //private UserRepository userRepository;
+    private EmployeeService service;
+
+
     @Autowired
-    public EmployeeController(UserRepository userRepository, OrderRepository orderRepository){
-        this.userRepository = userRepository;
+    public EmployeeController(EmployeeService service){
+        this.service = service;
     }
 
-    @RequestMapping(value = "/employee/{id}/home", method = RequestMethod.GET)
+    @RequestMapping(value = {"/employee/{id}/home","/employee/{id}","/employee/{id}/index"}, method = RequestMethod.GET)
     public String home(@PathVariable("id") int id, Model model){
-        Employee employee = (Employee)(userRepository.findOne(id));
-        model.addAttribute(new EmployeeViewModel(employee));
+        Employee employee = null;
+        try {
+            employee = service.findEmployeeById(id);
+            if (employee.getCurrentCar() != null) {
 
-        if (employee.getCurrentCar() != null) {
-
-            CarViewModel carViewModel = new CarViewModel(employee.getCurrentCar().getCar());
-            CarModelViewModel carModelViewModel = new CarModelViewModel(carViewModel.getCarModel());
-            List<OptionPackViewModel> optionPackViewModelList = carViewModel.getOptionPackViewModelList();
-            model.addAttribute(carViewModel);
-            model.addAttribute(carModelViewModel);
-            model.addAttribute(optionPackViewModelList);
+                CarViewModel carViewModel = new CarViewModel(employee.getCurrentCar().getCar());
+                CarModelViewModel carModelViewModel = new CarModelViewModel(carViewModel.getCarModel());
+                List<OptionPackViewModel> optionPackViewModelList = carViewModel.getOptionPackViewModelList();
+                model.addAttribute(carViewModel);
+                model.addAttribute(carModelViewModel);
+                model.addAttribute(optionPackViewModelList);
+            }
+            model.addAttribute(new EmployeeViewModel(employee));
+            return "/employee/home";
+        } catch (Exception e) {
+            System.out.println("Something when't terrible wrong "+e.getMessage());
+            return "error";
         }
-        return "/employee/home";
     }
 
 

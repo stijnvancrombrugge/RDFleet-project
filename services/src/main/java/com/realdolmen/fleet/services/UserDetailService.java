@@ -62,4 +62,9 @@ public class UserDetailService implements UserDetailsService {
 
        return null;
     }
+
+    private User getUserById(int id)
+    {
+        return userRepository.findOne(id);
+    }
 }
