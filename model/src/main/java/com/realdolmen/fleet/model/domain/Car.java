@@ -13,8 +13,6 @@ import java.util.List;
 @Entity
 public class Car extends AbstractEntity{
 
-    public Car() {
-    }
 
     @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST)
