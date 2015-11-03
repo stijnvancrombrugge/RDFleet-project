@@ -30,17 +30,36 @@ public class UserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
        System.out.println("LoadUserByUserName "+s);
-        Optional<User> user = userRepository.findByUsername(s);
-
-        if(user!=null)
+        User user = getUserByUsername(s);
+        if(user != null)
         {
-            User realUser = user.get();
             List<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(realUser.getRole()));
-            System.out.println("LoadUserByUsername : " + realUser.getId() + " should be logged in as "+realUser.getRole()+" autorities "+authorities.get(0));
-            return new org.springframework.security.core.userdetails.User(realUser.getUsername(),realUser.getPassword(),authorities);
+            authorities.add(new SimpleGrantedAuthority(user.getRole()));
+            return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),authorities);
 
         }
         throw new UsernameNotFoundException("User "+s+" Not found");
+    }
+
+    public Integer getIdFromUserByUserName(String s)throws UsernameNotFoundException
+    {
+        User user = getUserByUsername(s);
+        if(user != null)
+        {
+            return user.getId();
+        }
+
+        throw new UsernameNotFoundException("User "+s+" not found");
+    }
+
+    private User getUserByUsername(String s) throws UsernameNotFoundException
+    {
+        Optional<User>user = userRepository.findByUsername(s);
+        if(user != null)
+        {
+            return user.get();
+        }
+
+       return null;
     }
 }

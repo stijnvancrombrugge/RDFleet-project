@@ -1,7 +1,10 @@
 package com.realdolmen.fleet.security.config.Handlers;
 
+import com.realdolmen.fleet.services.UserDetailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -21,7 +24,11 @@ import java.util.List;
 @Component
 public class UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
+    @Autowired
+    private UserDetailService service;
+
     private RedirectStrategy strategy = new DefaultRedirectStrategy();
+
 
     @Override
     protected void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -43,6 +50,8 @@ public class UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
     protected String determineTargetUrl(Authentication authentication)
     {
         String url = "";
+        System.out.println("Auth " + authentication.getName());
+        Integer id = service.getIdFromUserByUserName(authentication.getName());
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         List<String>roles = new ArrayList<>();
         for(GrantedAuthority a : authorities)
@@ -52,11 +61,11 @@ public class UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
         if(roles.contains("USER"))
         {
-            url = "/employee";
+            url = "/employee/"+id;
         }
         else if(roles.contains("ADMIN"))
         {
-            url= "/fleet";
+            url= "/fleet/"+id;
         }
         return url;
     }

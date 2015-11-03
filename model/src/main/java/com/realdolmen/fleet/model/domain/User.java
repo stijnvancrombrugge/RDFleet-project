@@ -14,7 +14,7 @@ import java.util.Date;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class User extends AbstractEntity{
+public abstract class User extends AbstractEntity{
 
     @Size(min = 1, max = 50)
     private String firstName;
