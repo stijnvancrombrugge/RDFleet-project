@@ -16,8 +16,6 @@ public class EmployeeService {
     @Autowired
     public UserRepository userRepository;
 
-
-
     public List<Employee> findAllEmployees()
     {
         return (List<Employee>)(List<?>)userRepository.findAll();

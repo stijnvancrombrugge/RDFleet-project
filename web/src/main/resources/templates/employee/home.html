@@ -166,7 +166,7 @@
                                                   <p><span>Business Unit </span>: <th th:text="${employeePageViewModel.businessUnit}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Category</span>: <th th:text="${employeePageViewModel.userCategory.categoryClass}"></th></p>
+                                                  <p><span>Category</span>: <th th:text="${employeePageViewModel.userCategory}"></th></p>
                                               </div>
                                               <div class="bio-row">
                                                   <p><span>Username </span>: <th th:text="${employeePageViewModel.username}"></th></p>
@@ -271,24 +271,7 @@
       </section>
       <!--main content end-->
   </section>
-  <!-- container section end -->
-    <!-- javascripts -->
-    <script src="/js/jquery.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- nice scroll -->
-    <script src="/js/jquery.scrollTo.min.js"></script>
-    <script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <!-- jquery knob -->
-    <script src="/assets/jquery-knob/js/jquery.knob.js"></script>
-    <!--custome script for all page-->
-    <script src="/js/scripts.js"></script>
-
-  <script>
-
-      //knob
-      $(".knob").knob();
-
-  </script>
+  <div th:replace="employee/index :: scripts"></div>
 
 
   </body>

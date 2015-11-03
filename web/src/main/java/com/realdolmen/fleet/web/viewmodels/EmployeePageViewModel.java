@@ -25,7 +25,7 @@ public class EmployeePageViewModel {
     private String email;
     private Date birthDate;
     private String role;
-    private Category userCategory;
+    private int userCategory;
     private int optionPackId;
     private String name;
     private int carId;
@@ -43,7 +43,7 @@ public class EmployeePageViewModel {
     private String line;
     private String model;
     private String mark;
-    private Category carCategory;
+    private int carCategory;
     List<OptionPack> optionPacks;
     private CurrentCar currentCar;
 
@@ -58,7 +58,7 @@ public class EmployeePageViewModel {
         this.email = employee.getEmail();
         this.birthDate = employee.getBirthDate();
         this.role = employee.getRole();
-        this.userCategory = employee.getCategory();
+        this.userCategory = employee.getCategory().getCategoryClass();
         this.currentCar = employee.getCurrentCar();
         if(currentCar != null){
             this.car = currentCar.getCar();
@@ -76,7 +76,7 @@ public class EmployeePageViewModel {
             this.line = carModel.getLine();
             this.model = carModel.getModel();
             this.mark = carModel.getMark();
-            this.carCategory = carModel.getCategory();
+            this.carCategory = carModel.getCategory().getCategoryClass();
         }
     }
 
@@ -153,11 +153,11 @@ public class EmployeePageViewModel {
         this.employeeId = employeeId;
     }
 
-    public Category getUserCategory() {
+    public int getUserCategory() {
         return userCategory;
     }
 
-    public void setUserCategory(Category userCategory) {
+    public void setUserCategory(int userCategory) {
         this.userCategory = userCategory;
     }
 
@@ -289,11 +289,11 @@ public class EmployeePageViewModel {
         this.mark = mark;
     }
 
-    public Category getCarCategory() {
+    public int getCarCategory() {
         return carCategory;
     }
 
-    public void setCarCategory(Category carCategory) {
+    public void setCarCategory(int carCategory) {
         this.carCategory = carCategory;
     }
 
