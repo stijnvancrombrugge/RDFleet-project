@@ -3,6 +3,7 @@ package com.realdolmen.fleet.model.Models;
 import com.realdolmen.fleet.model.domain.AbstractEntity;
 import com.realdolmen.fleet.model.domain.Category;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -24,6 +25,7 @@ public class CarModel extends AbstractEntity{
     private String mark;
 
     @NotNull
+    @ManyToOne(cascade=CascadeType.PERSIST)
     private Category category;
 
     @NotNull
