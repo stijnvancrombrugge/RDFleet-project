@@ -19,7 +19,7 @@ public class FleetHomeController {
     FleetManagerService service;
 
 
-    @RequestMapping(value= "/fleet/{id}", method = RequestMethod.GET)
+    @RequestMapping(value= {"/fleet/{id}","/fleet/{id}/home"}, method = RequestMethod.GET)
     public String fleetHome(@PathVariable("id")Integer id,Model model)
     {
 
