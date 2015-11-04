@@ -30,4 +30,6 @@ public interface CurrentCarRepository extends JpaRepository<CurrentCar,Integer> 
 
     public List<CurrentCar>findByCarCarModelModelAndEmployeeIsNotNull(String model);
 
+
+
 }
