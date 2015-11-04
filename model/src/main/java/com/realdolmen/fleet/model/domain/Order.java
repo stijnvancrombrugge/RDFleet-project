@@ -22,6 +22,8 @@ public class Order extends AbstractEntity {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Car car;
 
+    @ManyToOne
+    private Employee employee;
 
     @NotNull
     @Temporal(TemporalType.DATE)
@@ -60,6 +62,14 @@ public class Order extends AbstractEntity {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @PostPersist

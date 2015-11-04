@@ -5,6 +5,7 @@ import com.realdolmen.fleet.repositories.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class OrderService {
 
 
     @Autowired
-    OrderRepository orderRepository;
+    public OrderRepository orderRepository;
 
 
     public List<Order> getAllOrders()
@@ -27,6 +28,22 @@ public class OrderService {
     {
         return orderRepository.findOne(id);
     }
+
+    public List<Order> getAllOrdersOrderByDate()
+    {
+        return orderRepository.findAllByOrderByOrderDateAsc();
+    }
+
+    public List<Order> getAllOrdersForMark(String s)
+    {
+        return orderRepository.findAllByCarCarModelMark(s.toLowerCase());
+
+    }
+    public int getAllOrdersForMarkCount(String s)
+    {
+        return orderRepository.findAllByCarCarModelMark(s.toLowerCase()).size();
+    }
+
 
 
 

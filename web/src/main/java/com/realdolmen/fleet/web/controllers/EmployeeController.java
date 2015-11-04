@@ -1,18 +1,23 @@
 package com.realdolmen.fleet.web.controllers;
 
-import com.realdolmen.fleet.model.domain.Category;
+import com.realdolmen.fleet.model.Models.CarModel;
 import com.realdolmen.fleet.model.domain.Employee;
-import com.realdolmen.fleet.repositories.repository.*;
+import com.realdolmen.fleet.services.CarModelService;
 import com.realdolmen.fleet.services.EmployeeService;
-import com.realdolmen.fleet.services.UserDetailService;
 import com.realdolmen.fleet.web.viewmodels.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -22,37 +27,48 @@ import java.util.List;
 @Controller
 public class EmployeeController {
 
-
     //private UserRepository userRepository;
-    private EmployeeService service;
+    private EmployeeService employeeService;
+    private CarModelService carModelService;
 
 
     @Autowired
-    public EmployeeController(EmployeeService service){
-        this.service = service;
+    public EmployeeController(EmployeeService service, CarModelService carModelService){
+        this.employeeService = service;
+        this.carModelService = carModelService;
     }
 
-    @RequestMapping(value = {"/employee/{id}/home","/employee/{id}","/employee/{id}/index"}, method = RequestMethod.GET)
-    public String home(@PathVariable("id") int id, Model model){
+    @ModelAttribute("employeePageViewModel")
+    public EmployeePageViewModel addEmployeePageViewModel(@PathVariable("id") int id)
+    {
         Employee employee = null;
         try {
-            employee = service.findEmployeeById(id);
-            if (employee.getCurrentCar() != null) {
-
-                CarViewModel carViewModel = new CarViewModel(employee.getCurrentCar().getCar());
-                CarModelViewModel carModelViewModel = new CarModelViewModel(carViewModel.getCarModel());
-                List<OptionPackViewModel> optionPackViewModelList = carViewModel.getOptionPackViewModelList();
-                model.addAttribute(carViewModel);
-                model.addAttribute(carModelViewModel);
-                model.addAttribute(optionPackViewModelList);
-            }
-            model.addAttribute(new EmployeeViewModel(employee));
-            return "/employee/home";
+            employee = employeeService.findEmployeeById(id);
+            System.out.println(employee);
+            return (new EmployeePageViewModel(employee));
         } catch (Exception e) {
             System.out.println("Something when't terrible wrong "+e.getMessage());
-            return "error";
+            return null;
         }
     }
 
+    @RequestMapping(value = {"/employee/{id}/home","/employee/{id}","/employee/{id}/index"}, method = RequestMethod.GET)
+    public String home(){
+        return "/employee/home";
+    }
+
+
+    @RequestMapping(value= "/employee/{id}/mark", method = RequestMethod.GET)
+    public String mark(){
+       return "/employee/mark";
+    }
+
+    @RequestMapping(value="/employee/{id}/model/{category}/{mark}", method = RequestMethod.GET)
+    public String order(@PathVariable("category") int category, @PathVariable("mark") String mark, Model model) throws Exception {
+        List<CarModel> carModels = carModelService.findByMarkAndCategory(mark, category);
+        System.out.println(carModels.size());
+        model.addAttribute(carModels);
+        return "/employee/model";
+    }
 
 }

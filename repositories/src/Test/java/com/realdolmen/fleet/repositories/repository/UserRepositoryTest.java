@@ -42,13 +42,13 @@ public class UserRepositoryTest extends AbstractRepoTest {
     @Override
     public void shouldReturnOnlyOneEntityById() throws Exception {
 
-        assertEquals(getUserRepository().findOne(idToCheckFirst).getUsername(), "sdoax361");
+        assertEquals(getUserRepository().findOne(idToCheckFirst).getUsername(), "sdoax36sqf1");
         assertEquals(getUserRepository().findOne(idToCheckFirst).getEmail(), "slsdjkf@smdljf.be");
     }
 
     @Override
     public void shouldReturnAllEntities() throws Exception {
-        assertEquals(getUserRepository().findAll().size(),1);
+        assertEquals(getUserRepository().findAll().size(),3);
 
     }
 

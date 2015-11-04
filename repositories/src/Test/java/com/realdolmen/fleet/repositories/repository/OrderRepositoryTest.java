@@ -11,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by SDOAX36 on 28/10/2015.
@@ -27,7 +28,7 @@ public class OrderRepositoryTest extends AbstractRepoTest {
         idToCheckFirst = order1.getId();
         code1 = order1.getOrderCode();
         System.out.println("Order code 1 = " + order1.getOrderCode());
-        Order order2 = new Order(new Car(new CarModel("A1","Audi",140,1400,11,5,11,"Ecoline",new Category(1)),"Yellow",0,"EES-456",0));
+        Order order2 = new Order(new Car(new CarModel("A1","Volkswagen",140,1400,11,5,11,"Ecoline",new Category(1)),"Yellow",0,"EES-456",0));
         getOrderRepository().save(order2);
         idToCheckSecond = order2.getId();
         code2 = order2.getOrderCode();
@@ -92,6 +93,16 @@ public class OrderRepositoryTest extends AbstractRepoTest {
         assertNotNull(getCarRepository().findOne(car.getId()));
         assertEquals(getCarRepository().findAll().size(),sizeCars);
     }
+
+
+    @Test
+    public void shouldReturnListOfOrdersFromOneMark()
+    {
+        List<Order> orders = getOrderRepository().findAllByCarCarModelMark("Audi");
+        assertEquals(orders.size(),1);
+        assertNotSame(orders.size(),getOrderRepository().findAll());
+    }
+
 
 
 }

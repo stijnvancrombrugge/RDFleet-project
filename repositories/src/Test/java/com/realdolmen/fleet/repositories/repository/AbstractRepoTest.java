@@ -32,6 +32,8 @@ public abstract class AbstractRepoTest extends Assert {
     }
 
     @Autowired
+    private CurrentCarRepository currentCarRepository;
+    @Autowired
     private CarRepository carRepository;
     @Autowired
     private OptionRepository optionRepository;
@@ -43,6 +45,10 @@ public abstract class AbstractRepoTest extends Assert {
     private OrderRepository orderRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+
+    public CurrentCarRepository getCurrentCarRepository() {
+        return currentCarRepository;
+    }
 
     public UserRepository getUserRepository() {
         return userRepository;

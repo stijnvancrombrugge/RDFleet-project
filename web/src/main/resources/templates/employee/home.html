@@ -34,197 +34,12 @@
   <!-- container section start -->
   <section id="container" class="">
       <!--header start-->
-      <header class="header dark-bg">
-            <div class="toggle-nav">
-                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
-            </div>
-
-            <!--logo start-->
-            <a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
-            <!--logo end-->
-
-            <div class="nav search-row" id="top_menu">
-                <!--  search form start -->
-                <ul class="nav top-menu">                    
-                    <li>
-                        <form class="navbar-form">
-                            <input class="form-control" placeholder="Search" type="text"/>
-                        </form>
-                    </li>                    
-                </ul>
-                <!--  search form end -->                
-            </div>
-
-            <div class="top-nav notification-row">                
-                <!-- notificatoin dropdown start-->
-                <ul class="nav pull-right top-menu">
-
-                    <!-- inbox notificatoin start-->
-                    <li id="mail_notificatoin_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <i class="icon-envelope-l"></i>
-                            <span class="badge bg-important">5</span>
-                        </a>
-                        <ul class="dropdown-menu extended inbox">
-                            <div class="notify-arrow notify-arrow-blue"></div>
-                            <li>
-                                <p class="blue">You have 5 new messages</p>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar" src="/./img/avatar-mini.jpg"/></span>
-                                    <span class="subject">
-                                    <span class="from">Greg  Martin</span>
-                                    <span class="time">1 min</span>
-                                    </span>
-                                    <span class="message">
-                                        I really like this admin panel.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar" src="/./img/avatar-mini2.jpg"/></span>
-                                    <span class="subject">
-                                    <span class="from">Bob   Mckenzie</span>
-                                    <span class="time">5 mins</span>
-                                    </span>
-                                    <span class="message">
-                                     Hi, What is next project plan?
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar" src="/./img/avatar-mini3.jpg"/></span>
-                                    <span class="subject">
-                                    <span class="from">Phillip   Park</span>
-                                    <span class="time">2 hrs</span>
-                                    </span>
-                                    <span class="message">
-                                        I am like to buy this Admin Template.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar" src="/./img/avatar-mini4.jpg"/></span>
-                                    <span class="subject">
-                                    <span class="from">Ray   Munoz</span>
-                                    <span class="time">1 day</span>
-                                    </span>
-                                    <span class="message">
-                                        Icon static.fonts are great.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">See all messages</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- inbox notificatoin end -->
-                    <!-- alert notification start-->
-                    <li id="alert_notificatoin_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-
-                            <i class="icon-bell-l"></i>
-                            <span class="badge bg-important">7</span>
-                        </a>
-                        <ul class="dropdown-menu extended notification">
-                            <div class="notify-arrow notify-arrow-blue"></div>
-                            <li>
-                                <p class="blue">You have 4 new notifications</p>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-primary"><i class="icon_profile"></i></span> 
-                                    Friend Request
-                                    <span class="small italic pull-right">5 mins</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-warning"><i class="icon_pin"></i></span>  
-                                    John location.
-                                    <span class="small italic pull-right">50 mins</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-danger"><i class="icon_book_alt"></i></span> 
-                                    Project 3 Completed.
-                                    <span class="small italic pull-right">1 hr</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-success"><i class="icon_like"></i></span> 
-                                    Mick appreciated your work.
-                                    <span class="small italic pull-right"> Today</span>
-                                </a>
-                            </li>                            
-                            <li>
-                                <a href="#">See all notifications</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- alert notification end-->
-                    <!-- user login dropdown start-->
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="profile-ava">
-                                <img alt="" src="/img/avatar1_small.jpg"/>
-                            </span>
-                            <span class="username">Jenifer Smith</span>
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu extended logout">
-                            <div class="log-arrow-up"></div>
-                            <li class="eborder-top">
-                                <a href="#"><i class="icon_profile"></i> My Profile</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
-                            </li>
-                            <li>
-                                <a href="../login.html"><i class="icon_key_alt"></i> Log Out</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- user login dropdown end -->
-                </ul>
-                <!-- notificatoin dropdown end-->
-            </div>
+      <header th:replace="employee/index :: header">
       </header>      
       <!--header end-->
 
       <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu">                
-                  <li class="active">
-                      <a class="" href="">
-                          <i class="icon_house_alt"></i>
-                          <span>Profile</span>
-                      </a>
-                  </li>
-				  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon_document_alt"></i>
-                          <span>New Order</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="../form_component.html">Form Elements</a></li>
-                          <li><a class="" href="../form_validation.html">Form Validation</a></li>
-                      </ul>
-                  </li>
-                  
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
+      <aside th:replace="employee/index :: sidebar">
       </aside>
       <!--sidebar end-->
       
@@ -237,28 +52,7 @@
 
 				</div>
 			</div>
-              <div class="row">
-                <!-- profile-widget -->
-                <div class="col-lg-12">
-                    <div class="profile-widget profile-widget-info">
-                          <div class="panel-body">
-                            <div class="col-lg-2 col-sm-2">
-                              <h4>Jenifer Smith</h4>               
-                              <div class="follow-ava">
-                                  <img src="/img/profile-widget-avatar.jpg" alt=""/>
-                              </div>
-                              <h6>Administrator</h6>
-                            </div>
-                            <div class="col-lg-4 col-sm-4 follow-info">
-                                <p>Hello I'm Jenifer Smith, a leading expert in interactive and creative design.</p>
-                                <h6>
-                                    <span><i class="icon_clock_alt"></i>11:05 AM</span>
-                                    <span><i class="icon_calendar"></i>25.10.13</span>
-                                </h6>
-                            </div>
-                          </div>
-                    </div>
-                </div>
+              <div class="row" th:replace="employee/index :: profilewidget">
               </div>
               <!-- page start-->
               <div class="row">
@@ -289,7 +83,7 @@
                           <div class="panel-body">
                               <div class="tab-content">
                                   <div id="recent-activity" class="tab-pane active">
-                                      <section class="panel" th:if="${carViewModel != null}">
+                                      <section class="panel" th:if="${employeePageViewModel.currentCar != null}">
                                           <div class="bio-graph-heading"> <div class="row"><img class="my-car-picture" src="/img/Audi_A1_wit.jpg"/></div></div>
                                           <div class="panel-body bio-graph-info">
                                               <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
@@ -297,46 +91,46 @@
                                               </div>
                                               <div class="row">
                                                 <div class="bio-row">
-                                                  <p><span>Mark </span>: <th th:text="${carModelViewModel.mark}"></th></p>
+                                                  <p><span>Mark </span>: <th th:text="${employeePageViewModel.mark}"></th></p>
                                                 </div>
                                                 <div class="bio-row">
-                                                  <p><span>Model </span>: <th th:text="${carModelViewModel.model}"></th></p>
+                                                  <p><span>Model </span>: <th th:text="${employeePageViewModel.model}"></th></p>
                                                 </div>
                                                 <div class="bio-row">
-                                                  <p><span>Category </span>: <th th:text="${carModelViewModel.category.categoryClass}"></th></p>
+                                                  <p><span>Category </span>: <th th:text="${employeePageViewModel.carCategory.categoryClass}"></th></p>
                                                 </div>
                                                   <div class="bio-row">
-                                                      <p><span>Line </span>: <th th:text="${carModelViewModel.line}"></th></p>
+                                                      <p><span>Line </span>: <th th:text="${employeePageViewModel.line}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>License Plate </span>: <th th:text="${carViewModel.licensePlate}"></th> </p>
+                                                      <p><span>License Plate </span>: <th th:text="${employeePageViewModel.licensePlate}"></th> </p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Color </span>: <th th:text="${carViewModel.color}"></th></p>
+                                                      <p><span>Color </span>: <th th:text="${employeePageViewModel.color}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Kilometers</span>: <th th:text="${carViewModel.kilometers}"></th></p>
+                                                      <p><span>Kilometers</span>: <th th:text="${employeePageViewModel.kilometers}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Horsepower </span>: <th th:text="${carModelViewModel.horsePower}"></th></p>
+                                                      <p><span>Horsepower </span>: <th th:text="${employeePageViewModel.horsePower}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Cilinder </span>: <th th:text="${carModelViewModel.cilinder}"></th></p>
+                                                      <p><span>Cilinder </span>: <th th:text="${employeePageViewModel.cilinder}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Motor Type </span>: <th th:text="${carModelViewModel.motorType}"></th></p>
+                                                      <p><span>Motor Type </span>: <th th:text="${employeePageViewModel.motorType}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Gears </span>: <th th:text="${carModelViewModel.gears}"></th></p>
+                                                      <p><span>Gears </span>: <th th:text="${employeePageViewModel.gears}"></th></p>
                                                   </div>
                                                   <div class="bio-row">
-                                                      <p><span>Emission </span>: <th th:text="${carModelViewModel.emission}"></th></p>
+                                                      <p><span>Emission </span>: <th th:text="${employeePageViewModel.emission}"></th></p>
                                                   </div>
                                               </div>
-                                              <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
+                                              <div class="row"  style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
                                                   <h1>Options</h1>
                                               </div>
-                                              <div th:each="optionPack:${optionPackViewModelList}">
+                                              <div th:each="optionPack:${employeePageViewModel.optionPacks}">
                                                   <h1 style="margin-left: 200px;" th:text="${optionPack.name}"></h1>
                                                   <div class="row">
                                                   <div class="bio-row" th:each="option:${optionPack.optionList}">
@@ -346,7 +140,7 @@
                                               </div>
                                           </div>
                                       </section>
-                                      <section th:if="${carViewModel == null}">
+                                      <section th:if="${employeePageViewModel.currentCar == null}">
                                           <div class="bio-graph-heading">You currently don't own a fleet car</div>
                                       </section>
 
@@ -363,28 +157,28 @@
                                           </div>
                                           <div class="row">
                                               <div class="bio-row">
-                                                  <p><span>First Name </span>: <th th:text="${employeeViewModel.firstName}"></th></p>
+                                                  <p><span>First Name </span>: <th th:text="${employeePageViewModel.firstName}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Last Name </span>: <th th:text="${employeeViewModel.lastName}"></th></p>
+                                                  <p><span>Last Name </span>: <th th:text="${employeePageViewModel.lastName}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Business Unit </span>: <th th:text="${employeeViewModel.businessUnit}"></th></p>
+                                                  <p><span>Business Unit </span>: <th th:text="${employeePageViewModel.businessUnit}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Category</span>: <th th:text="${employeeViewModel.category.categoryClass}"></th></p>
+                                                  <p><span>Category</span>: <th th:text="${employeePageViewModel.userCategory}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Username </span>: <th th:text="${employeeViewModel.username}"></th></p>
+                                                  <p><span>Username </span>: <th th:text="${employeePageViewModel.username}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Email </span>: <th th:text="${employeeViewModel.email}"></th></p>
+                                                  <p><span>Email </span>: <th th:text="${employeePageViewModel.email}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Birth Date</span>: <th th:text="${employeeViewModel.birthDate}"></th></p>
+                                                  <p><span>Birth Date</span>: <th th:text="${employeePageViewModel.birthDate}"></th></p>
                                               </div>
                                               <div class="bio-row">
-                                                  <p><span>Mobile </span>: <th th:text="${employeeViewModel.phoneNumber}"></th></p>
+                                                  <p><span>Mobile </span>: <th th:text="${employeePageViewModel.phoneNumber}"></th></p>
                                               </div>
                                           </div>
                                       </div>
@@ -477,24 +271,7 @@
       </section>
       <!--main content end-->
   </section>
-  <!-- container section end -->
-    <!-- javascripts -->
-    <script src="/js/jquery.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- nice scroll -->
-    <script src="/js/jquery.scrollTo.min.js"></script>
-    <script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <!-- jquery knob -->
-    <script src="/assets/jquery-knob/js/jquery.knob.js"></script>
-    <!--custome script for all page-->
-    <script src="/js/scripts.js"></script>
-
-  <script>
-
-      //knob
-      $(".knob").knob();
-
-  </script>
+  <div th:replace="employee/index :: scripts"></div>
 
 
   </body>
