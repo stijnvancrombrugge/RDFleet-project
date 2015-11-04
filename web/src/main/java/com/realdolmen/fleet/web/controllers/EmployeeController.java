@@ -2,8 +2,10 @@ package com.realdolmen.fleet.web.controllers;
 
 import com.realdolmen.fleet.model.Models.CarModel;
 import com.realdolmen.fleet.model.domain.Employee;
+import com.realdolmen.fleet.model.domain.Option;
 import com.realdolmen.fleet.services.CarModelService;
 import com.realdolmen.fleet.services.EmployeeService;
+import com.realdolmen.fleet.services.OptionService;
 import com.realdolmen.fleet.web.viewmodels.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -30,12 +32,14 @@ public class EmployeeController {
     //private UserRepository userRepository;
     private EmployeeService employeeService;
     private CarModelService carModelService;
+    private OptionService optionService;
 
 
     @Autowired
-    public EmployeeController(EmployeeService service, CarModelService carModelService){
+    public EmployeeController(EmployeeService service, CarModelService carModelService, OptionService optionService){
         this.employeeService = service;
         this.carModelService = carModelService;
+        this.optionService = optionService;
     }
 
     @ModelAttribute("employeePageViewModel")
@@ -74,7 +78,16 @@ public class EmployeeController {
     public String modelDetails(@PathVariable("modelId") int modelId, Model model){
         CarModel carModel = carModelService.findById(modelId);
         model.addAttribute(carModel);
+        List<Option> optionList = optionService.getAllOptions();
+        model.addAttribute(optionList);
+        model.addAttribute(new CarOrderViewModel(null,null,null));
         return "employee/details";
+    }
+
+    @RequestMapping(value = "/carModelForm", method=RequestMethod.POST)
+    public String processForm(@ModelAttribute(value="carOrderViewModel") CarOrderViewModel carOrderViewModel) {
+        System.out.println(carOrderViewModel.getColor() + "****************** received");
+        return "employee/home";
     }
 
 }

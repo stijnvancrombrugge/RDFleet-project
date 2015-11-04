@@ -68,7 +68,9 @@
                                                 <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
                                                     <h1>Details <span th:text="${carModel.mark}"></span> <span th:text="${carModel.model}"></span></h1>
                                                 </div>
+                                                <form action="#" th:action="@{/carModelForm}" th:object="${carOrderViewModel}" method="post">
                                                 <div class="row">
+
                                                     <div class="bio-row">
                                                         <p><span>Mark </span>: <th th:text="${carModel.mark}"></th></p>
                                                     </div>
@@ -97,12 +99,33 @@
                                                         <p><span>Emission </span>: <th th:text="${carModel.emission}"></th></p>
                                                     </div>
                                                 </div>
+                                                    <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
+                                                        <h1>Choose a color</h1>
+                                                    </div>
+                                                    <div class="row">
+                                                    <div class="form-group">
+                                                        <div class="col-lg-6">
+                                                            <input type="text" th:value="yellow" th:field="*{color}"/>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
+                                                        <h1>Choose options for <span th:text="${carModel.mark}"></span> <span th:text="${carModel.model}"></span></h1>
+                                                    </div>
+                                                    <div class="form-group" th:each="option: ${optionList}">
+                                                        <label class="col-lg-2 control-label"><th th:text="${option.optionName}"></th></label>
+                                                        <div class="col-lg-6">
+                                                            <input type="checkbox"  th:field="*{optionList}" th:value="${option}" class="form-control"/>
+                                                        </div>
+                                                        <input style="visibility: hidden"  th:field="*{carModel}" th:value="${carmodel}" class="form-control"/>
+                                                    </div>
                                                 <div class="row">
                                                     <div class="col-lg-offset-5 col-lg-9">
-                                                        <a><button type="button" class="btn btn-primary">Order Car</button></a>
+                                                        <a><button type="submit" class="btn btn-primary">Order Car</button></a>
                                                         <a href="javascript:history.back()"><button type="button" class="btn btn-danger">Cancel</button></a>
                                                     </div>
                                                 </div>
+                                                    </form>
                                             </div>
                                         </div>
                                     </section>

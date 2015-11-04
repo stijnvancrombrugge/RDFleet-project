@@ -15,7 +15,7 @@ public class Car extends AbstractEntity{
 
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     private CarModel carModel;
 
     @NotNull
