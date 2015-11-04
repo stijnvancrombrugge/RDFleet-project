@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:fragment="head">
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -15,13 +16,14 @@
     <link href="/css/bootstrap-theme.css" rel="stylesheet"/>
     <!--external static.css-->
     <!-- font icon -->
-    <link href="/css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/elegant-icons-style.css" rel="stylesheet"/>
+    <link href="/css/font-awesome.min.css" rel="stylesheet"/>
     <!-- full calendar static.css-->
-    <link href="/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-    <link href="/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <link href="/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet"/>
+    <link href="/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet"/>
     <!-- easy pie chart-->
-    <link href="/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/static.css" media="screen"/>
+    <link href="/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/static.css"
+          media="screen"/>
     <!-- owl carousel -->
     <link rel="stylesheet" href="/css/owl.carousel.css" type="text/static.css"/>
     <link href="/css/jquery-jvectormap-1.2.2.css" rel="stylesheet"/>
@@ -29,7 +31,7 @@
     <link rel="stylesheet" href="/css/fullcalendar.css"/>
     <link href="/css/widgets.css" rel="stylesheet"/>
     <link href="/css/style.css" rel="stylesheet"/>
-    <link href="/css/style-responsive.css" rel="stylesheet" />
+    <link href="/css/style-responsive.css" rel="stylesheet"/>
     <link href="/css/xcharts.min.css" rel=" stylesheet"/>
     <link href="/css/jquery-ui-1.10.4.min.css" rel="stylesheet"/>
     <!-- HTML5 shim and Respond.static.js IE8 support of HTML5 -->
@@ -45,7 +47,8 @@
 
 <header class="header dark-bg" th:fragment="header">
     <div class="toggle-nav">
-        <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+        <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i
+                class="icon_menu"></i></div>
     </div>
 
     <!--logo start-->
@@ -56,77 +59,22 @@
 </header>
 
 <!--sidebar start-->
-<aside th:fragment="aside">
-    <div id="sidebar"  class="nav-collapse ">
+<aside th:fragment="aside(activeTab)">
+    <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
-            <li class="active">
-                <a class="" href="index.html">
+            <li th:class="${activeTab == 'index'}? 'active' : null">
+                <a class="" th:href="@{'/fleet/' + ${fleetManager.id} + '/home'}">
                     <i class="icon_house_alt"></i>
-                    <span>Steven</span>
+                    <span>Dashboard</span>
                 </a>
+>
             </li>
-            <li class="sub-menu">
-                <a href="javascript:;" class="">
-                    <i class="icon_document_alt"></i>
-                    <span>Forms</span>
-                    <span class="menu-arrow arrow_carrot-right"></span>
-                </a>
-                <ul class="sub">
-                    <li><a class="" href="../form_component.html">Form Elements</a></li>
-                    <li><a class="" href="../form_validation.html">Form Validation</a></li>
-                </ul>
-            </li>
-            <li class="sub-menu">
-                <a href="javascript:;" class="">
-                    <i class="icon_desktop"></i>
-                    <span>UI Fitures</span>
-                    <span class="menu-arrow arrow_carrot-right"></span>
-                </a>
-                <ul class="sub">
-                    <li><a class="" href="../general.html">Elements</a></li>
-                    <li><a class="" href="../buttons.html">Buttons</a></li>
-                    <li><a class="" href="../grids.html">Grids</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="" href="../widgets.html">
-                    <i class="icon_genius"></i>
-                    <span>Widgets</span>
-                </a>
-            </li>
-            <li>
-                <a class="" href="../chart-chartjs.html">
+            <li th:class="${activeTab == 'control'}? 'active' : null">
+                <a class="" th:href="@{'/fleet/' + ${fleetManager.id} + '/control'}" class="">
                     <i class="icon_piechart"></i>
-                    <span>Charts</span>
-
+                    <span>Fleet Control</span>
                 </a>
-
-            </li>
-
-            <li class="sub-menu">
-                <a href="javascript:;" class="">
-                    <i class="icon_table"></i>
-                    <span>Tables</span>
-                    <span class="menu-arrow arrow_carrot-right"></span>
-                </a>
-                <ul class="sub">
-                    <li><a class="" href="../basic_table.html">Basic Table</a></li>
-                </ul>
-            </li>
-
-            <li class="sub-menu">
-                <a href="javascript:;" class="">
-                    <i class="icon_documents_alt"></i>
-                    <span>Pages</span>
-                    <span class="menu-arrow arrow_carrot-right"></span>
-                </a>
-                <ul class="sub">
-                    <li><a class="" href="../employee/home.html">Profile</a></li>
-                    <li><a class="" href="../login.html"><span>Login Page</span></a></li>
-                    <li><a class="" href="../blank.html">Blank Page</a></li>
-                    <li><a class="" href="../error.html">404 Error</a></li>
-                </ul>
             </li>
 
         </ul>

@@ -46,7 +46,7 @@ $(document).ready(function() {
     };
     var pieData = [
         {
-            value: 30,
+            value: 80,
             color:"#F38630"
         },
         {

@@ -17,7 +17,7 @@ public class Employee extends User{
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Category category;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "employee")
     private List<Order> orders;
 
     @OneToOne(cascade = CascadeType.PERSIST)
