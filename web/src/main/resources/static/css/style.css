@@ -4972,3 +4972,31 @@ span.customSelect.changed {
    background-color: #acdef6;
     cursor: pointer;
 }
+
+.model{
+    width: 400px;
+    height: 275px;
+    padding-top: 10px;
+    border: 1px solid #acdef6;
+    border-radius: 10%;
+    margin: 30px;
+}
+
+.model:hover{
+    background-color: #acdef6;
+    cursor: pointer;
+}
+
+.model-title{
+    text-align: center;
+    font-size: 16px;
+    font-family: Lato;
+    color:grey;
+}
+
+.model-image{
+    width: 400px;
+    height: 225px;
+    border-radius: 5%;
+    align-self: center;
+}

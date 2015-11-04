@@ -66,14 +66,15 @@
                                             <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
                                                 <h1>Choose a model</h1>
                                             </div>
-                                                <a th:each="carModel:${carModelList}" th:href="@{'/employee/' + ${employeePageViewModel.employeeId} + '/details/' + ${carModel.model}}">
-                                                    <img class="mark-image" th:src="@{'/image/' + ${carModel.id}}"/>
+                                            <div class="model" th:each="carModel:${carModelList}">
+                                                <a  th:href="@{'/employee/' + ${employeePageViewModel.employeeId} + '/details/' + ${carModel.id}}">
+                                                    <p class="model-title"><span th:text="${carModel.mark}"></span> <span th:text=" ${carModel.model}"></span></p>
+                                                    <img class="model-image" th:src="@{'/image/' + ${carModel.id}}"/>
                                                 </a>
+                                            </div>
                                         </div>
                                     </section>
-
                                 </div>
-
                             </div>
                         </div>
                     </section>

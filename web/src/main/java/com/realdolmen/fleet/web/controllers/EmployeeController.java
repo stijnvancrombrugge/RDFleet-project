@@ -63,12 +63,18 @@ public class EmployeeController {
        return "/employee/mark";
     }
 
-    @RequestMapping(value="/employee/{id}/model/{category}/{mark}", method = RequestMethod.GET)
+    @RequestMapping(value="/employee/{id}/{category}/{mark}", method = RequestMethod.GET)
     public String order(@PathVariable("category") int category, @PathVariable("mark") String mark, Model model) throws Exception {
         List<CarModel> carModels = carModelService.findByMarkAndCategory(mark, category);
-        System.out.println(carModels.size());
         model.addAttribute(carModels);
         return "/employee/model";
+    }
+
+    @RequestMapping(value="/employee/{id}/details/{modelId}", method = RequestMethod.GET)
+    public String modelDetails(@PathVariable("modelId") int modelId, Model model){
+        CarModel carModel = carModelService.findById(modelId);
+        model.addAttribute(carModel);
+        return "employee/details";
     }
 
 }
