@@ -20,6 +20,9 @@ public class CurrentCar extends AbstractEntity{
     @OneToOne(cascade = CascadeType.PERSIST)
     private Car car;
 
+    @OneToOne(cascade = CascadeType.PERSIST,mappedBy = "currentCar")
+    private Employee employee;
+
     public CurrentCar(Car car){
         this.car = car;
         this.leasingStartDate = new Date();
@@ -41,5 +44,13 @@ public class CurrentCar extends AbstractEntity{
 
     public void setCar(Car car) {
         this.car = car;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

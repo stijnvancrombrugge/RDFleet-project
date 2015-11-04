@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.*;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.ActiveProfiles;

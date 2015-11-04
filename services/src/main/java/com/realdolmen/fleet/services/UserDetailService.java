@@ -24,7 +24,7 @@ public class UserDetailService implements UserDetailsService {
 
 
     @Autowired
-    UserRepository userRepository;
+    public UserRepository userRepository;
 
 
     @Override
