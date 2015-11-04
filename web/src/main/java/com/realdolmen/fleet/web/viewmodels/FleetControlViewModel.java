@@ -111,7 +111,7 @@ public class FleetControlViewModel {
                 return String.format("%.2f", result)+"%";
             }
 
-            return "Value not known";
+            return "Value unknown";
 
         }
 

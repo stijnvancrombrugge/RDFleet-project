@@ -129,7 +129,7 @@
                     <section class="panel">
                         <header class="panel-heading">
                             <h3>
-                                Freepool <span class="badge" th:text="${freepool.total}"></span>
+                                <a th:href="@{'/fleet/' + ${fleetManager.id} + '/control/freepool'}">Freepool <span class="badge" th:text="${freepool.total}"></span></a>
                             </h3>
                         </header>
                         <div class="panel-body text-center">

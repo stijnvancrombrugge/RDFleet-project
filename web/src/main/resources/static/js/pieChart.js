@@ -6,23 +6,23 @@ $(document).ready(function() {
 
     var pieDataActive = [
         {
-            //value: document.getElementsByName("audiActive").value,
-            value:8,
+            value: document.getElementById("audiActive").innerHTML,
+            //value:8,
             color: "#FF0000"
         },
         {
-            //value: document.getElementsByName("volkswageActive").value,
-            value:9,
+            value: document.getElementById("volkswageActive").innerHTML,
+            //value:9,
             color: "#0000FF"
         },
         {
-            //value: document.getElementsByName("seatActive").value,
-            value: 10,
+            value: document.getElementById("seatActive").innerHTML,
+           // value: 10,
             color: "#FF9980"
         },
         {
-            //value: document.getElementsByName("skodaActive").value,
-            value:8,
+            value: document.getElementById("skodaActive").innerHTML,
+            //value:8,
             color: "#009900"
         }
 
