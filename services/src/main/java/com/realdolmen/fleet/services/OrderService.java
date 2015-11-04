@@ -36,12 +36,12 @@ public class OrderService {
 
     public List<Order> getAllOrdersForMark(String s)
     {
-        return orderRepository.findAllByCarCarModelMark(s.toLowerCase());
+        return orderRepository.findAllByCarCarModelMark(s);
 
     }
     public int getAllOrdersForMarkCount(String s)
     {
-        return orderRepository.findAllByCarCarModelMark(s.toLowerCase()).size();
+        return getAllOrdersForMark(s).size();
     }
 
 

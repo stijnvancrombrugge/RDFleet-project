@@ -42,7 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .formLogin()
                 .loginPage("/login")
                 .successHandler(successHandler)
-                //.defaultSuccessUrl("/employee/home")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and()
@@ -51,8 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index").and()
                 .authorizeRequests()
-                /*.antMatchers("/fleet/**").access("hasRole('ADMIN')")
-                .antMatchers("/employee/**").access("hasRole('USER')")*/
+                .antMatchers("/fleet/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/employee/**").access("hasRole('ROLE_USER')")
                 .anyRequest().permitAll().and().httpBasic();
     }
 }

@@ -68,10 +68,9 @@
                     <i class="icon_house_alt"></i>
                     <span>Dashboard</span>
                 </a>
->
             </li>
             <li th:class="${activeTab == 'control'}? 'active' : null">
-                <a class="" th:href="@{'/fleet/' + ${fleetManager.id} + '/control'}" class="">
+                <a class="" th:href="@{'/fleet/' + ${fleetManager.id} + '/control'}">
                     <i class="icon_piechart"></i>
                     <span>Fleet Control</span>
                 </a>
