@@ -30,6 +30,18 @@ public interface CurrentCarRepository extends JpaRepository<CurrentCar,Integer> 
 
     public List<CurrentCar>findByCarCarModelModelAndEmployeeIsNotNull(String model);
 
+/**
+  *
+  * @param mark
+  * @param model
+  * @param color
+  * @return Optional
+  select c from CurrentCar c where c.car.carModel.mark like :mark
+  and c.car.carModel.model like :model
+  and c.car.color like :color
+  and c.employee is null
+  */
+    public List<CurrentCar>findByCarCarModelMarkAndCarCarModelModelAndCarColorAndEmployeeIsNull(String mark,String model,String color);
 
 
 }
