@@ -38,6 +38,7 @@ public class Order extends AbstractEntity {
         this.car = car;
         this.orderDate = new Date();
     }
+    
 
     public String getOrderCode() {
         return orderCode;

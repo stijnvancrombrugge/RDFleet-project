@@ -6,8 +6,6 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
 /**
  * Created by SDOAX36 on 2/11/2015.
  */

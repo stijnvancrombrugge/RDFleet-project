@@ -38,8 +38,6 @@ public class OptionPack extends AbstractEntity {
     }
 
 
-
-
     public String getName() {
         return name;
     }

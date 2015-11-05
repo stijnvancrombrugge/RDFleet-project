@@ -29,6 +29,10 @@ public class CarModelService {
         return carModelRepository.findByMarkAndCategory(mark, category);
     }
 
+    public CarModel findById(Integer id){
+        return carModelRepository.findOne(id);
+    }
+
     public byte[] findImageByCarModelId(Integer id){
         return carModelRepository.findOne(id).getImage();
     }
