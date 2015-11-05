@@ -2,7 +2,7 @@
  * Created by SDOAX36 on 4/11/2015.
  */
 
-$(document).ready(function() {
+$(document).load(function() {
 
     var pieDataActive = [
         {
@@ -29,19 +29,19 @@ $(document).ready(function() {
     ];
     var pieDataFree = [
         {
-            value: $("#audiFree").text(),
+            value: $("#audiFree").html(),
             color: "#FF0000"
         },
         {
-            value: $("#volkswagenFree").text(),
+            value: $("#volkswagenFree").html(),
             color: "#0000FF"
         },
         {
-            value: $("#seatFree").text(),
+            value: $("#seatFree").html(),
             color: "#FF9980"
         },
         {
-            value: $("#skodaFree").text(),
+            value: $("#skodaFree").html(),
             color: "#009900"
         }
 

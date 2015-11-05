@@ -44,6 +44,8 @@ public class FleetPoolViewModelList {
         private int km;
         private int id;
         private String kmPercent;
+        private int kmNeg;
+        private String kmPercentNeg;
 
 
         public FleetPoolViewModel(CurrentCar car) {
@@ -56,8 +58,27 @@ public class FleetPoolViewModelList {
 
             this.km = car.getCar().getKilometers();
             this.kmPercent = calcPercent(km);
+            this.kmNeg = 160000 - km;
+            this.kmPercentNeg = calcPercent(kmNeg);
+
             this.leasingdate = DateUtil.dateToString(car.getLeasingStartDate(), DateUtil.DAY_MONTH_YEAR);
             this.id = car.getId();
+        }
+
+        public int getKmNeg() {
+            return kmNeg;
+        }
+
+        public void setKmNeg(int kmNeg) {
+            this.kmNeg = kmNeg;
+        }
+
+        public String getKmPercentNeg() {
+            return kmPercentNeg;
+        }
+
+        public void setKmPercentNeg(String kmPercentNeg) {
+            this.kmPercentNeg = kmPercentNeg;
         }
 
         public String getKmPercent() {

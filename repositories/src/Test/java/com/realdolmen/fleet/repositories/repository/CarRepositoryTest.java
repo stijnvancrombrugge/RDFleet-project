@@ -58,8 +58,11 @@ public class CarRepositoryTest extends AbstractRepoTest{
     public void shouldUpdateAnEntity() throws Exception {
 
         Car car = getCarRepository().findOne(idToCheckFirst);
+        int vers = car.getVersion();
         car.setColor("Roze");
+        car.setKilometers(12333);
         assertEquals(getCarRepository().findOne(idToCheckFirst).getColor(),car.getColor());
+        assertEquals(getCarRepository().findOne(idToCheckFirst).getKilometers(),12333);
     }
 
     @Override

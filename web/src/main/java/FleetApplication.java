@@ -3,6 +3,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
  */
 @SpringBootApplication
 @ComponentScan(basePackages = "com.realdolmen.fleet")
+@EnableScheduling
 public class FleetApplication{
 
 

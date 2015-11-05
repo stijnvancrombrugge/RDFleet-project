@@ -31,8 +31,24 @@ public class FleetPoolController {
     {
         try {
             model.addAttribute("fleetManager",fleetManagerService.findFleetManager(id));
+            model.addAttribute("title","Free pool");
             model.addAttribute("active",false);
             model.addAttribute("modelList",new FleetPoolViewModelList(currentCarService.getAllFreeFleetCars()));
+            return "/fleet/fleetpool";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "error";
+    }
+
+    @RequestMapping(value = "/fleet/{id}/control/activepool",method = RequestMethod.GET)
+    public String activepool(@PathVariable("id")Integer id,Model model)
+    {
+        try {
+            model.addAttribute("fleetManager",fleetManagerService.findFleetManager(id));
+            model.addAttribute("title","Free pool");
+            model.addAttribute("active",false);
+            model.addAttribute("modelList",new FleetPoolViewModelList(currentCarService.getAllActiveCurrentCars()));
             return "/fleet/fleetpool";
         } catch (Exception e) {
             e.printStackTrace();
