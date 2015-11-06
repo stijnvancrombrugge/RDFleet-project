@@ -20,4 +20,8 @@ public class OptionService {
     public List<Option> getAllOptions(){
         return optionRepository.findAll();
     }
+
+    public Option getOptionForId(int id){
+        return optionRepository.findOne(id);
+    }
 }

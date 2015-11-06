@@ -2594,7 +2594,7 @@ ul.ft-link li a i {
 .profile-widget img {
    border-radius: 50%;
    -webkit-border-radius: 50%;
-    width: 62px;
+    width: 90px;
     height: 62px;
     /*display: inline-block;*/
 }
@@ -4954,7 +4954,7 @@ span.customSelect.changed {
 }
 
 .large-profile-picture{
-    width: 200px;
+    width: 230px;
     height: 200px;
     -webkit-border-radius: 50%;
 }

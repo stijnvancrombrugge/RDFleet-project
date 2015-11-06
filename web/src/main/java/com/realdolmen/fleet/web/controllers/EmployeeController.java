@@ -48,7 +48,6 @@ public class EmployeeController {
         Employee employee = null;
         try {
             employee = employeeService.findEmployeeById(id);
-            System.out.println(employee);
             return (new EmployeePageViewModel(employee));
         } catch (Exception e) {
             System.out.println("Something when't terrible wrong "+e.getMessage());
@@ -80,14 +79,10 @@ public class EmployeeController {
         model.addAttribute(carModel);
         List<Option> optionList = optionService.getAllOptions();
         model.addAttribute(optionList);
-        model.addAttribute(new CarOrderViewModel(null,null,null));
+        model.addAttribute(new CarOrderViewModel());
         return "employee/details";
     }
 
-    @RequestMapping(value = "/carModelForm", method=RequestMethod.POST)
-    public String processForm(@ModelAttribute(value="carOrderViewModel") CarOrderViewModel carOrderViewModel) {
-        System.out.println(carOrderViewModel.getColor() + "****************** received");
-        return "employee/home";
-    }
+
 
 }

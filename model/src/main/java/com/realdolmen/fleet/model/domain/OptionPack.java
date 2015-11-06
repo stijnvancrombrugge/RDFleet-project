@@ -50,6 +50,9 @@ public class OptionPack extends AbstractEntity {
         return options;
     }
 
+    public void setOptions(List<Option> options) {
+        this.options = options;
+    }
 
     public boolean isChosen() {
         return chosen;

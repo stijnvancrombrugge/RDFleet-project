@@ -67,4 +67,9 @@ public class UserDetailService implements UserDetailsService {
     {
         return userRepository.findOne(id);
     }
+
+    public byte[] findImageByUserId(Integer id){
+        return userRepository.findOne(id).getImage();
+    }
+
 }

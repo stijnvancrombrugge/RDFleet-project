@@ -149,7 +149,7 @@
                                   <div id="profile" class="tab-pane">
                                     <section class="panel">
                                       <div class="bio-graph-heading">
-                                          <img src="/img/profile-widget-avatar.jpg" class="large-profile-picture" alt=""/>
+                                          <img th:src="@{'/image/profile/' + ${employeePageViewModel.employeeId}}" class="large-profile-picture" alt=""/>
                                       </div>
                                       <div class="panel-body bio-graph-info">
                                           <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">

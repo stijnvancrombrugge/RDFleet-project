@@ -51,8 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index").and()
                 .authorizeRequests()
-                .antMatchers("/fleet/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/employee/**").access("hasRole('ROLE_USER')")
+                /*.antMatchers("/fleet/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/employee/**").access("hasRole('ROLE_USER')")*/
                 .anyRequest().permitAll().and().httpBasic();
     }
 }
