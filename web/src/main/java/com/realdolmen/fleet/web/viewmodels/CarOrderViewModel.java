@@ -4,6 +4,7 @@ import com.realdolmen.fleet.model.Models.CarModel;
 import com.realdolmen.fleet.model.domain.Option;
 import com.realdolmen.fleet.model.domain.OptionPack;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import java.util.List;
 public class CarOrderViewModel {
 
     private int carModelId;
+
+    @NotNull
     private String color;
     List<Integer> optionList;
 

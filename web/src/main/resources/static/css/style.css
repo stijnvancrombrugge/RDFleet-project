@@ -5000,3 +5000,25 @@ span.customSelect.changed {
     border-radius: 5%;
     align-self: center;
 }
+
+.color-item{
+    width: 150px;
+    height: 150px;
+    border: 1px solid #acdef6;
+    border-radius: 3%;
+}
+
+label > input:checked + .color-item{ /* (RADIO CHECKED) IMAGE STYLES */
+    border:6px solid #acdef6;
+}
+
+
+.color-list-item{
+    display: inline;
+    margin-left: 30px;
+}
+
+label > input{ /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}

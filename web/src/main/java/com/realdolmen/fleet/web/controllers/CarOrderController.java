@@ -8,10 +8,12 @@ import com.realdolmen.fleet.web.viewmodels.CarOrderViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +39,16 @@ public class CarOrderController {
 
 
     @RequestMapping(value = "/employee/{id}/carOrder", method= RequestMethod.POST)
-    public String processForm(CarOrderViewModel carOrderViewModel, @PathVariable("id") int id) throws Exception {
+    public String processForm(@Valid CarOrderViewModel carOrderViewModel, BindingResult bindingResult, @PathVariable("id") int id) throws Exception {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/employee/" + id +"/details/" + carOrderViewModel.getCarModelId();
+        }
 
         List<Option> optionList =  new ArrayList<>();
-        for(int optionId: carOrderViewModel.getOptionList()){
-            optionList.add(optionService.getOptionForId(optionId));
+        if(!optionList.isEmpty()) {
+            for (int optionId : carOrderViewModel.getOptionList()) {
+                optionList.add(optionService.getOptionForId(optionId));
+            }
         }
         orderService.orderNewCar(optionList, carModelService.findById(carOrderViewModel.getCarModelId()), carOrderViewModel.getColor(), employeeService.findEmployeeById(id));
         return "redirect:/employee/" + id + "/home";
