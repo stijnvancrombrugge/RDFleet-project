@@ -63,13 +63,16 @@
                                 <div id="recent-activity" class="tab-pane active">
                                     <section class="panel">
                                         <div class="panel-body bio-graph-info">
-                                            <div class="bio-graph-heading"> <div class="row"><img class="my-car-picture" th:src="@{'/image/model/' + ${carModel.id}}"/></div></div>
+                                            <div class="bio-graph-heading">
+                                                <div class="bio-graph-heading">
+                                                    <p style="font-size:24px;">Thanks for ordering your new fleet car ! Please find your details below</p>
+                                                </div>
+                                            </div>
                                             <div class="panel-body bio-graph-info">
                                                 <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
-                                                    <h1>Details <span th:text="${carModel.mark}"></span> <span th:text="${carModel.model}"></span></h1>
+                                                    <h1>Order details</h1>
                                                 </div>
                                                 <div class="row">
-
                                                     <div class="bio-row">
                                                         <p><span>Mark </span>: <th th:text="${carModel.mark}"></th></p>
                                                     </div>
@@ -97,64 +100,21 @@
                                                     <div class="bio-row">
                                                         <p><span>Emission </span>: <th th:text="${carModel.emission}"></th></p>
                                                     </div>
+                                                    <div class="bio-row">
+                                                        <p><span>Color </span>: <th th:text="${carOrderViewModel.color}"></th></p>
+                                                    </div>
                                                 </div>
-                                                <form name="f" th:action="@{'/employee/details'}" th:object="${carOrderViewModel}" method="POST">
-                                                    <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
-                                                        <h1>Choose a color</h1>
+                                                <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
+                                                    <h1>Options chosen</h1>
+                                                </div>
+                                                    <div class="bio-row" th:each="option: ${optionList}">
+                                                        <p><span>Option </span>: <th th:text="${option.optionName}"></th></p>
                                                     </div>
                                                     <div class="row">
-                                                    <div class="form-group" style="margin-left: 17vw">
-                                                        <div class="row">
-                                                            <ul>
-                                                                <li class="color-list-item">
-                                                                    <label>
-                                                                        <input type="radio" name="color" th:field="*{color}" th:value="black" value="black" />
-                                                                        <img class="color-item" src="/img/color_black.jpg"/>
-                                                                    </label>
-                                                                </li>
-                                                                <li class="color-list-item">
-                                                                    <label>
-                                                                        <input type="radio" name="color" th:field="*{color}" th:value="red" value="red"/>
-                                                                        <img class="color-item" src="/img/color_red.png"/>
-                                                                    </label>
-                                                                </li>
-                                                                <li class="color-list-item">
-                                                                    <label>
-                                                                        <input type="radio" name="color" th:field="*{color}" th:value="blue" value="blue"/>
-                                                                        <img class="color-item" src="/img/color_blue.png"/>
-                                                                    </label>
-                                                                </li>
-                                                                <li class="color-list-item">
-                                                                    <label>
-                                                                        <input type="radio" name="color" th:field="*{color}" th:value="white" value="white"/>
-                                                                        <img class="color-item" src="/img/color_white.png"/>
-                                                                    </label>
-                                                                </li>
-                                                            </ul>
-                                                            <!--<input name="color" type="text" value="yellow" th:field="*{color}"/>-->
+                                                        <div class="single-confirm-button">
+                                                            <a href="/employee"><button type="button" class="btn btn-primary" style="width:25vw;">Home</button></a>
                                                         </div>
                                                     </div>
-                                                        <div class="color-error" th:if="${(param.error != null)}">**Please select a color**
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
-                                                        <h1>Choose options for <span th:text="${carModel.mark}"></span> <span th:text="${carModel.model}"></span></h1>
-                                                    </div>
-                                                    <div class="form-group" style="margin-left: 30vw" th:each="option: ${optionList}">
-                                                        <label class="col-lg-2 control-label"><th th:text="${option.optionName}"></th></label>
-                                                        <div class="col-lg-6">
-                                                            <input type="checkbox" name="option" th:field="*{optionList}" th:value="${option.id}" class="form-control"/>
-                                                        </div>
-                                                        <input style="visibility: hidden;" name="carModelId"  th:value="${carModel.id}" class="form-control"/>
-                                                    </div>
-                                                <div class="row">
-                                                    <div class="col-lg-offset-5 col-lg-9">
-                                                        <input type="submit" name="submit" class="btn btn-primary" value="Order Car"/>
-                                                        <a href="javascript:history.back()"><button type="button" class="btn btn-danger">Cancel</button></a>
-                                                    </div>
-                                                </div>
-                                                    </form>
                                             </div>
                                         </div>
                                     </section>

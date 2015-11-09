@@ -5009,6 +5009,10 @@ span.customSelect.changed {
 }
 
 label > input:checked + .color-item{ /* (RADIO CHECKED) IMAGE STYLES */
+     border:6px solid #acdef6;
+}
+
+label > input:hover + .color-item{ /* (RADIO CHECKED) IMAGE STYLES */
     border:6px solid #acdef6;
 }
 
@@ -5028,4 +5032,9 @@ label > input[type="radio"]{ /* HIDE RADIO */
     color:red;
     font-size: 18px;
     margin-bottom: 1 vw;
+}
+
+.single-confirm-button{
+    margin: 10px auto 0;
+    width: 25vw;
 }

@@ -33,8 +33,7 @@
     <div class="container">
         <div class="title-login"><span style="color:#c7254e">RD</span><span class="lite">Fleet</span></div>
         <div class="login-wrap">
-            <div class="login-form">
-            <form name="f" th:action="@{/login}" method="post">
+            <form class="login-form" name="f" th:action="@{/login}" method="post">
             <p class="login-img"><i class="icon_lock_alt"></i></p>
             <div class="input-group">
               <span class="input-group-addon"><i class="icon_profile"></i></span>
@@ -50,11 +49,8 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
             </form>
-            </div>
         </div>
-
     </div>
-
 
   </body>
 </html>

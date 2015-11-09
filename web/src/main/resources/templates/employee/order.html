@@ -64,13 +64,23 @@
                                     <section class="panel">
                                         <div class="panel-body bio-graph-info">
                                             <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
-                                                <h1>Choose a mark</h1>
+                                                <h1>Submit your order code</h1>
                                             </div>
                                             <div class="row">
-                                                <a th:href="@{'/employee/' + ${employeePageViewModel.userCategory} + '/skoda'}"><img class="mark-image" src="/img/skoda_logo.png"/></a>
-                                                <a th:href="@{'/employee/' + ${employeePageViewModel.userCategory} + '/seat'}"><img class="mark-image" src="/img/seat_logo.png"/></a>
-                                                <a th:href="@{'/employee/' + ${employeePageViewModel.userCategory} + '/volkswagen'}"><img class="mark-image" src="/img/volkswagen_logo.png"/></a>
-                                                <a th:href="@{'/employee/' + ${employeePageViewModel.userCategory} + '/audi'}"><img class="mark-image" src="/img/audi_logo.png"/></a>
+                                                <form th:action="@{'/employee/order'}" method="post">
+                                                    <div class="row">
+                                                        <div class="form-group" style="margin-left: 30vw">
+                                                            <div class="col-lg-6">
+                                                                <input type="text" name="order-code" class="form-control" style="width:25vw;"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="single-confirm-button">
+                                                            <input type="submit" name="submit" class="btn btn-primary" style="width:25vw;" value="Start Order"/>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </section>

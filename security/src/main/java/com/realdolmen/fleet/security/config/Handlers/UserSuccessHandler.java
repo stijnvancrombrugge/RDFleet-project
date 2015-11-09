@@ -9,10 +9,13 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,7 +36,9 @@ public class UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
     @Override
     protected void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
-        String targetUrl = determineTargetUrl(authentication);
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession(true);
+        String targetUrl = determineTargetUrl(authentication, session);
 
         System.out.println("targerUrl : " + targetUrl + " response " + response.getStatus());
         if(response.isCommitted())
@@ -47,11 +52,12 @@ public class UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
     }
 
 
-    protected String determineTargetUrl(Authentication authentication)
+    protected String determineTargetUrl(Authentication authentication, HttpSession session)
     {
         String url = "";
         System.out.println("Auth " + authentication.getName());
         Integer id = service.getIdFromUserByUserName(authentication.getName());
+        session.setAttribute("id", id);
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         List<String>roles = new ArrayList<>();
         for(GrantedAuthority a : authorities)
@@ -61,11 +67,11 @@ public class UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
         if(roles.contains("ROLE_USER"))
         {
-            url = "/employee/"+id;
+            url = "/employee";
         }
         else if(roles.contains("ROLE_ADMIN"))
         {
-            url= "/fleet/"+id;
+            url= "/fleet/" + id;
         }
         return url;
     }
