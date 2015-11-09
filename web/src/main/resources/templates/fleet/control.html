@@ -29,13 +29,147 @@
             <div class="row">
 
                 <!-- Pie -->
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <section class="panel">
                         <header class="panel-heading">
-                            Pie
+                            <h3>
+                           <a th:href="@{'/fleet/' + ${fleetManager.id} + '/control/activepool'}">Fleet pool</a><span class="badge" th:text="${activepool.total}"></span>
+                            </h3>
                         </header>
                         <div class="panel-body text-center">
-                            <canvas id="pie" height="300" width="400"></canvas>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Mark</th>
+                                    <th>Total</th>
+                                    <th>%</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/audi_logo.png"/></td>
+                                    <td id="audiActive" th:text="${activepool.totalAudi}"></td>
+                                    <td th:text="${activepool.percentage.totalAudi}"></td>
+                                </tr>
+                                <tr>
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/skoda_logo.png"/></td>
+                                    <td id="skodaActive" th:text="${activepool.totalSkoda}"></td>
+                                    <td th:text="${activepool.percentage.totalSkoda}"></td>
+                                </tr>
+                                <tr>
+                                    <!--    private int totalVolkswagen;private int totalSeat;-->
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/volkswagen_logo.png"/></td>
+                                    <td id="volkswagenActive" th:text="${activepool.totalVolkswagen}"></td>
+                                    <td th:text="${activepool.percentage.totalVolkswagen}"></td>
+                                </tr>
+                                <tr>
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/seat_logo.png"/></td>
+                                    <td id="seatActive" th:text="${activepool.totalSeat}"></td>
+                                    <td th:text="${activepool.percentage.totalSeat}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <canvas id="pieActive" height="300" width="400"></canvas>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-4">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <h3>
+                                Orders <span class="badge" th:text="${orders.total}"></span>
+                            </h3>
+                        </header>
+                        <div class="panel-body text-center">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Mark</th>
+                                    <th>Total</th>
+                                    <th>%</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/audi_logo.png"/></td>
+                                    <td id="audiOrders" th:text="${orders.totalAudi}"></td>
+                                    <td th:text="${orders.percentage.totalAudi}"></td>
+                                </tr>
+                                <tr>
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/skoda_logo.png"/></td>
+                                    <td id="skodaOrders" th:text="${orders.totalSkoda}"></td>
+                                    <td th:text="${orders.percentage.totalSkoda}"></td>
+                                </tr>
+                                <tr>
+                                    <!--    private int totalVolkswagen;private int totalSeat;-->
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/volkswagen_logo.png"/></td>
+                                    <td id="volkswagenOrders" th:text="${orders.totalVolkswagen}"></td>
+                                    <td th:text="${orders.percentage.totalVolkswagen}"></td>
+                                </tr>
+                                <tr>
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/seat_logo.png"/></td>
+                                    <td id="seatOrders" th:text="${orders.totalSeat}"></td>
+                                    <td th:text="${orders.percentage.totalSeat}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <canvas id="pieOrders" height="300" width="400"></canvas>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-4">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <h3>
+                                <a th:href="@{'/fleet/' + ${fleetManager.id} + '/control/freepool'}">Freepool <span class="badge" th:text="${freepool.total}"></span></a>
+                            </h3>
+                        </header>
+                        <div class="panel-body text-center">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Mark</th>
+                                    <th>Total</th>
+                                    <th>%</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/audi_logo.png"/></td>
+                                    <td id="audiFree" th:text="${freepool.totalAudi}"></td>
+                                    <td th:text="${freepool.percentage.totalAudi}"></td>
+                                </tr>
+                                <tr>
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/skoda_logo.png"/></td>
+                                    <td id="skodaFree" th:text="${freepool.totalSkoda}"></td>
+                                    <td th:text="${freepool.percentage.totalSkoda}"></td>
+                                </tr>
+                                <tr>
+                                    <!--    private int totalVolkswagen;private int totalSeat;-->
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/volkswagen_logo.png"/></td>
+                                    <td id="volkswagenFree" th:text="${freepool.totalVolkswagen}"></td>
+                                    <td th:text="${freepool.percentage.totalVolkswagen}"></td>
+                                </tr>
+                                <tr>
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/seat_logo.png"/></td>
+                                    <td id="seatFree" th:text="${freepool.totalSeat}"></td>
+                                    <td th:text="${freepool.percentage.totalSeat}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <canvas id="pieFree" height="300" width="400"></canvas>
                         </div>
                     </section>
                 </div>
@@ -47,6 +181,7 @@
 <!-- container section start -->
 
 <div th:replace="fleet/fragments/scripts :: script"></div>
+
 
 <script>
 

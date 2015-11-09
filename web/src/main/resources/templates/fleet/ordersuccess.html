@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fleet/fragments/fragments :: head">
+</head>
+<link href="/css/font-awesome.min.css" rel="stylesheet"/>
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <header th:replace="fleet/fragments/fragments :: header"></header>
+
+    <aside th:replace="fleet/fragments/fragments :: aside(control)"></aside>
+
+
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <!--overview start-->
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="page-header"><i class="fa fa-list-alt"></i> Components</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a th:href="@{'/fleet/' + ${fleetManager.id} + '/home'}">Home</a>
+                        </li>
+                        <li><i class="fa fa-desktop"></i>Mail success</li>
+                    </ol>
+                </div>
+            </div>
+            <!--details overview start-->
+            <section class="panel">
+                <div class="bio-graph-heading">
+                    <h1>Order was made</h1>
+                    <a class="btn btn-success" th:href="@{'/fleet/' + ${fleetManager.id} + '/home'}"><i class="fa fa-home"></i> Home</a>
+                </div>
+                <div class="row">
+                    <div class="panel-body bio-graph-info col-lg-12">
+                        <h1>Order details</h1>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <span>Order code :</span>
+
+                                <div class="well">
+                                    <p th:text="${createOrderViewModel.orderId}">
+
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <span>OrderDate :</span>
+
+                                <div class="well"><p th:text="${createOrderViewModel.orderDate}"></p></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <span>Employee e-mail :</span>
+
+                                <div class="well"><p th:text="${createOrderViewModel.email}"></p></div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <span>Subject :</span>
+
+                                <div class="well"><p th:text="${createOrderViewModel.titleMail}"></p>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <span>Content :</span>
+
+                                <div class="well"><p th:text="${createOrderViewModel.mailText}"></p></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+</section>
+</body>
+</html>

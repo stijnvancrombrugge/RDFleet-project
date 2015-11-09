@@ -22,10 +22,14 @@ public class FleetManagerService {
         return (FleetManager)userRepository.findOne(id);
     }
 
-    public List<Employee>findAllEmployeest()
+    public List<FleetManager>findAllManagers()
     {
-        return (List<Employee>)(List<?>)userRepository.findAll();
+        return (List<FleetManager>)(List<?>)userRepository.findAll();
     }
 
+    public void saveFleetManager(FleetManager fleetManager)
+    {
+        userRepository.save(fleetManager);
+    }
 
 }

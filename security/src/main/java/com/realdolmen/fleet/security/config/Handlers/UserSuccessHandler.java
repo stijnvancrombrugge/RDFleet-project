@@ -42,6 +42,7 @@ public class UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
             return;
         }
 
+        System.out.println("Start to redirect" +request.getSession().toString()+" url "+targetUrl);
         strategy.sendRedirect(request,response,targetUrl);
 
     }

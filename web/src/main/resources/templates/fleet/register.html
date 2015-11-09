@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fleet/fragments/fragments :: head">
+</head>
+<link href="/css/font-awesome.min.css" rel="stylesheet"/>
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <header th:replace="fleet/fragments/fragments :: header"></header>
+
+    <aside th:replace="fleet/fragments/fragments :: aside(register)"></aside>
+
+
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="page-header"><i class="fa fa-list-alt"></i> Components</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a th:href="@{'/fleet/' + ${fleetManager.id} + '/home'}">Home</a>
+                        </li>
+                        <li><i class="fa fa-desktop"></i>Register</li>
+                    </ol>
+                </div>
+            </div>
+            <!--overview start-->
+            <div class="row">
+                <section class="panel col-lg-8">
+                    <div class="bio-graph-heading">
+                        <h1>Employee</h1>
+                    </div>
+                    <div class="panel-body bio-graph-info">
+                        <h1>Add new employee to fleet</h1>
+
+                        <form class="form-horizontal" role="form" action="#"
+                              th:action="@{'/fleet/' + ${fleetManager.id} + '/register'}" method="post"
+                              th:object="${employeeCreationModel}">
+                            <div th:if="${#fields.hasAnyErrors()}" class="">
+                                <p th:each="err : ${#fields.allErrors()}" th:text="${err}">...</p>
+                            </div>
+                            <div th:class="${#fields.hasErrors('firstName')}? 'form-group has-error' : 'form-group'">
+                                <label th:for="${#ids.next('firstName')}" class="col-lg-2 control-label">First
+                                    Name</label>
+
+                                <div class="col-lg-6">
+                                    <input type="text" th:field="*{firstName}" class="form-control"
+                                           placeholder=""/>
+                                    <span th:if="${#fields.hasErrors('firstName')}" class="help-block"
+                                          th:errors="*{firstName}"></span>
+                                </div>
+                            </div>
+                            <div th:class="${#fields.hasErrors('lastName')}? 'form-group has-error' : 'form-group'">
+                                <label th:for="${#ids.next('lastName')}" class="col-lg-2 control-label">Last
+                                    Name</label>
+
+                                <div class="col-lg-6">
+                                    <input type="text" th:field="*{lastName}" class="form-control"
+                                           placeholder=""/>
+                                    <span th:if="${#fields.hasErrors('lastName')}" class="help-block"
+                                          th:errors="*{lastName}"></span>
+                                </div>
+                            </div>
+                            <div th:class="${#fields.hasErrors('eMail')}? 'form-group has-error' : 'form-group'">
+                                <label th:for="${#ids.next('eMail')}" class="col-lg-2 control-label">E-mail</label>
+
+                                <div class="col-lg-6">
+                                    <input type="text" th:field="*{eMail}" class="form-control"
+                                           placeholder="example@realdolmen.com"/>
+                                    <span th:if="${#fields.hasErrors('eMail')}" class="help-block"
+                                          th:errors="*{eMail}"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                    <button type="button" class="btn btn-danger">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+    </section>
+</section>
+</body>
+</html>

@@ -5,6 +5,8 @@ import com.realdolmen.fleet.model.domain.*;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by SDOAX36 on 3/11/2015.
@@ -67,7 +69,16 @@ public class CurrentCarRepositoryTest extends AbstractRepoTest {
     {
 
         assertEquals(getCurrentCarRepository().findByEmployeeIsNull().size(), 2);
-        assertNotSame(getCurrentCarRepository().findByEmployeeIsNull().size(),getCurrentCarRepository().findAll().size());
+        assertNotSame(getCurrentCarRepository().findByEmployeeIsNull().size(), getCurrentCarRepository().findAll().size());
 
+    }
+    @Test
+    public void shouldReturnOneCarWithMarkModelColorAndEmployeeNull()throws Exception
+    {
+        // CurrentCar currentCar = new CurrentCar(new Car(new CarModel("A1","Audi",140,1400,11,5,11,"Ecoline",new Category(1)),"Yellow",0,"EES-456",0));
+
+        //Optional<CurrentCar> currentCarOptional = getCurrentCarRepository().searchCurrentCarFromFreePoolByMarkModelColor("Audi","A1","Yellow");
+        List<CurrentCar>c = getCurrentCarRepository().findByCarCarModelMarkAndCarCarModelModelAndCarColorAndEmployeeIsNull("Audi", "A1", "Yellow");
+        assertEquals(c.size(), 1);
     }
 }

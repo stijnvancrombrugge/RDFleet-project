@@ -27,7 +27,7 @@ public abstract class User extends AbstractEntity{
     @Column(unique = true)
     private String username;
 
-    @Size(min=1, max = 50)
+    @Size(min=1)
     @Basic(optional = false)
     private String password;
 
@@ -50,6 +50,14 @@ public abstract class User extends AbstractEntity{
         this.password = password;
         this.email = email;
         this.birthDate = birthDate;
+        this.role = role;
+    }
+
+    public User(String username,String password,String email,String role)
+    {
+        this.username = username;
+        this.password = password;
+        this.email = email;
         this.role = role;
     }
 
