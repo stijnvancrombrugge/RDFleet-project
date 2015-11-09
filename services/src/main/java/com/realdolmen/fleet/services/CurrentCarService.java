@@ -1,12 +1,20 @@
 package com.realdolmen.fleet.services;
 
+import com.realdolmen.fleet.model.Models.CarModel;
+import com.realdolmen.fleet.model.domain.Car;
+import com.realdolmen.fleet.model.domain.Category;
 import com.realdolmen.fleet.model.domain.CurrentCar;
+import com.realdolmen.fleet.model.domain.Employee;
 import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
+import com.realdolmen.fleet.repositories.repository.UserRepository;
+import com.realdolmen.fleet.services.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.spi.CurrencyNameProvider;
 
 /**
  * Created by SDOAX36 on 3/11/2015.
@@ -16,6 +24,10 @@ public class CurrentCarService {
 
     @Autowired
     CurrentCarRepository currentCarRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
 
     public List<CurrentCar>getAllCurrentCarsFromFleet()
     {
@@ -86,5 +98,37 @@ public class CurrentCarService {
     public int getCountModelActivePool(String model)
     {
         return getCarsByModelFreePool(model).size();
+    }
+
+    public List<CurrentCar> getCarsAlmostDone()
+    {
+        List<CurrentCar> cars = new ArrayList<>();
+        for(CurrentCar car : getAllCurrentCarsFromFleet())
+        {
+            if(isCarAlmostDone(car))
+            {
+                cars.add(car);
+            }
+        }
+
+        return cars;
+
+    }
+
+    public boolean isCarAlmostDone(CurrentCar car)
+    {
+        Date endLeasing = DateUtil.calculateEndLease(car.getLeasingStartDate());
+        Date now = new Date();
+        long diff = endLeasing.getTime() - now.getTime();
+        long diffDays = diff / (24 * 60 * 60 * 1000);
+        if(diffDays<120L)
+        {
+            return true;
+        }
+        else if((160000 - car.getCar().getKilometers())<5000)
+        {
+            return true;
+        }
+        return false;
     }
 }

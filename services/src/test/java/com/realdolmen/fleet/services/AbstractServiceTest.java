@@ -3,6 +3,7 @@ package com.realdolmen.fleet.services;
 
 import com.realdolmen.fleet.repositories.repository.UserRepository;
 import config.TestConfig;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.*;
@@ -18,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TestConfig.class)
 @ActiveProfiles("test")
-public class AbstractServiceTest {
+public class AbstractServiceTest extends Assert {
 
     @Autowired
     private EmployeeService employeeService;

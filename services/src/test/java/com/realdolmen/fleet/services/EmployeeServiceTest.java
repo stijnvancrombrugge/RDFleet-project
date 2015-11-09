@@ -1,8 +1,11 @@
 package com.realdolmen.fleet.services;
 
+import com.realdolmen.fleet.model.domain.Category;
 import com.realdolmen.fleet.model.domain.Employee;
+import com.realdolmen.fleet.model.domain.FleetManager;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.mockito.Mockito.verify;
@@ -14,7 +17,9 @@ public class EmployeeServiceTest extends AbstractServiceTest {
     @Test
     public void shouldReturnListEmployees()
     {
+
         List<Employee> employees = getEmployeeService().findAllEmployees();
+
         verify(getUserRepository()).findAll();
     }
 

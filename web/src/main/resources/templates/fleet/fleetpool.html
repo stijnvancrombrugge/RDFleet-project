@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fleet/fragments/fragments :: head">
+</head>
+<link href="/css/font-awesome.min.css" rel="stylesheet"/>
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <header th:replace="fleet/fragments/fragments :: header"></header>
+
+    <aside th:replace="fleet/fragments/fragments :: aside(control)"></aside>
+
+
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <!--overview start-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-list-alt"></i> Components</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a th:href="@{'/fleet/' + ${fleetManager.id} + '/home'}">Home</a>
+                        </li>
+                        <li><i class="fa fa-desktop"></i><a th:href="@{'/fleet/' + ${fleetManager.id} + '/control'}">Control</a></li>
+                        <li><i class="fa fa-list-alt"></i>Pool</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <h3 th:text="${title}"></h3>
+                        </header>
+
+                        <table id="table" class="table table-striped table-advance table-hover">
+
+                            <thead>
+                            <tr>
+                                <th>Mark</th>
+                                <th>Model</th>
+                                <th th:if="${active}">Owner</th>
+                                <th>Lease date</th>
+                                <th>Km</th>
+                                <th>Info</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="model : ${modelList.models}">
+                                <td class="media"><img th:src="@{'/img/' + ${model.mark} +'_logo.png'}"
+                                                       class="media-object img-responsive"
+                                                       style="width: 64px; height: 64px;"/></td>
+                                <td th:text="${model.model}"></td>
+                                <td th:if="${active}"><a
+                                        th:href="@{'/fleet/' + ${fleetManager.id} + '/employee/' + ${model.ownerId}}"
+                                        th:text="${model.ownerName}"></a></td>
+                                <td th:text="${model.leasingdate}"></td>
+                                <td>
+                                    <div class="progress thin">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar"
+                                             th:attr="aria-valuenow=${model.km}" th:style="'width:'+ ${model.kmPercent}+';'"
+                                             aria-valuemin="0" aria-valuemax="160000">
+                                        </div>
+                                        <div class="progress-bar progress-bar-warning" role="progressbar"
+                                             th:attr="aria-valuenow=${model.kmNeg}" aria-valuemin="0" aria-valuemax="1600000"
+                                             th:style="'width:'+ ${model.kmPercentNeg}+';'">
+                                        </div>
+                                    </div>
+                                    <span class="sr-only" th:text="${model.kmPercent}"></span>
+                                </td>
+                                <td>
+                                    <a th:href="@{'/fleet/' + ${fleetManager.id} + '/control/currentcar/'+${model.id}}"
+                                       class="btn btn-info"><span class="fa fa-info-circle"></span>Info</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section start -->
+
+<div th:replace="fleet/fragments/scripts :: script"></div>
+
+
+<script>
+
+</script>
+
+</body>
+</html>

@@ -24,9 +24,18 @@ public class Employee extends User{
     private CurrentCar currentCar;
 
     public Employee(String username, String password, Date birthDate, String email, Category category) {
-        super(username, password, email, birthDate, "USER");
+        super(username, password, email, birthDate, "ROLE_USER");
         this.category = category;
         orders = new ArrayList<>();
+    }
+
+    public Employee(String username,String password, String email, Category category, String first,String last)
+    {
+        super( username, password,email,"ROLE_USER");
+        this.category = category;
+        this.setFirstName(first);
+        this.setLastName(last);
+
     }
 
     protected Employee(){}

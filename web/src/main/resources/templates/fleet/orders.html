@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fleet/fragments/fragments :: head">
+</head>
+<body>
+<link href="/css/font-awesome.min.css" rel="stylesheet"/>
+
+<section>
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <header th:replace="fleet/fragments/fragments :: header"></header>
+
+        <aside th:replace="fleet/fragments/fragments :: aside(index)"></aside>
+
+
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+                <!--overview start-->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h3 class="page-header"><i class="fa fa-list-alt"></i> Create order</h3>
+                        <ol class="breadcrumb">
+                            <li><i class="fa fa-home"></i><a th:href="@{'/fleet/' + ${fleetManager.id} + '/home'}">Home</a>
+                            </li>
+                            <li><i class="fa fa-desktop"></i>create order
+                            </li>
+
+                        </ol>
+                    </div>
+                </div>
+                <!--MainContent-->
+                <div class="row">
+                    <section class="panel col-lg-8">
+                        <div class="bio-graph-heading">
+                            <h1>Create Order</h1>
+                        </div>
+                        <div class="panel-body bio-graph-info">
+
+
+                            <form class="form-horizontal" role="form" action="#"
+                                  th:action="@{'/fleet/' + ${fleetManager.id} + '/createOrder/' + ${createOrderViewModel.employeeId} }" method="post"
+                                  th:object="${createOrderViewModel}">
+                                <div th:if="${#fields.hasAnyErrors()}" class="">
+                                    <p th:each="err : ${#fields.allErrors()}" th:text="${err}">...</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="firstName" class="col-lg-2 control-label">First
+                                        Name</label>
+                                    <div class="col-lg-6">
+                                        <p class="form-control-static" id="firstName" th:text="${createOrderViewModel.firstName}"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName" class="col-lg-2 control-label">Last
+                                        Name</label>
+
+                                    <div class="col-lg-6">
+                                        <p class="form-control-static" id="lastName" th:text="${createOrderViewModel.lastName}"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-lg-2 control-label">E-mail</label>
+
+                                    <div class="col-lg-6">
+                                        <p class="form-control-static" id="email" th:text="${createOrderViewModel.email}"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="titleMail" class="col-lg-2 control-label">Subject</label>
+
+                                    <div class="col-lg-6">
+                                        <p class="form-control-static" id="titleMail" th:text="${createOrderViewModel.titleMail}"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mailText" class="col-lg-2 control-label">Mail content</label>
+                                    <div class="col-lg-6">
+                                        <p class="form-control-static" id="mailText" th:text="${createOrderViewModel.mailText}"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="${#ids.next('comment')}" class="col-lg-2 control-label">Comment</label>
+                                    <div class="col-lg-6">
+                                        <textarea class="form-control" th:field="*{comment}" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <button type="submit" class="btn btn-primary">Send</button>
+                                        <button type="button" class="btn btn-danger">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section start -->
+<div th:replace="fleet/fragments/scripts :: script"></div>
+
+</body>
+</html>

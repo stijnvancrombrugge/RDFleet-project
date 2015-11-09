@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fleet/fragments/fragments :: head">
+</head>
+<link href="/css/font-awesome.min.css" rel="stylesheet"/>
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <header th:replace="fleet/fragments/fragments :: header"></header>
+
+    <aside th:replace="fleet/fragments/fragments :: aside(control)"></aside>
+
+
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <!--overview start-->
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="page-header"><i class="fa fa-list-alt"></i> Components</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a th:href="@{'/fleet/' + ${fleetManager.id} + '/home'}">Home</a>
+                        </li>
+                        <li><i class="fa fa-desktop"></i><a th:href="@{'/fleet/' + ${fleetManager.id} + '/control'}">Control</a>
+                        </li>
+                        <li><i class="fa fa-list-alt"></i><a
+                                th:href="@{'/fleet/' + ${fleetManager.id} + '/home'}">Pool</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!--details overview start-->
+            <section class="panel">
+                <div class="bio-graph-heading">
+                    <div class="row">
+
+                        <div class="col-lg-6"><img class="my-car-picture" th:src="@{'/image/' + ${model.carModelId}}"/>
+                        </div>
+                        <div class="col-lg-6">
+                            <button class="btn btn-danger btn-lg">Remove</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="panel-body bio-graph-info col-lg-12">
+                        <h1>Car Details</h1>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <span>Mark :</span>
+
+                                <div class="well">
+                                    <p>
+                                        <img class="img-responsive" style="width: 64px; height: 50px;"
+                                             th:src="@{'/img/'+ ${model.mark}+ '_logo.png'}"/>
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <span>Model :</span>
+
+                                <div class="well"><p th:text="${model.model}"></p></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <span>Type :</span>
+
+                                <div class="well"><p th:text="${model.modelType}"></p></div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <span>Km :</span>
+
+                                <div class="well"><p th:text="${model.km}"> km</p>
+
+                                    <p>
+
+                                    <div class="progress progress-striped active progress-sm">
+                                        <div class="progress-bar progress-bar-success" role="progressbar"
+                                             th:attr="aria-valuenow=${model.km}" aria-valuemin="0"
+                                             aria-valuemax="160000" th:style="'width:'+ ${model.kmPercent}+';'">
+                                            <span class="sr-only" th:text="${model.kmPercent}"> Complete</span>
+                                        </div>
+                                    </div>
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <span>Color :</span>
+
+                                <div class="well"><p th:text="${model.color}"></p></div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <span>Start leasing :</span>
+
+                                <div class="well"><p th:text="${model.leasingdate}"></p></div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <span>Einde leasing :</span>
+
+                                <div class="well"><p th:text="${model.endLeasing}"></p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body bio-graph-info col-lg-6" th:if="${active}">
+                        <h1>Owner Details</h1>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <span>Last name :</span>
+
+                                <div class="well"><p th:text="${model.ownerDetails.LastName}"></p></div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <span>Model :</span>
+
+                                <div class="well"><p th:text="${model.ownerDetails.firstName}"></p></div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <span>Business :</span>
+
+                                <div class="well"><p th:text="${model.ownerDetails.business}"></p></div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <span>E-mail :</span>
+
+                                <div class="well"><p th:text="${model.ownerDetails.email}"></p></div>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <span>Category :</span>
+
+                                <div class="well"><p th:text="${model.ownerDetails.klasse}"></p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--details overview end    private OwnerDetailViewModel ownerDetails
+                private String userName;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String business;
+    private String klasse;-->
+        </section>
+    </section>
+</section>
+</body>
+</html>

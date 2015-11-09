@@ -1,7 +1,7 @@
 package com.realdolmen.fleet.services;
 
-import com.realdolmen.fleet.model.Models.CarModel;
 import com.realdolmen.fleet.model.domain.*;
+import com.realdolmen.fleet.model.Models.CarModel;
 import com.realdolmen.fleet.repositories.repository.CarRepository;
 import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
 import com.realdolmen.fleet.repositories.repository.OrderRepository;
@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 /**
  * Created by SDOAX36 on 3/11/2015.
@@ -62,14 +64,36 @@ public class OrderService {
 
     public List<Order> getAllOrdersForMark(String s)
     {
-        return orderRepository.findAllByCarCarModelMark(s.toLowerCase());
+        return orderRepository.findAllByCarCarModelMark(s);
 
     }
     public int getAllOrdersForMarkCount(String s)
     {
-        return orderRepository.findAllByCarCarModelMark(s.toLowerCase()).size();
+        return getAllOrdersForMark(s).size();
     }
 
+
+    public Order saveNewOrder(Employee employee)
+    {
+        Order order = new Order(employee);
+        orderRepository.saveAndFlush(order);
+        return order;
+    }
+
+    /**
+     *
+     * @param orderCode
+     * @param employee
+     * @return Order if present
+     * @throws NoSuchElementException No Element found for these params
+     */
+    public Order getOrderWhereEmployeeForApproval(String orderCode,Employee employee)throws NoSuchElementException
+    {
+        Optional<Order>optional = orderRepository.findByOrderCodeAndEmployeeAndStatusAndCarIsNull(orderCode,employee,Status.PENDING);
+
+        return optional.get();
+
+    }
 
 
 

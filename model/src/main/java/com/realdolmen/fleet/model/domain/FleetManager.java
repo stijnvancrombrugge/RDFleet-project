@@ -13,7 +13,7 @@ public class FleetManager extends User{
 
     public FleetManager(String username, String password, String email, Date birthDate) {
 
-        super(username, password, email, birthDate, "ADMIN");
+        super(username, password, email, birthDate, "ROLE_ADMIN");
 
     }
 
