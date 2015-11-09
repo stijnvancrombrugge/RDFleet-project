@@ -4987,6 +4987,10 @@ span.customSelect.changed {
     cursor: pointer;
 }
 
+label > input:checked + .mark-image{
+    background-color: #acdef6;
+}
+
 .model-title{
     text-align: center;
     font-size: 16px;
@@ -5014,6 +5018,7 @@ label > input:checked + .color-item{ /* (RADIO CHECKED) IMAGE STYLES */
 
 label > input:hover + .color-item{ /* (RADIO CHECKED) IMAGE STYLES */
     border:6px solid #acdef6;
+    cursor: pointer;
 }
 
 
@@ -5037,4 +5042,29 @@ label > input[type="radio"]{ /* HIDE RADIO */
 .single-confirm-button{
     margin: 10px auto 0;
     width: 25vw;
+}
+
+.choice-category{
+    margin: 10px auto 0;
+    width: 35vw;
+}
+
+
+.category-button{
+    display:inline;
+    margin-left: 20px;
+    border: 1px solid #acdef6;
+    border-radius: 10%;
+    font-size: 1.5vw;
+    background:  #acdef6;
+    color: white;
+    padding: 5px;
+}
+.category-button:hover{
+    background: #007aff;
+    cursor: pointer;
+}
+
+label > input:checked + .category-button{
+    background: #007aff;
 }
