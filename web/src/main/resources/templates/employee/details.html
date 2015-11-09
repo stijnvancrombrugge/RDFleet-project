@@ -131,10 +131,11 @@
                                                                     </label>
                                                                 </li>
                                                             </ul>
-                                                            <td th:if="${#fields.hasErrors('color')}" th:errors="*{color}">Name Error</td>
                                                             <!--<input name="color" type="text" value="yellow" th:field="*{color}"/>-->
                                                         </div>
                                                     </div>
+                                                        <div class="color-error" th:if="${(param.error != null)}">**Please select a color**
+                                                        </div>
                                                     </div>
 
                                                     <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">

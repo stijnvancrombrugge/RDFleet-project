@@ -41,7 +41,7 @@ public class CarOrderController {
     @RequestMapping(value = "/employee/{id}/carOrder", method= RequestMethod.POST)
     public String processForm(@Valid CarOrderViewModel carOrderViewModel, BindingResult bindingResult, @PathVariable("id") int id) throws Exception {
         if (bindingResult.hasErrors()) {
-            return "redirect:/employee/" + id +"/details/" + carOrderViewModel.getCarModelId();
+            return "redirect:/employee/" + id +"/details/" + carOrderViewModel.getCarModelId() +"?error";
         }
 
         List<Option> optionList =  new ArrayList<>();
