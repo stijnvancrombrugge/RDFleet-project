@@ -4,6 +4,7 @@ import com.realdolmen.fleet.model.domain.CurrentCar;
 import com.realdolmen.fleet.services.CurrentCarService;
 import com.realdolmen.fleet.services.FleetManagerService;
 import com.realdolmen.fleet.services.OrderService;
+import com.realdolmen.fleet.web.viewmodels.FleetPoolViewModel;
 import com.realdolmen.fleet.web.viewmodels.FleetPoolViewModelList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,10 +47,37 @@ public class FleetPoolController {
     {
         try {
             model.addAttribute("fleetManager",fleetManagerService.findFleetManager(id));
-            model.addAttribute("title","Free pool");
-            model.addAttribute("active",false);
+            model.addAttribute("title","Active pool");
+            model.addAttribute("active",true);
             model.addAttribute("modelList",new FleetPoolViewModelList(currentCarService.getAllActiveCurrentCars()));
             return "/fleet/fleetpool";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "error";
+    }
+
+
+
+
+    @RequestMapping(value = "/fleet/{id}/control/currentcar/{modelId}",method = RequestMethod.GET)
+    public String getCarDetails(@PathVariable("id")Integer id, @PathVariable("modelId")Integer modelId,Model model)
+    {
+        try {
+            model.addAttribute("fleetManager",fleetManagerService.findFleetManager(id));
+            CurrentCar car = currentCarService.getCurrentCarById(modelId);
+            if (car.getEmployee()==null)
+            {
+                model.addAttribute("active",false);
+                model.addAttribute("title","Free pool");
+            }
+            else
+            {
+                model.addAttribute("active",true);
+                model.addAttribute("title","Active pool");
+            }
+            model.addAttribute("model",new FleetPoolViewModel(car));
+            return "/fleet/fleetdetails";
         } catch (Exception e) {
             e.printStackTrace();
         }

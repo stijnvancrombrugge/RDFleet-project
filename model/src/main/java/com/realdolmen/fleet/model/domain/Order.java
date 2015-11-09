@@ -18,10 +18,11 @@ public class Order extends AbstractEntity {
     //@GeneratedValue(strategy = )
     private String orderCode;
 
-    @NotNull
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Car car;
 
+    @NotNull
     @ManyToOne
     private Employee employee;
 
@@ -29,16 +30,42 @@ public class Order extends AbstractEntity {
     @Temporal(TemporalType.DATE)
     private Date orderDate;
 
+    @Temporal(TemporalType.DATE)
+    private Date managerGoedDate;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    private String commentFromManager;
+
     public Order() {
+
         orderDate = new Date();
+        status = Status.PENDING;
     }
 
     public Order( Car car) {
 
         this.car = car;
         this.orderDate = new Date();
+        status = Status.PENDING;
     }
-    
+
+    public Order(Employee employee)
+    {
+        this.employee = employee;
+        this.orderDate = new Date();
+        this.status = Status.PENDING;
+    }
+
+
+    public String getCommentFromManager() {
+        return commentFromManager;
+    }
+
+    public void setCommentFromManager(String commentFromManager) {
+        this.commentFromManager = commentFromManager;
+    }
 
     public String getOrderCode() {
         return orderCode;
@@ -56,6 +83,13 @@ public class Order extends AbstractEntity {
         this.car = car;
     }
 
+    public Date getManagerGoedDate() {
+        return managerGoedDate;
+    }
+
+    public void setManagerGoedDate(Date managerGoedDate) {
+        this.managerGoedDate = managerGoedDate;
+    }
 
     public Date getOrderDate() {
         return orderDate;
@@ -73,9 +107,18 @@ public class Order extends AbstractEntity {
         this.employee = employee;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @PostPersist
     private void generateCode()
     {
-        setOrderCode(getId()+"ORDER"+car.getId()+car.getCarModel().getModel());
+
+        setOrderCode(getId()+"ORDER"+getEmployee().getUsername());
     }
 }

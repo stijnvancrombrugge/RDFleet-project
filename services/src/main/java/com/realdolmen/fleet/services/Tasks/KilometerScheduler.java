@@ -17,7 +17,7 @@ public class KilometerScheduler {
     @Autowired
     CarRepository repository;
 
-    @Scheduled(fixedRate = 3600000)
+    @Scheduled(fixedRate = 360000)
     public void addRandomKilometersToCar()
     {
         iterateList();
@@ -27,8 +27,9 @@ public class KilometerScheduler {
     {
         for(Car c : repository.findAll())
         {
+
             int km = randomKilometers();
-            c.setKilometers(c.getKilometers()+km);
+            c.setKilometers(c.getKilometers()+randomKilometers());
             System.out.println("Car "+c.getId()+" km + "+km);
             repository.save(c);
         }

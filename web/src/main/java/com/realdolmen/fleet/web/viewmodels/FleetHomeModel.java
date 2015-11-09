@@ -25,7 +25,7 @@ public class FleetHomeModel {
         this.totalFleetCars = totalFleetCars;
         this.totalFreeFleetCars = totalFreeFleetCars;
 
-        setOrders(orders);
+        createOrders(orders);
         this.totalOrders = orders.size();
     }
 
@@ -65,15 +65,19 @@ public class FleetHomeModel {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void createOrders(List<Order> orders1) {
         if(this.orders == null)
         {
             this.orders = new ArrayList<>();
         }
-        for(Order o : orders)
+        for(Order o : orders1)
         {
             this.orders.add(new FleetHomeOrderModel(o));
         }
+    }
+
+    public void setOrders(List<FleetHomeOrderModel> orders) {
+        this.orders = orders;
     }
 
     class FleetHomeOrderModel{
@@ -83,16 +87,35 @@ public class FleetHomeModel {
         private String carModelMark;
         private String date;
         private String orderCode;
+        private String status;
 
 
         public FleetHomeOrderModel(Order order)
         {
             this.userName = order.getEmployee().getFirstName()+" "+order.getEmployee().getLastName();
             this.orderId = order.getId();
-            this.carModelMark = order.getCar().getCarModel().getMark()+" "+order.getCar().getCarModel().getModel();
+            if(order.getCar()!=null)
+            {
+                this.carModelMark = order.getCar().getCarModel().getMark()+" "+order.getCar().getCarModel().getModel();
+
+            }
+            else
+            {
+                this.carModelMark = "No car in this order";
+            }
+
             this.date = DateUtil.dateToString(order.getOrderDate(),DateUtil.DAY_MONTH_YEAR);
             this.orderCode = order.getOrderCode();
+            this.status = order.getStatus().toString();
 
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
         }
 
         public String getUserName() {

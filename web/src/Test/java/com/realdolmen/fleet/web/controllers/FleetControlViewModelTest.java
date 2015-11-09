@@ -1,4 +1,4 @@
-package com.realdolmen.fleet.web;
+package com.realdolmen.fleet.web.controllers;
 
 import com.realdolmen.fleet.web.viewmodels.FleetControlViewModel;
 import org.junit.Assert;

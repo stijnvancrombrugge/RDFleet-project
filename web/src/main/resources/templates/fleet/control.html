@@ -33,7 +33,7 @@
                     <section class="panel">
                         <header class="panel-heading">
                             <h3>
-                           Fleet pool <span class="badge" th:text="${activepool.total}"></span>
+                           <a th:href="@{'/fleet/' + ${fleetManager.id} + '/control/activepool'}">Fleet pool</a><span class="badge" th:text="${activepool.total}"></span>
                             </h3>
                         </header>
                         <div class="panel-body text-center">
@@ -181,7 +181,7 @@
 <!-- container section start -->
 
 <div th:replace="fleet/fragments/scripts :: script"></div>
-<script src="/js/pieChart.js"></script>
+
 
 <script>
 

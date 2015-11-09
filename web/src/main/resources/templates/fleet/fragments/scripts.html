@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+
+
 <div th:fragment="script">
 <!-- javascripts -->
 <script src="/js/jquery.js"></script>
@@ -42,6 +44,9 @@
 <script src="/js/sparklines.js"></script>
 <script src="/js/charts.js"></script>
 <script src="/js/jquery.slimscroll.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.9/js/dataTables.bootstrap.min.js"></script>
+    <script src="/js/pieChart.js"></script>
 <script>
 
     //knob
@@ -87,9 +92,17 @@
             }
         });
     });
-
+    /*---------Table--------*/
+    $(document).ready(function() {
+        $('#table').DataTable();
+    } );
 
 
 </script>
+</div>
+<div th:fragments="tableScript">
+    <script>
+
+    </script>
 </div>
 </html>

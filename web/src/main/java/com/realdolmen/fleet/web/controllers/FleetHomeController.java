@@ -1,10 +1,12 @@
 package com.realdolmen.fleet.web.controllers;
 
 import com.realdolmen.fleet.services.CurrentCarService;
+import com.realdolmen.fleet.services.EmployeeService;
 import com.realdolmen.fleet.services.FleetManagerService;
 import com.realdolmen.fleet.services.OrderService;
 import com.realdolmen.fleet.web.viewmodels.FleetControlViewModel;
 import com.realdolmen.fleet.web.viewmodels.FleetHomeModel;
+import com.realdolmen.fleet.web.viewmodels.OwnerViewList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +31,9 @@ public class FleetHomeController {
     @Autowired
     CurrentCarService currentCarService;
 
+    @Autowired
+    EmployeeService employeeService;
+
 
     @RequestMapping(method = RequestMethod.GET)
     public String fleetHome(@PathVariable("id")Integer id,Model model)
@@ -41,7 +46,10 @@ public class FleetHomeController {
                     currentCarService.getFreeFleetCount(),
                     currentCarService.getActiveFleetCount(),
                     orderService.getAllOrders());
+
             model.addAttribute("fleetModel", homeModel);
+            model.addAttribute("employeeList",new OwnerViewList(employeeService.findEmployeesToOrder()));
+
 
             return "/fleet/index";
         } catch (Exception e) {

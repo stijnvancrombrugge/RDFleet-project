@@ -16,6 +16,7 @@ public class CurrentCar extends AbstractEntity{
     @Temporal(TemporalType.DATE)
     private Date leasingStartDate;
 
+
     @NotNull
     @OneToOne(cascade = CascadeType.PERSIST)
     private Car car;
@@ -26,6 +27,7 @@ public class CurrentCar extends AbstractEntity{
     public CurrentCar(Car car){
         this.car = car;
         this.leasingStartDate = new Date();
+
     }
 
     protected CurrentCar(){}
@@ -53,4 +55,5 @@ public class CurrentCar extends AbstractEntity{
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
 }

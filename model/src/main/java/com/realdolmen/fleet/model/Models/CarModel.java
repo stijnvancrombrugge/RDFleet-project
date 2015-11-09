@@ -80,6 +80,10 @@ public class CarModel extends AbstractEntity{
 
     }
 
+    public String typeString() {
+        return cilinder + " TDI " + " " + horsePower + "pk  V" + motorType + " " + line;
+    }
+
     public String getDealerName() {
         return dealerName;
     }
