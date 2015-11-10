@@ -23,8 +23,8 @@ public class FleetOrdersController {
     @Autowired
     FleetManagerService managerService;
 
-    @RequestMapping(value = "/fleet/{id}/orderscontrol",method = RequestMethod.GET)
-    public String orderControl(@PathVariable("id")Integer id,Model model)
+    @RequestMapping(value = "/fleet/ordercontrol",method = RequestMethod.GET)
+    public String orderControl(Model model)
     {
         int pending = orderService.getSizeOfListByStatus(Status.PENDING);
         int autoChoosen = orderService.getSizeOfListByStatus(Status.CAR_CHOOSEN);
@@ -36,7 +36,7 @@ public class FleetOrdersController {
         ocmv.fillList(orderService.getAllOrdersByStatus(Status.PENDING),ocmv.getOrdersApproved());
         ocmv.fillList(orderService.getAllOrdersByStatus(Status.PENDING),ocmv.getOrdersCarChosen());
         try {
-            model.addAttribute("fleetManager",managerService.findFleetManager(id));
+
             model.addAttribute("model",ocmv);
 
             return "/fleet/ordercontrol";

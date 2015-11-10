@@ -3,7 +3,9 @@ package com.realdolmen.fleet.webservices.endpoints.config;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
@@ -13,6 +15,8 @@ import org.springframework.xml.xsd.XsdSchema;
 /**
  * Created by SDOAX36 on 30/10/2015.
  */
+@Configuration
+@EnableWs
 public class WsWebConfig extends WsConfigurerAdapter {
 
     @Bean
@@ -35,6 +39,6 @@ public class WsWebConfig extends WsConfigurerAdapter {
 
     @Bean
     public XsdSchema carmodelSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("src/main/resources/carmodel.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("carmodel.xsd"));
     }
 }

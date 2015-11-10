@@ -1,9 +1,9 @@
 package com.realdolmen.fleet.security.config.Config;
 
 import com.realdolmen.fleet.security.config.Handlers.UserSuccessHandler;
-import com.realdolmen.fleet.services.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,6 +20,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebMvcSecurity
+@Profile("production")
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
@@ -52,8 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index").and()
                 .authorizeRequests()
-                /*.antMatchers("/fleet/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/employee/**").access("hasRole('ROLE_USER')")*/
+                .antMatchers("/fleet/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/employee/**").access("hasRole('ROLE_USER')")
                 .anyRequest().permitAll().and().httpBasic();
     }
 }

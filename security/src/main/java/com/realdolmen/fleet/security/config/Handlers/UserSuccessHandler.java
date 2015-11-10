@@ -1,6 +1,6 @@
 package com.realdolmen.fleet.security.config.Handlers;
 
-import com.realdolmen.fleet.services.UserDetailService;
+import com.realdolmen.fleet.security.config.Config.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -72,7 +72,7 @@ public class UserSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
         }
         else if(roles.contains("ROLE_ADMIN"))
         {
-            url= "/fleet/" + id;
+            url= "/fleet/";
         }
         return url;
     }

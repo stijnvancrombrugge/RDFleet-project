@@ -56,27 +56,9 @@ public class OrderService {
         optionPack.setOptions(optionList);
         orderedCar.addOptionPack(optionPack);
         carRepository.save(orderedCar);
+
     }
-    @Autowired
-    public CarRepository carRepository;
 
-
-    public void orderNewCar(List<Option> optionList, CarModel carModel, String color, Employee employee){
-        List<CurrentCar> existingCars = currentCarRepository.findByCarCarModelMarkAndCarCarModelModelAndCarColorAndEmployeeIsNull(carModel.getMark(), carModel.getModel(), color);
-        Car orderedCar;
-
-        if(existingCars.isEmpty()){
-            orderedCar = new Car(carModel, color, 0, "", 0);
-        }
-        else{
-            orderedCar = existingCars.get(0).getCar();
-            orderedCar.getOptionPacks().clear();
-        }
-        OptionPack optionPack = new OptionPack("basic pack");
-        optionPack.setOptions(optionList);
-        orderedCar.addOptionPack(optionPack);
-        carRepository.save(orderedCar);
-    }
 
 
     public List<Order> getAllOrders()

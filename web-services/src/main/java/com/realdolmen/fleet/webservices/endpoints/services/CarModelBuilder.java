@@ -1,45 +1,40 @@
 package com.realdolmen.fleet.webservices.endpoints.services;
 
+
+import com.realdolmen.fleet.model.Models.CarModel;
 import com.realdolmen.fleet.model.domain.Category;
-import com.realdolmen.fleet.webservices.endpoints.CarModelXml;
 
 /**
  * Created by SDOAX36 on 30/10/2015.
  */
 public class CarModelBuilder {
 
-    private CarModelXml carModel;
+    private CarModel carModel;
 
     public CarModelBuilder()
     {
 
     }
 
-    private int id;
-    public CarModelBuilder setId(int id)
-    {
-        this.id = id;
-        return this;
-    }
 
     private String model;
     public CarModelBuilder setModel(String m)
     {
-        this.model = model;
+        this.model = m;
         return this;
     }
     private String mark;
 
     public CarModelBuilder setMark(String m)
     {
-        this.mark = mark;
+        this.mark = m;
         return this;
     }
 
     private int horsePower;
     public CarModelBuilder setHorsePower(int h)
     {
-        this.horsePower = horsePower;
+        this.horsePower = h;
         return this;
 
     }
@@ -77,16 +72,16 @@ public class CarModelBuilder {
         this.line = line;
         return this;
     }
-    private int category;
+    private Category category;
     public CarModelBuilder setCategory(int category)
     {
-        this.category = category;
+        this.category = new Category(category);
         return this;
     }
 
-    public CarModelXml build()
+    public CarModel build()
     {
-        this.carModel = new CarModelXml();
+        this.carModel = new CarModel();
         carModel.setModel(model);
         carModel.setMark(mark);
         carModel.setHorsePower(horsePower);

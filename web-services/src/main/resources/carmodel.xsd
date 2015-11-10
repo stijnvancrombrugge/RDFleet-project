@@ -9,8 +9,30 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    <xs:element name="getCarModelCreationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="model" type="xs:string"/>
+                <xs:element name="mark" type="xs:string"/>
+                <xs:element name="horsePower" type="xs:int"/>
+                <xs:element name="cilinder" type="xs:int"/>
+                <xs:element name="motorType" type="xs:int"/>
+                <xs:element name="gears" type="xs:int"/>
+                <xs:element name="emission" type="xs:int"/>
+                <xs:element name="line" type="xs:string"/>
+                <xs:element name="category" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
     <xs:element name="getCarModelResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="carModelXml" type="tns:carModelXml"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getCarModelCreationResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="carModelXml" type="tns:carModelXml"/>

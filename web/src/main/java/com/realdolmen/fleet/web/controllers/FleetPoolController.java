@@ -27,11 +27,10 @@ public class FleetPoolController {
     @Autowired
     FleetManagerService fleetManagerService;
 
-    @RequestMapping(value = "/fleet/{id}/control/freepool",method = RequestMethod.GET)
-    public String freepool(@PathVariable("id")Integer id,Model model)
+    @RequestMapping(value = "/fleet/control/freepool",method = RequestMethod.GET)
+    public String freepool(Model model)
     {
         try {
-            model.addAttribute("fleetManager",fleetManagerService.findFleetManager(id));
             model.addAttribute("title","Free pool");
             model.addAttribute("active",false);
             model.addAttribute("modelList",new FleetPoolViewModelList(currentCarService.getAllFreeFleetCars()));
@@ -42,11 +41,10 @@ public class FleetPoolController {
         return "error";
     }
 
-    @RequestMapping(value = "/fleet/{id}/control/activepool",method = RequestMethod.GET)
-    public String activepool(@PathVariable("id")Integer id,Model model)
+    @RequestMapping(value = "/fleet/control/activepool",method = RequestMethod.GET)
+    public String activepool(Model model)
     {
         try {
-            model.addAttribute("fleetManager",fleetManagerService.findFleetManager(id));
             model.addAttribute("title","Active pool");
             model.addAttribute("active",true);
             model.addAttribute("modelList",new FleetPoolViewModelList(currentCarService.getAllActiveCurrentCars()));
@@ -60,11 +58,10 @@ public class FleetPoolController {
 
 
 
-    @RequestMapping(value = "/fleet/{id}/control/currentcar/{modelId}",method = RequestMethod.GET)
-    public String getCarDetails(@PathVariable("id")Integer id, @PathVariable("modelId")Integer modelId,Model model)
+    @RequestMapping(value = "/fleet/control/currentcar/{modelId}",method = RequestMethod.GET)
+    public String getCarDetails(@PathVariable("modelId")Integer modelId,Model model)
     {
         try {
-            model.addAttribute("fleetManager",fleetManagerService.findFleetManager(id));
             CurrentCar car = currentCarService.getCurrentCarById(modelId);
             if (car.getEmployee()==null)
             {

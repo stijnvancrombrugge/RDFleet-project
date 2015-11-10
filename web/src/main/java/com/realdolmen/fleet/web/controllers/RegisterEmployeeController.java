@@ -3,10 +3,10 @@ package com.realdolmen.fleet.web.controllers;
 import com.realdolmen.fleet.model.domain.Category;
 import com.realdolmen.fleet.model.domain.Employee;
 import com.realdolmen.fleet.model.domain.FleetManager;
+import com.realdolmen.fleet.security.config.Config.UserDetailService;
 import com.realdolmen.fleet.services.EmployeeService;
 import com.realdolmen.fleet.services.FleetManagerService;
 import com.realdolmen.fleet.services.MailService;
-import com.realdolmen.fleet.services.UserDetailService;
 import com.realdolmen.fleet.web.Factory.EmployeeFactory;
 import com.realdolmen.fleet.web.viewmodels.EmployeeCreationModel;
 import com.realdolmen.fleet.web.Factory.MailFactory;
@@ -19,12 +19,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by SDOAX36 on 5/11/2015.
  */
 @Controller
-@RequestMapping(value = "/fleet/{id}/register")
+@RequestMapping(value = "/fleet/register")
 public class RegisterEmployeeController {
 
     @Autowired
@@ -43,12 +44,11 @@ public class RegisterEmployeeController {
     Validator validator;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String register(@PathVariable("id")Integer id,Model model)
+    public String register(Model model)
     {
         System.out.println("Register getter activated!!!");
 
         try {
-            model.addAttribute("fleetManager",fleetManagerService.findFleetManager(id));
             model.addAttribute("employeeCreationModel",new EmployeeCreationModel());
             return "/fleet/register";
         } catch (Exception e) {
@@ -58,11 +58,10 @@ public class RegisterEmployeeController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String saveEmployeeAndSendMail(@PathVariable("id")Integer id,@ModelAttribute EmployeeCreationModel creationModel,BindingResult errors,Model model)
+    public String saveEmployeeAndSendMail(@ModelAttribute EmployeeCreationModel creationModel,BindingResult errors,Model model)
     {
         try {
-            FleetManager fleetManager = fleetManagerService.findFleetManager(id);
-            model.addAttribute("fleetManager",fleetManager);
+
             System.out.println("We are going to post");
             String password = EmployeeFactory.randomPaswordCreator(creationModel.getFirstName());
 
@@ -82,8 +81,9 @@ public class RegisterEmployeeController {
             //send mail
             mailService.sendMail(employee.getEmail(), MailFactory.USER_CREATION_SUBJECT, MailFactory.createUserMail(employee.getFirstName(), employee.getUsername(), password));
             //this should be another page but I still need to make it
+
             model.addAttribute("success","An e-mail has been sent to "+employee.getUsername());
-            return "redirect:/fleet/"+fleetManager.getId()+"/home";
+            return "redirect:/fleet/home";
         }
         catch (Exception e) {
             e.printStackTrace();

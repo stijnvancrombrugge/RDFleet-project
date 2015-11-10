@@ -17,7 +17,7 @@ import java.util.HashMap;
  * Created by SDOAX36 on 4/11/2015.
  */
 @Controller
-@RequestMapping(value = "/fleet/{id}/control")
+@RequestMapping(value = "/fleet/control")
 public class FleetControlController {
 
     @Autowired
@@ -30,12 +30,11 @@ public class FleetControlController {
     CurrentCarService currentCarService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String fleetControl(@PathVariable("id")Integer id, Model model)
+    public String fleetControl( Model model)
     {
         System.out.println("FleetControl request");
         try
         {
-            model.addAttribute("fleetManager",fleetManagerService.findFleetManager(id));
             model.addAttribute("freepool",freepool());
             model.addAttribute("activepool",activepool());
             model.addAttribute("orders",orders());
