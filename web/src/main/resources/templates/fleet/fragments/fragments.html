@@ -77,11 +77,16 @@
                     <span>Fleet Control</span>
                 </a>
             </li>
-            <li th:class="${activeTab == 'register'}?'active' : null">
-                <a class="" th:href="@{'/fleet/' + ${fleetManager.id} + '/register'}">
+            <li class="sub-menu">
+                <a href="javascript:;" class="" >
                     <i class="icon_document_alt"></i>
-                    <span>Register Employee</span>
+                    <span>Employees</span>
+                    <span class="menu-arrow arrow_carrot-right"></span>
                 </a>
+                <ul class="sub">
+                    <li th:class="${activeTab == 'employees'}?'active' : null"><a class="" th:href="@{'/fleet/employees'}">Overview</a></li>
+                    <li th:class="${activeTab == 'employess'}?'active' : null"><a class="" th:href="@{'/fleet/' + ${fleetManager.id} + '/register'}">Register</a></li>
+                </ul>
             </li>
             <li th:class="${activeTab == 'orders'}?'active' : null">
                 <a class="" th:href="@{'/fleet/' + ${fleetManager.id} + '/orders'}">

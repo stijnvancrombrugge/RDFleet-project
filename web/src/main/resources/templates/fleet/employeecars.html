@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fleet/fragments/fragments :: head">
+</head>
+<body>
+<link href="/css/font-awesome.min.css" rel="stylesheet"/>
+
+<section>
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <header th:replace="fleet/fragments/fragments :: header"></header>
+
+        <aside th:replace="fleet/fragments/fragments :: aside(index)"></aside>
+
+
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+
+                <!--overview start-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header"><i class="fa fa-list-alt"></i>Employee Cars</h3>
+                        <ol class="breadcrumb">
+                            <li><i class="fa fa-home"></i><a
+                                    th:href="@{'/fleet/' + ${fleetManager.id} + '/home'}">Home</a></li>
+                            <li><i class="fa fa-desktop"></i>Employee Cars</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section class="panel">
+
+                            <div class="panel-body">
+                                <div class="tab-content">
+                                    <div id="recent-activity" class="tab-pane active">
+                                        <section class="panel" th:if="${employeeCarsViewModel.currentCar != null}">
+                                                <div class="bio-graph-heading"> <div class="row"><img class="my-car-picture" th:src="@{'/image/model/' + ${employeeCarsViewModel.currentCarModel.id}}"/></div></div>
+                                                <div class="panel-body bio-graph-info">
+                                                    <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
+                                                        <h1>Current car of <span th:text="${employeeCarsViewModel.employeeName}"></span></h1>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="bio-row">
+                                                            <p><span>Mark </span>: <th th:text="${employeeCarsViewModel.currentCarModel.mark}"></th></p>
+                                                        </div>
+                                                        <div class="bio-row">
+                                                            <p><span>Model </span>: <th th:text="${employeeCarsViewModel.currentCarModel.model}"></th></p>
+                                                        </div>
+                                                        <div class="bio-row">
+                                                            <p><span>Category </span>: <th th:text="${employeeCarsViewModel.currentCarModel.category.categoryClass}"></th></p>
+                                                        </div>
+                                                        <div class="bio-row">
+                                                            <p><span>Line </span>: <th th:text="${employeeCarsViewModel.currentCarModel.line}"></th></p>
+                                                        </div>
+                                                        <div class="bio-row">
+                                                            <p><span>Horsepower </span>: <th th:text="${employeeCarsViewModel.currentCarModel.horsePower}"></th></p>
+                                                        </div>
+                                                        <div class="bio-row">
+                                                            <p><span>Cilinder </span>: <th th:text="${employeeCarsViewModel.currentCarModel.cilinder}"></th></p>
+                                                        </div>
+                                                        <div class="bio-row">
+                                                            <p><span>Motor Type </span>: <th th:text="${employeeCarsViewModel.currentCarModel.motorType}"></th></p>
+                                                        </div>
+                                                        <div class="bio-row">
+                                                            <p><span>Gears </span>: <th th:text="${employeeCarsViewModel.currentCarModel.gears}"></th></p>
+                                                        </div>
+                                                        <div class="bio-row">
+                                                            <p><span>Emission </span>: <th th:text="${employeeCarsViewModel.currentCarModel.emission}"></th></p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                        </section>
+                                        <section th:if="${employeeCarsViewModel.currentCar == null}">
+                                            <div class="bio-graph-heading"><span th:text="${employeeCarsViewModel.employeeName}"></span> currently doesn't own a fleet car at the moment</div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-lg-8 col-md-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h2><i class="fa fa-flag-o red"></i><strong>Car History</strong></h2>
+                            </div>
+                            <div class="panel-body">
+                                <table id="table" class="table bootstrap-datatable countries">
+                                    <thead>
+                                    <tr>
+                                        <th>Mark</th>
+                                        <th>Model</th>
+                                        <th>Line</th>
+                                        <th>Kilometers</th>
+                                        <th>Category</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="car : ${employeeCarsViewModel.carHistory}">
+                                        <td th:text="${car.carModel.mark}"></td>
+                                        <td th:text="${car.carModel.model}"></td>
+                                        <td th:text="${car.carModel.line}"></td>
+                                        <td th:text="${car.kilometers}"></td>
+                                        <td th:text="${car.carModel.category.categoryClass}"></td>
+                                        <td>
+                                            <a
+                                               class="btn btn-danger">Remove<span
+                                                    class="fa fa-arrow-right"></span></a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section start -->
+<div th:replace="fleet/fragments/scripts :: script"></div>
+
+</body>
+</html>

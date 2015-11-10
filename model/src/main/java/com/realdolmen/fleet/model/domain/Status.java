@@ -5,5 +5,5 @@ package com.realdolmen.fleet.model.domain;
  */
 public enum Status {
 
-    PENDING,APPROVED,DENIED,POOL;
+    PENDING,CAR_CHOSEN,APPROVED,DENIED,POOL;
 }

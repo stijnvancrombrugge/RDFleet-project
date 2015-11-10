@@ -145,10 +145,10 @@
                                                         <div class="col-lg-6">
                                                             <input type="checkbox" name="option" th:field="*{optionList}" th:value="${option.id}" class="form-control"/>
                                                         </div>
-                                                        <input style="visibility: hidden;" name="carModelId"  th:value="${carModel.id}" class="form-control"/>
                                                     </div>
                                                 <div class="row">
                                                     <div class="col-lg-offset-5 col-lg-9">
+                                                        <input style="visibility:hidden;" name="carModelId" th:value="${carModel.id}" class="form-control"/>
                                                         <input type="submit" name="submit" class="btn btn-primary" value="Order Car"/>
                                                         <a href="javascript:history.back()"><button type="button" class="btn btn-danger">Cancel</button></a>
                                                     </div>

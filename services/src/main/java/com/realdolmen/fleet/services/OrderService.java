@@ -5,6 +5,7 @@ import com.realdolmen.fleet.model.Models.CarModel;
 import com.realdolmen.fleet.repositories.repository.CarRepository;
 import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
 import com.realdolmen.fleet.repositories.repository.OrderRepository;
+import org.omg.CORBA.Current;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class OrderService {
     public CarRepository carRepository;
 
 
-    public void orderNewCar(List<Option> optionList, CarModel carModel, String color, Employee employee){
+    public void orderNewCar(List<Option> optionList, CarModel carModel, String color, Order order){
         List<CurrentCar> existingCars = currentCarRepository.findByCarCarModelMarkAndCarCarModelModelAndCarColorAndEmployeeIsNull(carModel.getMark(), carModel.getModel(), color);
         Car orderedCar;
 
@@ -44,7 +45,10 @@ public class OrderService {
         OptionPack optionPack = new OptionPack("basic pack");
         optionPack.setOptions(optionList);
         orderedCar.addOptionPack(optionPack);
+        order.setCar(orderedCar);
+        order.setStatus(Status.CAR_CHOSEN);
         carRepository.save(orderedCar);
+
     }
 
     public List<Order> getAllOrders()
@@ -90,9 +94,10 @@ public class OrderService {
     public Order getOrderWhereEmployeeForApproval(String orderCode,Employee employee)throws NoSuchElementException
     {
         Optional<Order>optional = orderRepository.findByOrderCodeAndEmployeeAndStatusAndCarIsNull(orderCode,employee,Status.PENDING);
-
-        return optional.get();
-
+        if(optional.isPresent()) {
+            return optional.get();
+        }
+        else return null;
     }
 
 
