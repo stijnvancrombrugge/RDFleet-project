@@ -24,9 +24,12 @@ public class CurrentCar extends AbstractEntity{
     @OneToOne(cascade = CascadeType.PERSIST,mappedBy = "currentCar")
     private Employee employee;
 
+    private boolean renewMailSend;
+
     public CurrentCar(Car car){
         this.car = car;
         this.leasingStartDate = new Date();
+        this.renewMailSend = false;
 
     }
 
@@ -56,4 +59,11 @@ public class CurrentCar extends AbstractEntity{
         this.employee = employee;
     }
 
+    public boolean isRenewMailSend() {
+        return renewMailSend;
+    }
+
+    public void setRenewMailSend(boolean renewMailSend) {
+        this.renewMailSend = renewMailSend;
+    }
 }

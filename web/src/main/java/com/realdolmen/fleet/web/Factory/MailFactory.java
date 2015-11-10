@@ -53,6 +53,39 @@ public class MailFactory {
 
     }
 
+    public static final String CAR_ORDER_DELIVERD = "Your car has been delivered";
+    public static String createCarOrdeDeliveredMail(String name,  String comment)
+    {
+        if(comment.equals(""))
+        {
+            comment = "No comments";
+        }
+        String m = "Hello " +name+",\n"+
+                "Your car has been delivered.\n"+
+                "\n\nFleetmanager commented : "+comment+
+                "\n\nThank you for using RDFLeet,\n\nFleetmanager";
+
+        return m;
+
+    }
+
+    public static final String CAR_ORDER_APPROVED = "Your order has been approved";
+    public static String createCarOrderApprovedMail(String name, String ordercode ,String comment)
+    {
+        if(comment.equals(""))
+        {
+            comment = "No comments";
+        }
+        String m = "Hello " +name+",\n"+
+                "Your order has been approved.\n"+
+                "Order code : "+ordercode+
+                "\n\nFleetmanager commented : "+comment+
+                "\n\nThank you for using RDFLeet,\n\nFleetmanager";
+
+        return m;
+
+    }
+
 
 
 

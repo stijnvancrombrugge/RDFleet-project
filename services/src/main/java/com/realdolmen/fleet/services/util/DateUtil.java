@@ -23,12 +23,12 @@ public class DateUtil {
 
     public static Date calculateEndLease(Date date)
     {
-        return addAFewDays(date,1460);
+        return addAFewDays(date, 1460);
     }
 
     public static String endLeaseDate(Date date)
     {
-        return dateToString(calculateEndLease(date),DAY_MONTH_YEAR);
+        return dateToString(calculateEndLease(date), DAY_MONTH_YEAR);
     }
 
     public static Date stringToDate(String date, String format)
@@ -51,6 +51,18 @@ public class DateUtil {
     public static int daysBetween(Date d1, Date d2)
     {
         return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    }
+
+    public static boolean timeToRenew(Date startDate)
+    {
+        Date end = calculateEndLease(startDate);
+        Date now = new Date();
+        if(daysBetween(now,end)<120)
+        {
+            return true;
+        }
+
+        return false;
     }
 
 

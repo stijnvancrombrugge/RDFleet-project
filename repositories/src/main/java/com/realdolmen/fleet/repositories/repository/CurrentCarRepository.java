@@ -1,5 +1,6 @@
 package com.realdolmen.fleet.repositories.repository;
 
+import com.realdolmen.fleet.model.domain.Car;
 import com.realdolmen.fleet.model.domain.CurrentCar;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -30,6 +31,8 @@ public interface CurrentCarRepository extends JpaRepository<CurrentCar,Integer> 
     public List<CurrentCar>findByCarCarModelModelAndEmployeeIsNull(String model);
 
     public List<CurrentCar>findByCarCarModelModelAndEmployeeIsNotNull(String model);
+
+    public Optional<CurrentCar> findByCar(Car car);
 
     /**
      *

@@ -1,6 +1,8 @@
 package com.realdolmen.fleet.web.viewmodels;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,9 +15,12 @@ public class FleetControlViewModel {
     private int totalVolkswagen;
     private int totalSeat;
     private int total;
-
+    private List<PieModelView> pie;
     private FleetControlViewModelPercentage percentage;
-
+    private String audiColor;
+    private String skodaColor;
+    private String volkswagenColor;
+    private String seatColor;
 
     public FleetControlViewModel(int totalAudi, int totalSkoda, int totalVolkswagen, int totalSeat) {
         this.totalAudi = totalAudi;
@@ -24,10 +29,67 @@ public class FleetControlViewModel {
         this.totalSeat = totalSeat;
         this.total = totalAudi + totalSeat + totalSkoda + totalVolkswagen;
         this.percentage = new FleetControlViewModelPercentage(totalAudi,totalSeat,totalSkoda,totalVolkswagen,total);
+        fillPie();
 
     }
 
+    public String getAudiColor() {
+        return audiColor;
+    }
 
+    public void setAudiColor(String audiColor) {
+        this.audiColor = audiColor;
+    }
+
+    public String getSkodaColor() {
+        return skodaColor;
+    }
+
+    public void setSkodaColor(String skodaColor) {
+        this.skodaColor = skodaColor;
+    }
+
+    public String getVolkswagenColor() {
+        return volkswagenColor;
+    }
+
+    public void setVolkswagenColor(String volkswagenColor) {
+        this.volkswagenColor = volkswagenColor;
+    }
+
+    public String getSeatColor() {
+        return seatColor;
+    }
+
+    public void setSeatColor(String seatColor) {
+        this.seatColor = seatColor;
+    }
+
+    public List<PieModelView> getPie() {
+        return pie;
+    }
+
+    public void setPie(List<PieModelView> pie) {
+        this.pie = pie;
+    }
+
+    private void fillPie()
+    {
+        pie = new ArrayList<>();
+      /*  pie.add(new PieModelView("#FF0000",totalAudi));
+        pie.add(new PieModelView("#0000FF",totalVolkswagen));
+        pie.add(new PieModelView("#FF9980",totalSeat));
+        pie.add(new PieModelView("#009900",totalSkoda));
+        */
+        audiColor = "#FF0000";
+        volkswagenColor = "#0000FF";
+        seatColor = "#FF9980";
+        skodaColor = "#009900";
+        pie.add(new PieModelView(audiColor,15));
+        pie.add(new PieModelView(volkswagenColor,16));
+        pie.add(new PieModelView(seatColor,12));
+        pie.add(new PieModelView(skodaColor,23));
+    }
     public FleetControlViewModelPercentage getPercentage() {
         return percentage;
     }

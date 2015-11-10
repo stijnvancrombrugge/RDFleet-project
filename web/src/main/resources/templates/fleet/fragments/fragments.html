@@ -57,7 +57,6 @@
     <a href="index.html" class="logo">RD <span class="lite">Fleet</span></a>
     <!--logo end-->
 
-
 </header>
 
 <!--sidebar start-->
@@ -84,7 +83,7 @@
                 </a>
             </li>
             <li th:class="${activeTab == 'orders'}?'active' : null">
-                <a class="" th:href="@{'/fleet/' + ${fleetManager.id} + '/orders'}">
+                <a class="" th:href="@{'/fleet/' + ${fleetManager.id} + '/orderscontrol'}">
                     <i class="icon_document_alt"></i>
                     <span>orders</span>
                 </a>

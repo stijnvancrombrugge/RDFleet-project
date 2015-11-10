@@ -3,6 +3,7 @@ package com.realdolmen.fleet.services;
 import com.realdolmen.fleet.model.domain.Employee;
 import com.realdolmen.fleet.model.domain.Order;
 import com.realdolmen.fleet.model.domain.Status;
+import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
 import com.realdolmen.fleet.repositories.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class OrderService {
 
     @Autowired
     public OrderRepository orderRepository;
+
 
 
     public List<Order> getAllOrders()
@@ -65,10 +67,39 @@ public class OrderService {
      */
     public Order getOrderWhereEmployeeForApproval(String orderCode,Employee employee)throws NoSuchElementException
     {
-        Optional<Order>optional = orderRepository.findByOrderCodeAndEmployeeAndStatusAndCarIsNull(orderCode,employee,Status.PENDING);
+        Optional<Order>optional = orderRepository.findByOrderCodeAndEmployeeAndStatusAndCarIsNull(orderCode, employee, Status.PENDING);
 
         return optional.get();
 
+    }
+
+    public List<Order>getAllOrdersByStatus(Status status)
+    {
+        return orderRepository.findAllByStatus(status);
+    }
+
+    public int getSizeOfListByStatus(Status status)
+    {
+        return getAllOrdersByStatus(status).size();
+    }
+
+    public void approveOrder(Order order)
+    {
+        order.setStatus(Status.APPROVED);
+        orderRepository.saveAndFlush(order);
+    }
+
+    public void deniedOrder(Order order)
+    {
+        order.setStatus(Status.DENIED);
+        orderRepository.saveAndFlush(order);
+    }
+
+    public Order orderToFleet(Order order)
+    {
+        order.setStatus(Status.POOL);
+        orderRepository.saveAndFlush(order);
+        return order;
     }
 
 

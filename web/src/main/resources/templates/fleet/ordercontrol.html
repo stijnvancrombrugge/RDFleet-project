@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fleet/fragments/fragments :: head">
+</head>
+<link href="/css/font-awesome.min.css" rel="stylesheet"/>
+<body>
+<!-- container section start -->
+<section id="container" class="">
+
+    <header th:replace="fleet/fragments/fragments :: header"></header>
+
+    <aside th:replace="fleet/fragments/fragments :: aside(orders)"></aside>
+
+
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+            <!--overview start-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fa fa-list-alt"></i> Components</h3>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-home"></i><a th:href="@{'/fleet/' + ${fleetManager.id} + '/home'}">Home</a>
+                        </li>
+                        <li><i class="fa fa-desktop"></i>Order Control</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="info-box blue-bg">
+                        <i class="fa fa-car"></i>
+
+                        <div class="count" th:text="${model.totalPending}"></div>
+                        <div class="title">Pending orders</div>
+                    </div>
+                    <!--/.info-box-->
+                </div>
+                <!--/.col-->
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="info-box brown-bg">
+                        <i class="fa fa-cubes"></i>
+
+                        <div class="count" th:text="${model.totalToApprove}"></div>
+                        <div class="title">Orders to Approve/Disapprove</div>
+                    </div>
+                    <!--/.info-box-->
+                </div>
+                <!--/.col-->
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="info-box green-bg">
+                        <i class="fa fa-thumbs-o-up"></i>
+
+                        <div class="count" th:text="${model.totalApproved}"></div>
+                        <div class="title">Approved orders</div>
+                    </div>
+                    <!--/.info-box-->
+                </div>
+                <!--/.col-->
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="info-box red-bg">
+                        <i class="fa fa-exclamation-triangle"></i>
+
+                        <div class="count" th:text="${model.totalDisapproved}"></div>
+                        <div class="title">Denied Orders</div>
+                    </div>
+                    <!--/.info-box-->
+                </div>
+                <!--/.col-->
+
+            </div>
+
+            <div class="row">
+
+                <!-- Pie -->
+                <div class="col-lg-4">
+                    <section class="panel">
+                        <header class="panel-heading">
+
+                            <h3>
+
+                                Approved orders <span class="badge" th:text="${model.totalApproved}"></span>
+                            </h3>
+                        </header>
+                        <div class="panel-body text-center">
+                            <table class="display table table-striped table-advance table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Order code</th>
+                                    <th>Username</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr th:each="om : ${model.ordersApproved}">
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td th:text="${om.orderCode}"></td>
+                                    <td th:text="${om.userName}"></td>
+                                    <td th:text="${om.appDate}">Static date</td>
+                                    <td>
+                                        <button class="btn btn-info"><i class="fa fa-info-circle"></i> Info</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-4">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <h3>
+                                Orders to approve / disapprove <span class="badge"
+                                                                     th:text="${model.totalToApprove}"></span>
+                            </h3>
+                        </header>
+                        <div class="panel-body text-center">
+                            <table  class="display table table-striped table-advance table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Order code</th>
+                                    <th>Username</th>
+                                    <th>Approval date</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr th:each="om : ${model.ordersCarChosen}">
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td th:text="${om.orderCode}"></td>
+                                    <td th:text="${om.userName}"></td>
+                                    <td th:text="${om.appDate}">Static date</td>
+                                    <td>
+                                        <button class="btn btn-info"><i class="fa fa-info-circle"></i> Info</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-4">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <h3>                            <!--   private List<OrderControlList> ordersApproved;
+                                private List<OrderControlList> ordersDenied;-->
+                                Denied Orders <span
+                                        class="badge" th:text="${model.totalDisapproved}"></span>
+                            </h3>
+                        </header>
+                        <div class="panel-body text-center">
+                            <table class="display table table-striped table-advance table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Order code</th>
+                                    <th>Username</th>
+                                    <th>Denied date</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr th:each="om : ${model.ordersDenied}">
+                                    <!--style="width: 64px; height: 64px;"-->
+                                    <td th:text="${om.orderCode}"></td>
+                                    <td th:text="${om.userName}"></td>
+                                    <td th:text="${om.appDate}">Static date</td>
+                                    <td>
+                                        <button class="btn btn-info"><i class="fa fa-info-circle"></i> Info</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section start -->
+
+<div th:replace="fleet/fragments/scripts :: script"></div>
+
+
+<script>
+
+</script>
+
+</body>
+</html>

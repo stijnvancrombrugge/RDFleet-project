@@ -43,6 +43,7 @@
                                     <th>Mark</th>
                                     <th>Total</th>
                                     <th>%</th>
+                                    <th>Legend</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -51,12 +52,14 @@
                                     <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/audi_logo.png"/></td>
                                     <td id="audiActive" th:text="${activepool.totalAudi}"></td>
                                     <td th:text="${activepool.percentage.totalAudi}"></td>
+                                    <td  th:style="'background-color:'+ ${activepool.audiColor}+';'"></td>
                                 </tr>
                                 <tr>
                                     <!--style="width: 64px; height: 64px;"-->
                                     <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/skoda_logo.png"/></td>
                                     <td id="skodaActive" th:text="${activepool.totalSkoda}"></td>
                                     <td th:text="${activepool.percentage.totalSkoda}"></td>
+                                    <td th:style="'background-color:'+ ${activepool.skodaColor}+';'"></td>
                                 </tr>
                                 <tr>
                                     <!--    private int totalVolkswagen;private int totalSeat;-->
@@ -64,16 +67,18 @@
                                     <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/volkswagen_logo.png"/></td>
                                     <td id="volkswagenActive" th:text="${activepool.totalVolkswagen}"></td>
                                     <td th:text="${activepool.percentage.totalVolkswagen}"></td>
+                                    <td th:style="'background-color:'+ ${activepool.volkswagenColor}+';'"></td>
                                 </tr>
                                 <tr>
                                     <!--style="width: 64px; height: 64px;"-->
                                     <td class="media" ><img class="media-object img-responsive" style="width: 64px; height: 64px;" src="/img/seat_logo.png"/></td>
                                     <td id="seatActive" th:text="${activepool.totalSeat}"></td>
                                     <td th:text="${activepool.percentage.totalSeat}"></td>
+                                    <td th:style="'background-color:'+ ${activepool.seatColor}+';'"></td>
                                 </tr>
                                 </tbody>
                             </table>
-                            <canvas id="pieActive" height="300" width="400"></canvas>
+                            <canvas id="pieActive" height="auto" width="auto"></canvas>
                         </div>
                     </section>
                 </div>
@@ -121,7 +126,7 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <canvas id="pieOrders" height="300" width="400"></canvas>
+                            <canvas id="pieOrders" height="100%" width="100%"></canvas>
                         </div>
                     </section>
                 </div>
@@ -169,7 +174,7 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <canvas id="pieFree" height="300" width="400"></canvas>
+                            <canvas id="pieFree" height="100%" width="100%"></canvas>
                         </div>
                     </section>
                 </div>
@@ -181,7 +186,22 @@
 <!-- container section start -->
 
 <div th:replace="fleet/fragments/scripts :: script"></div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
 
+    var pieDataActive = [[${activepool.pie}]];
+    var pieDataFree = [[${freepool.pie}]];
+    var pieDataOrders = [[${orders.pie}]];
+
+
+    console.log(pieDataActive);
+    console.log(pieDataFree);
+    console.log(pieDataOrders);
+    new Chart(document.getElementById("pieActive").getContext("2d")).Pie(pieDataActive);
+    new Chart(document.getElementById("pieFree").getContext("2d")).Pie(pieDataFree);
+    new Chart(document.getElementById("pieOrders").getContext("2d")).Pie(pieDataOrders);
+    /*]]>*/
+</script>
 
 <script>
 
