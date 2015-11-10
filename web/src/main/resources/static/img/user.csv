@@ -1,0 +1,8 @@
+DTYPE,id,version,birthDate,businessUnit,email,firstName,lastName,password,phoneNumber,role,username,category_id,currentCar_id
+FleetManager,1,0,2015-11-06,NULL,steven@test.be,NULL,NULL,$2a$10$nYU1gFCAcAjtwLXO6otP4.xxoCYqdT/oMOcJe.cpo2mgZIxSCmOZK,0,ROLE_ADMIN,steven,NULL,NULL
+Employee,3,0,NULL,NULL,steven.decock@realdolmen.com,"Steven ","De Cock",$2a$10$ZJqyZq7Gu14i4F7x067qEeyReOtHgnDpCvR1DDXEQopNYF/4FlO0m,0,ROLE_USER,steven.decock,2,NULL
+Employee,4,0,NULL,NULL,stijn.vancrombrugge@realdolmen.com,Stijn,"Van Crombrugge",$2a$10$EFwK/VrOP2tciU5mQeiMhez.bkOnurAAUaihMSQHxn9hK8AbBZzIq,0,ROLE_USER,stijn.vancrombrugge,3,NULL
+Employee,5,0,NULL,NULL,Robin.D'Haese@realdolmen.com,Robin,Dhaese,$2a$10$7L/p2rtlc0o8rktZFbzPc.Gqw3AOuGQPz9Pkf7VSJ.cOT1LN5BN1y,0,ROLE_USER,Robin.D'Haese,4,NULL
+Employee,6,0,NULL,NULL,Jeroen.VanDenHaute@realdolmen.com,Jeroen,"Van Den Haute",$2a$10$yzQDxAHd6Gbr2rhCTy2RqewfQLzCrH/Q8aiWwu6GEsVfB2plcRVJC,0,ROLE_USER,Jeroen.VanDenHaute,5,NULL
+Employee,7,0,NULL,NULL,Maarten.Dhondt@realdolmen.com,Maarten,D'Hondt,$2a$10$DFGpr4W807.gCQLa9kKvI.qCYeywwbz5kaEYb5exXqXIo4AFSCzma,0,ROLE_USER,Maarten.Dhondt,6,NULL
+Employee,8,0,NULL,NULL,jorn.devolder@realdolmen.com,Jorn,"De Volder",$2a$10$lJTtE1uPok9AILygbKdzQeRRAxn0zBGU5O2z//Zry9s3MYIjw81QO,0,ROLE_USER,jorn.devolder,7,NULL
