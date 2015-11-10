@@ -54,6 +54,12 @@ public class EmployeeService {
 
     }
 
+    public void removeCurrentCarForEmployee(Integer id){
+        Employee employee = (Employee) userRepository.findOne(id);
+        employee.setCurrentCar(null);
+        userRepository.saveAndFlush(employee);
+    }
+
     public List<Employee> findEmployeesToOrder()
     {
        List<Employee> employees = findAllEmployees();

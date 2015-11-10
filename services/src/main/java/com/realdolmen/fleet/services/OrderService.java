@@ -2,8 +2,7 @@ package com.realdolmen.fleet.services;
 
 import com.realdolmen.fleet.model.domain.*;
 import com.realdolmen.fleet.model.Models.CarModel;
-import com.realdolmen.fleet.repositories.repository.CarRepository;
-import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
+import com.realdolmen.fleet.repositories.repository.*;
 import com.realdolmen.fleet.model.domain.Employee;
 import com.realdolmen.fleet.model.domain.Order;
 import com.realdolmen.fleet.model.domain.Status;
@@ -15,7 +14,6 @@ import com.realdolmen.fleet.model.domain.Employee;
 import com.realdolmen.fleet.model.domain.Order;
 import com.realdolmen.fleet.model.domain.Status;
 import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
-import com.realdolmen.fleet.repositories.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +31,9 @@ public class OrderService {
 
     @Autowired
     public OrderRepository orderRepository;
+
+    @Autowired
+    public UserRepository userRepository;
 
     @Autowired
     public CurrentCarRepository currentCarRepository;
@@ -57,6 +58,7 @@ public class OrderService {
         orderedCar.addOptionPack(optionPack);
         order.setCar(orderedCar);
         order.setStatus(Status.CAR_CHOSEN);
+        orderRepository.saveAndFlush(order);
         carRepository.save(orderedCar);
 
     }
@@ -139,6 +141,13 @@ public class OrderService {
         order.setStatus(Status.POOL);
         orderRepository.saveAndFlush(order);
         return order;
+    }
+
+    public void removeOrder(int carId, int employeeId){
+        Optional order = orderRepository.findByCarAndEmployee(carRepository.findOne(carId), (Employee) userRepository.findOne(employeeId));
+        if(order.isPresent()){
+            orderRepository.delete((Order)order.get());
+        }
     }
 
 

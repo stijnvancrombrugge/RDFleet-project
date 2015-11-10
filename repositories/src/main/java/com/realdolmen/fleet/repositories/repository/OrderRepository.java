@@ -1,5 +1,6 @@
 package com.realdolmen.fleet.repositories.repository;
 
+import com.realdolmen.fleet.model.domain.Car;
 import com.realdolmen.fleet.model.domain.Employee;
 import com.realdolmen.fleet.model.domain.Order;
 import com.realdolmen.fleet.model.domain.Status;
@@ -26,4 +27,6 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
     public Optional<Order>findByOrderCodeAndEmployeeAndStatusAndCarIsNull(String orderCode,Employee employee,Status status);
 
     public List<Order>findAllByStatus(Status status);
+
+    public Optional<Order>findByCarAndEmployee(Car car, Employee employee);
 }

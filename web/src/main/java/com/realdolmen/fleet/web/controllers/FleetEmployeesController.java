@@ -1,8 +1,7 @@
 package com.realdolmen.fleet.web.controllers;
 
 import com.realdolmen.fleet.model.domain.Employee;
-import com.realdolmen.fleet.services.EmployeeService;
-import com.realdolmen.fleet.services.FleetManagerService;
+import com.realdolmen.fleet.services.*;
 import com.realdolmen.fleet.web.viewmodels.EmployeeCarsViewModel;
 import com.realdolmen.fleet.web.viewmodels.OwnerViewList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,12 @@ public class FleetEmployeesController {
     EmployeeService employeeService;
 
     @Autowired
+    OrderService orderService;
+
+    @Autowired
+    CurrentCarService currentCarService;
+
+    @Autowired
     FleetManagerService fleetManagerService;
 
     @RequestMapping(value="/fleet/employees", method= RequestMethod.GET)
@@ -47,6 +52,18 @@ public class FleetEmployeesController {
     @ResponseBody
     public void removeEmployee(@PathVariable("ownerId") int ownerId, HttpSession session) throws Exception {
         employeeService.removeEmployeeById(ownerId);
+    }
+
+    @RequestMapping(value="/fleet/removeHistoryCar/{carId}/{employeeId}", method = RequestMethod.GET)
+    @ResponseBody
+    public void removeHistoryCar(@PathVariable("carId") int carId, @PathVariable("employeeId") int employeeId, HttpSession session) throws Exception {
+        orderService.removeOrder(carId, employeeId);
+    }
+
+    @RequestMapping(value="/fleet/removeCurrentCar/{employeeId}", method = RequestMethod.GET)
+    @ResponseBody
+    public void removeCurrentCar( @PathVariable("employeeId") int employeeId, HttpSession session) throws Exception {
+        employeeService.removeCurrentCarForEmployee(employeeId);
     }
 
 }

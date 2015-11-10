@@ -37,7 +37,7 @@
                             <div class="panel-body">
                                 <div class="tab-content">
                                     <div id="recent-activity" class="tab-pane active">
-                                        <section class="panel" th:if="${employeeCarsViewModel.currentCar != null}">
+                                        <section id="car-found-section" class="panel" th:if="${employeeCarsViewModel.currentCar != null}">
                                                 <div class="bio-graph-heading"> <div class="row"><img class="my-car-picture" th:src="@{'/image/model/' + ${employeeCarsViewModel.currentCarModel.id}}"/></div></div>
                                                 <div class="panel-body bio-graph-info">
                                                     <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
@@ -73,10 +73,16 @@
                                                             <p><span>Emission </span>: <th th:text="${employeeCarsViewModel.currentCarModel.emission}"></th></p>
                                                         </div>
                                                     </div>
-
+                                                    <div class="row">
+                                                        <div class="single-confirm-button">
+                                                            <a th:id="@{'removecurrentcar-' + ${employeeCarsViewModel.employeeId}}" onClick="removeCurrentCar(this.id)">
+                                                                <button type="button" class="btn btn-danger" style="width:25vw;">Remove Current Car</button>
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                         </section>
-                                        <section th:if="${employeeCarsViewModel.currentCar == null}">
+                                        <section id="car-not-found-section" th:if="${employeeCarsViewModel.currentCar == null}">
                                             <div class="bio-graph-heading"><span th:text="${employeeCarsViewModel.employeeName}"></span> currently doesn't own a fleet car at the moment</div>
                                         </section>
                                     </div>
@@ -95,7 +101,7 @@
                                 <h2><i class="fa fa-flag-o red"></i><strong>Car History</strong></h2>
                             </div>
                             <div class="panel-body">
-                                <table id="table" class="table bootstrap-datatable countries">
+                                <table id="table" th:id="${employeeCarsViewModel.employeeId}" class="table bootstrap-datatable countries">
                                     <thead>
                                     <tr>
                                         <th>Mark</th>
@@ -107,15 +113,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr th:each="car : ${employeeCarsViewModel.carHistory}">
+                                    <tr  th:id="@{'row-' + ${car.id}}" th:each="car : ${employeeCarsViewModel.carHistory}">
                                         <td th:text="${car.carModel.mark}"></td>
                                         <td th:text="${car.carModel.model}"></td>
                                         <td th:text="${car.carModel.line}"></td>
                                         <td th:text="${car.kilometers}"></td>
                                         <td th:text="${car.carModel.category.categoryClass}"></td>
                                         <td>
-                                            <a
-                                               class="btn btn-danger">Remove<span
+                                            <a th:id="${car.id}"
+                                               class="btn btn-danger" onclick="removeHistoryCar(this.id, this.closest('table').id)">Remove<span
                                                     class="fa fa-arrow-right"></span></a></td>
                                     </tr>
                                     </tbody>
@@ -133,4 +139,26 @@
 <div th:replace="fleet/fragments/scripts :: script"></div>
 
 </body>
+
+<script type="text/javascript">
+
+    function removeHistoryCar(carId, employeeId){
+        $.getJSON("/fleet/removeHistoryCar/" + carId + "/" + employeeId,
+                function(response) {
+                    $("#row-" + carId).hide();
+                }
+        );
+    }
+
+    function removeCurrentCar(buttonId){
+        var splittedId = buttonId.split('-');
+        var employeeId = splittedId[1];
+        $.getJSON("/fleet/removeCurrentCar/" + employeeId,
+                function(response) {
+                    $("#car-found-section").empty();
+                    $("#car-found-section").append('<div class="bio-graph-heading"><span th:text="${employeeCarsViewModel.employeeName}"></span> currently does not own a fleet car at the moment</div>');
+                }
+        );
+    }
+</script>
 </html>
