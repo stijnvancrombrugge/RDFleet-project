@@ -22,7 +22,7 @@
                     <div class="col-lg-6">
                         <h3 class="page-header"><i class="fa fa-list-alt"></i> Create order</h3>
                         <ol class="breadcrumb">
-                            <li><i class="fa fa-home"></i><a th:href="@{'/fleet/' + ${fleetManager.id} + '/home'}">Home</a>
+                            <li><i class="fa fa-home"></i><a th:href="@{'/fleet/home'}">Home</a>
                             </li>
                             <li><i class="fa fa-desktop"></i>create order
                             </li>
@@ -40,7 +40,7 @@
 
 
                             <form class="form-horizontal" role="form" action="#"
-                                  th:action="@{'/fleet/' + ${fleetManager.id} + '/createOrder/' + ${createOrderViewModel.employeeId} }" method="post"
+                                  th:action="@{'/fleet/createOrder/' + ${createOrderViewModel.employeeId} }" method="post"
                                   th:object="${createOrderViewModel}">
                                 <div th:if="${#fields.hasAnyErrors()}" class="">
                                     <p th:each="err : ${#fields.allErrors()}" th:text="${err}">...</p>

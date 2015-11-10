@@ -24,4 +24,6 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
     public List<Order>findAllByCarCarModelModel(@Param("model")String model);
 
     public Optional<Order>findByOrderCodeAndEmployeeAndStatusAndCarIsNull(String orderCode,Employee employee,Status status);
+
+    public List<Order>findAllByStatus(Status status);
 }

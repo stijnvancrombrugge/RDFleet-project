@@ -1,8 +1,8 @@
 package com.realdolmen.fleet.web.controllers;
 
+import com.realdolmen.fleet.security.config.Config.UserDetailService;
 import com.realdolmen.fleet.services.CarModelService;
-import com.realdolmen.fleet.services.EmployeeService;
-import com.realdolmen.fleet.services.UserDetailService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

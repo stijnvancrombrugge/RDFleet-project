@@ -18,13 +18,13 @@
             <!--overview start-->
             <div class="row">
                 <div class="col-lg-6">
-                    <h3 class="page-header"><i class="fa fa-list-alt"></i> Components</h3>
+                    <h3 class="page-header"><i class="fa fa-list-alt"></i> Orderdetails</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a th:href="@{'/fleet/home'}">Home</a>
                         </li>
-                        <li><i class="fa fa-desktop"></i><a th:href="@{'/fleet/control'}">Control</a>
+                        <li><i class="fa fa-desktop"></i><a th:href="@{'/fleet/ordercontrol'}">Orders</a>
                         </li>
-                        <li><i class="fa fa-list-alt"></i>Pool</li>
+                        <li><i class="fa fa-list-alt"></i>Order details</li>
                     </ol>
                 </div>
             </div>
@@ -32,13 +32,14 @@
             <section class="panel">
                 <div class="bio-graph-heading">
                     <div class="row">
-
-                        <div class="col-lg-6"><img class="my-car-picture" th:src="@{'/image/' + ${model.carModelId}}"/>
+                        <div class="col-lg-6 col-sm-6 follow-info"><img class="my-car-picture"
+                                                                        th:src="@{'/image/' + ${model.carModelId}}"/>
                         </div>
-                        <div class="col-lg-6">
-                            <button class="btn btn-danger btn-lg">Remove</button>
+                        <div class="col-lg-6 col-sm-6 follow-info">
+                            <p>Order code</p>
+                            <p>Order date</p>
+                            <p>Order status</p>
                         </div>
-
                     </div>
                 </div>
                 <div class="row">
@@ -74,16 +75,6 @@
 
                                 <div class="well"><p th:text="${model.km}"> km</p>
 
-                                    <p>
-
-                                    <div class="progress progress-striped active progress-sm">
-                                        <div class="progress-bar progress-bar-success" role="progressbar"
-                                             th:attr="aria-valuenow=${model.km}" aria-valuemin="0"
-                                             aria-valuemax="160000" th:style="'width:'+ ${model.kmPercent}+';'">
-                                            <span class="sr-only" th:text="${model.kmPercent}"> Complete</span>
-                                        </div>
-                                    </div>
-                                    </p>
                                 </div>
 
                             </div>
@@ -93,21 +84,10 @@
                                 <div class="well"><p th:text="${model.color}"></p></div>
 
                             </div>
-                            <div class="col-lg-6">
-                                <span>Start leasing :</span>
-
-                                <div class="well"><p th:text="${model.leasingdate}"></p></div>
-
-                            </div>
-                            <div class="col-lg-6">
-                                <span>Einde leasing :</span>
-
-                                <div class="well"><p th:text="${model.endLeasing}"></p></div>
-                            </div>
                         </div>
                     </div>
                     <div class="panel-body bio-graph-info col-lg-6" th:if="${active}">
-                        <h1>Owner Details</h1>
+                        <h1>Employee Details</h1>
 
                         <div class="row">
                             <div class="col-lg-6">
@@ -143,13 +123,6 @@
                     </div>
                 </div>
             </section>
-            <!--details overview end    private OwnerDetailViewModel ownerDetails
-                private String userName;
-    private String email;
-    private String firstName;
-    private String lastName;
-    private String business;
-    private String klasse;-->
         </section>
     </section>
 </section>

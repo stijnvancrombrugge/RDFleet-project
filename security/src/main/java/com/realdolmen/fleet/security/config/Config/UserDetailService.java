@@ -1,4 +1,4 @@
-package com.realdolmen.fleet.services;
+package com.realdolmen.fleet.security.config.Config;
 
 import com.realdolmen.fleet.model.domain.User;
 import com.realdolmen.fleet.repositories.repository.UserRepository;
@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.websocket.server.ServerEndpoint;

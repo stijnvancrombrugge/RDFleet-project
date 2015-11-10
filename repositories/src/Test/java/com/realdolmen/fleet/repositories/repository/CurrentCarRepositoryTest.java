@@ -12,11 +12,18 @@ import java.util.Optional;
  * Created by SDOAX36 on 3/11/2015.
  */
 public class CurrentCarRepositoryTest extends AbstractRepoTest {
+
+
+    Car carToCheck;
+
     @Override
     public void setUp() throws Exception {
-        CurrentCar currentCar = new CurrentCar(new Car(new CarModel("A1","Audi",140,1400,11,5,11,"Ecoline",new Category(1)),"Yellow",0,"EES-456",0));
+        CarModel carModel = new CarModel("A1","Audi",140,1400,11,5,11,"Ecoline",new Category(1));
+        getCarModelRepository().save(carModel);
+        CurrentCar currentCar = new CurrentCar(new Car(carModel,"Yellow",0,"EES-456",0));
         getCurrentCarRepository().save(currentCar);
-        CurrentCar currentCar1 = new CurrentCar(new Car(new CarModel("A1","Volkswagen",140,1400,11,5,11,"Ecoline",new Category(1)),"Yellow",0,"EES-456",0));
+        carToCheck = currentCar.getCar();
+        /*CurrentCar currentCar1 = new CurrentCar(new Car(new CarModel("A1","Volkswagen",140,1400,11,5,11,"Ecoline",new Category(1)),"Yellow",0,"EES-456",0));
         getCurrentCarRepository().save(currentCar1);
         CurrentCar currentCar2 = new CurrentCar(new Car(new CarModel("A1","Skoda",140,1400,11,5,11,"Ecoline",new Category(1)),"Yellow",0,"EES-456",0));
 
@@ -25,8 +32,9 @@ public class CurrentCarRepositoryTest extends AbstractRepoTest {
         currentCar2.setEmployee((Employee)user1);
         ((Employee) user1).setCurrentCar(currentCar2);
         getCurrentCarRepository().save(currentCar2);
-
+*/
     }
+
 //this works so I assume that all the others will work too, moving on...
     @Override
     public void shouldCreateEntity() throws Exception {
@@ -80,6 +88,13 @@ public class CurrentCarRepositoryTest extends AbstractRepoTest {
         //Optional<CurrentCar> currentCarOptional = getCurrentCarRepository().searchCurrentCarFromFreePoolByMarkModelColor("Audi","A1","Yellow");
         List<CurrentCar>c = getCurrentCarRepository().findByCarCarModelMarkAndCarCarModelModelAndCarColorAndEmployeeIsNull("Audi", "A1", "Yellow");
         assertEquals(c.size(), 1);
+    }
+    @Test
+    public void shouldReturnCurrentCarByCar()throws Exception
+    {
+        Optional<CurrentCar>currentCarOptional = getCurrentCarRepository().findByCar(carToCheck);
+        assertTrue(currentCarOptional.isPresent());
+        assertEquals(currentCarOptional.get().getId(),carToCheck.getId());
     }
 
     @Test

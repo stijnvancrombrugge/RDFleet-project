@@ -1,10 +1,7 @@
 package com.realdolmen.fleet.services;
 
 import com.realdolmen.fleet.model.Models.CarModel;
-import com.realdolmen.fleet.model.domain.Car;
-import com.realdolmen.fleet.model.domain.Category;
-import com.realdolmen.fleet.model.domain.CurrentCar;
-import com.realdolmen.fleet.model.domain.Employee;
+import com.realdolmen.fleet.model.domain.*;
 import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
 import com.realdolmen.fleet.repositories.repository.UserRepository;
 import com.realdolmen.fleet.services.util.DateUtil;
@@ -115,6 +112,23 @@ public class CurrentCarService {
 
     }
 
+    public void removeCurrentCar(CurrentCar currentCar)
+    {
+        currentCarRepository.delete(currentCar);
+    }
+
+    public void createNewCurrentCarFromOrder(Order order)
+    {
+        CurrentCar c = new CurrentCar(order.getCar());
+        c.setEmployee(order.getEmployee());
+        currentCarRepository.saveAndFlush(c);
+    }
+
+    public CurrentCar findByCar(Car car)
+    {
+        return currentCarRepository.findByCar(car).get();
+    }
+
     public boolean isCarAlmostDone(CurrentCar car)
     {
         Date endLeasing = DateUtil.calculateEndLease(car.getLeasingStartDate());
@@ -125,10 +139,16 @@ public class CurrentCarService {
         {
             return true;
         }
-        else if((160000 - car.getCar().getKilometers())<5000)
+        else if((160000 - car.getCar().getKilometers())<500)
         {
             return true;
         }
         return false;
+    }
+
+    public void currentCarMailIsSent(CurrentCar currentCar)
+    {
+        currentCar.setRenewMailSend(true);
+        currentCarRepository.saveAndFlush(currentCar);
     }
 }

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
-@RequestMapping(value = {"/fleet/{id}","/fleet/{id}/home"})
+@RequestMapping(value = {"/fleet/","/fleet/home"})
 public class FleetHomeController {
 
     @Autowired
@@ -36,12 +36,11 @@ public class FleetHomeController {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public String fleetHome(@PathVariable("id")Integer id,Model model)
+    public String fleetHome(Model model)
     {
         System.out.println("Fleetmanager goes to index ");
 
         try {
-            model.addAttribute("fleetManager",fleetManagerService.findFleetManager(id));
             FleetHomeModel homeModel = new FleetHomeModel(currentCarService.getCountAllCurrentCars(),
                     currentCarService.getFreeFleetCount(),
                     currentCarService.getActiveFleetCount(),

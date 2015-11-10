@@ -36,4 +36,10 @@ public class CarModelService {
     public byte[] findImageByCarModelId(Integer id){
         return carModelRepository.findOne(id).getImage();
     }
+
+    public CarModel saveNewModel(CarModel carModel)
+    {
+        carModelRepository.saveAndFlush(carModel);
+        return carModel;
+    }
 }

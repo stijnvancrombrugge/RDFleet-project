@@ -11,13 +11,13 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
  */
 @SpringBootApplication
 @ComponentScan(basePackages = "com.realdolmen.fleet")
-@EnableScheduling
+//@EnableScheduling
 public class FleetApplication{
 
 
     public static void main(String[]args)
     {
          new SpringApplicationBuilder(FleetApplication.class).profiles("production").run();
-        //SpringApplication.run(FleetApplication.class,args);
+
     }
 }

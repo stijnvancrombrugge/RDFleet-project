@@ -2,6 +2,6 @@
 .idea/
 **/*.iml
 web-services/src/**
-web-services/src/main/java/com/realdolmen/fleet/webservices/endpoints/CarModelXml.java
+
 web/src/main/java/com/realdolmen/fleet/web/viewmodels/OptionPackViewModel.java
-web-services/src/main/java/com/realdolmen/fleet/webservices/endpoints/GetCarModelRequest.java
+

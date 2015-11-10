@@ -4,8 +4,18 @@ import com.realdolmen.fleet.model.domain.*;
 import com.realdolmen.fleet.model.Models.CarModel;
 import com.realdolmen.fleet.repositories.repository.CarRepository;
 import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
+import com.realdolmen.fleet.model.domain.Employee;
+import com.realdolmen.fleet.model.domain.Order;
+import com.realdolmen.fleet.model.domain.Status;
+import com.realdolmen.fleet.model.domain.*;
+import com.realdolmen.fleet.model.Models.CarModel;
+import com.realdolmen.fleet.repositories.repository.CarRepository;
+import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
+import com.realdolmen.fleet.model.domain.Employee;
+import com.realdolmen.fleet.model.domain.Order;
+import com.realdolmen.fleet.model.domain.Status;
+import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
 import com.realdolmen.fleet.repositories.repository.OrderRepository;
-import org.omg.CORBA.Current;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +60,8 @@ public class OrderService {
         carRepository.save(orderedCar);
 
     }
+
+
 
     public List<Order> getAllOrders()
     {
@@ -98,6 +110,35 @@ public class OrderService {
             return optional.get();
         }
         else return null;
+    }
+
+    public List<Order>getAllOrdersByStatus(Status status)
+    {
+        return orderRepository.findAllByStatus(status);
+    }
+
+    public int getSizeOfListByStatus(Status status)
+    {
+        return getAllOrdersByStatus(status).size();
+    }
+
+    public void approveOrder(Order order)
+    {
+        order.setStatus(Status.APPROVED);
+        orderRepository.saveAndFlush(order);
+    }
+
+    public void deniedOrder(Order order)
+    {
+        order.setStatus(Status.DENIED);
+        orderRepository.saveAndFlush(order);
+    }
+
+    public Order orderToFleet(Order order)
+    {
+        order.setStatus(Status.POOL);
+        orderRepository.saveAndFlush(order);
+        return order;
     }
 
 

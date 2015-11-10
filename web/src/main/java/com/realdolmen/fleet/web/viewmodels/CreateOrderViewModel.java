@@ -2,6 +2,7 @@ package com.realdolmen.fleet.web.viewmodels;
 
 import com.realdolmen.fleet.model.domain.Employee;
 import com.realdolmen.fleet.model.domain.Order;
+import com.realdolmen.fleet.services.util.DateUtil;
 import com.realdolmen.fleet.web.Factory.MailFactory;
 
 /**
@@ -16,12 +17,26 @@ public class CreateOrderViewModel {
     private String comment;
     private String orderId;
     private String orderDate;
-
-
+    private String status;
+    private Integer oId;
     private String firstName;
     private String lastName;
     private String email;
     private Integer employeeId;
+
+    public CreateOrderViewModel(Employee e, Order o)
+    {
+        orderId = o.getOrderCode();
+        oId = o.getId();
+        orderDate = DateUtil.dateToString(o.getOrderDate(),DateUtil.DAY_MONTH_YEAR);
+        status = o.getStatus().toString();
+        firstName = e.getFirstName();
+        lastName = e.getLastName();
+        email = e.getEmail();
+        employeeId = e.getId();
+
+
+    }
 
     public CreateOrderViewModel(Employee e) {
         titleMail = MailFactory.CAR_ORDER;
