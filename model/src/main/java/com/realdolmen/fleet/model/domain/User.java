@@ -35,6 +35,10 @@ public abstract class User extends AbstractEntity{
     @Email
     private String email;
 
+    @Lob @Basic(fetch = FetchType.LAZY)
+    @Column(length=100000)
+    private byte[] image;
+
     @Basic(optional = false)
     private String role;
 
@@ -135,4 +139,11 @@ public abstract class User extends AbstractEntity{
         this.role = role;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 }

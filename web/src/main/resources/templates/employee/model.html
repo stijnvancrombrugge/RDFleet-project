@@ -67,9 +67,9 @@
                                                 <h1>Choose a model</h1>
                                             </div>
                                             <div class="model" th:each="carModel:${carModelList}">
-                                                <a  th:href="@{'/employee/' + ${employeePageViewModel.employeeId} + '/details/' + ${carModel.id}}">
+                                                <a  th:href="@{'/employee/details/' + ${carModel.id}}">
                                                     <p class="model-title"><span th:text="${carModel.mark}"></span> <span th:text=" ${carModel.model}"></span></p>
-                                                    <img class="model-image" th:src="@{'/image/' + ${carModel.id}}"/>
+                                                    <img class="model-image" th:src="@{'/image/model/' + ${carModel.id}}"/>
                                                 </a>
                                             </div>
                                         </div>

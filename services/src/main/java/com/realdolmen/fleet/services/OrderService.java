@@ -1,5 +1,16 @@
 package com.realdolmen.fleet.services;
 
+import com.realdolmen.fleet.model.domain.*;
+import com.realdolmen.fleet.model.Models.CarModel;
+import com.realdolmen.fleet.repositories.repository.CarRepository;
+import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
+import com.realdolmen.fleet.model.domain.Employee;
+import com.realdolmen.fleet.model.domain.Order;
+import com.realdolmen.fleet.model.domain.Status;
+import com.realdolmen.fleet.model.domain.*;
+import com.realdolmen.fleet.model.Models.CarModel;
+import com.realdolmen.fleet.repositories.repository.CarRepository;
+import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
 import com.realdolmen.fleet.model.domain.Employee;
 import com.realdolmen.fleet.model.domain.Order;
 import com.realdolmen.fleet.model.domain.Status;
@@ -23,6 +34,49 @@ public class OrderService {
     @Autowired
     public OrderRepository orderRepository;
 
+    @Autowired
+    public CurrentCarRepository currentCarRepository;
+
+    @Autowired
+    public CarRepository carRepository;
+
+
+    public void orderNewCar(List<Option> optionList, CarModel carModel, String color, Employee employee){
+        List<CurrentCar> existingCars = currentCarRepository.findByCarCarModelMarkAndCarCarModelModelAndCarColorAndEmployeeIsNull(carModel.getMark(), carModel.getModel(), color);
+        Car orderedCar;
+
+        if(existingCars.isEmpty()){
+            orderedCar = new Car(carModel, color, 0, "", 0);
+        }
+        else{
+            orderedCar = existingCars.get(0).getCar();
+            orderedCar.getOptionPacks().clear();
+        }
+        OptionPack optionPack = new OptionPack("basic pack");
+        optionPack.setOptions(optionList);
+        orderedCar.addOptionPack(optionPack);
+        carRepository.save(orderedCar);
+    }
+    @Autowired
+    public CarRepository carRepository;
+
+
+    public void orderNewCar(List<Option> optionList, CarModel carModel, String color, Employee employee){
+        List<CurrentCar> existingCars = currentCarRepository.findByCarCarModelMarkAndCarCarModelModelAndCarColorAndEmployeeIsNull(carModel.getMark(), carModel.getModel(), color);
+        Car orderedCar;
+
+        if(existingCars.isEmpty()){
+            orderedCar = new Car(carModel, color, 0, "", 0);
+        }
+        else{
+            orderedCar = existingCars.get(0).getCar();
+            orderedCar.getOptionPacks().clear();
+        }
+        OptionPack optionPack = new OptionPack("basic pack");
+        optionPack.setOptions(optionList);
+        orderedCar.addOptionPack(optionPack);
+        carRepository.save(orderedCar);
+    }
 
 
     public List<Order> getAllOrders()

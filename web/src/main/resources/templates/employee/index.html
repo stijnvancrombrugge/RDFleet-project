@@ -94,7 +94,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="/img/avatar1_small.jpg"/>
+                                <img alt="" style="width: 50px" th:src="@{'/image/profile/' + ${employeePageViewModel.employeeId}}"/>
                             </span>
                         <span class="username" th:text="${employeePageViewModel.firstName}"></span> <span class="username" th:text="${employeePageViewModel.lastName}"></span>
                         <b class="caret"></b>
@@ -125,13 +125,13 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
                 <li class="active">
-                    <a class=""  th:href="@{'/employee/' + ${employeePageViewModel.employeeId} + '/home'}">
+                    <a class="" th:href="@{'/employee/home'}">
                         <i class="icon_house_alt"></i>
                         <span>Profile</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a th:href="@{'/employee/' + ${employeePageViewModel.employeeId} + '/mark'}" class="">
+                    <a th:href="@{'/employee/order'}" class="">
                         <i class="icon_document_alt"></i>
                         <span>New Order</span>
                     </a>
@@ -151,7 +151,7 @@
                             <div class="col-lg-2 col-sm-2">
                                 <h4><span th:text="${employeePageViewModel.firstName} "></span> <span th:text="${employeePageViewModel.lastName}"></span></h4>
                                 <div class="follow-ava">
-                                    <img src="/img/profile-widget-avatar.jpg" alt=""/>
+                                    <img th:src="@{'/image/profile/' + ${employeePageViewModel.employeeId}}" alt=""/>
                                 </div>
                                 <h6>Employee</h6>
                             </div>

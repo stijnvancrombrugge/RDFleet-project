@@ -4,6 +4,7 @@ import com.realdolmen.fleet.model.Models.CarModel;
 import com.realdolmen.fleet.model.domain.Option;
 import com.realdolmen.fleet.model.domain.OptionPack;
 
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,16 +13,11 @@ import java.util.List;
  */
 public class CarOrderViewModel {
 
-    private CarModel carModel;
+    private int carModelId;
+
+    @NotNull
     private String color;
-    private List<Option> optionList;
-
-    public CarOrderViewModel(CarModel carModel, List<Option> optionList, String color){
-        this.carModel = carModel;
-        this.optionList = optionList;
-        this.color = color;
-    }
-
+    List<Integer> optionList;
 
     public String getColor() {
         return color;
@@ -31,19 +27,19 @@ public class CarOrderViewModel {
         this.color = color;
     }
 
-    public CarModel getCarModel() {
-        return carModel;
+    public int getCarModelId() {
+        return carModelId;
     }
 
-    public void setCarModel(CarModel carModel) {
-        this.carModel = carModel;
-    }
+    public void setCarModelId(int carModelId) {
+        this.carModelId = carModelId;
+     }
 
-    public List<Option> getOptionList() {
+    public List<Integer> getOptionList() {
         return optionList;
     }
 
-    public void setOptionList(List<Option> optionList) {
+    public void setOptionList(List<Integer> optionList) {
         this.optionList = optionList;
     }
 }
