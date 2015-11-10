@@ -18,6 +18,6 @@ public class FleetApplication{
     public static void main(String[]args)
     {
          new SpringApplicationBuilder(FleetApplication.class).profiles("production").run();
-        //SpringApplication.run(FleetApplication.class,args);
+
     }
 }

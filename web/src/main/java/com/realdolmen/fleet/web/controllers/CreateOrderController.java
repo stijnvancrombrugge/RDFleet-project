@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by SDOAX36 on 9/11/2015.
  */
 @Controller
-@RequestMapping(value = "/fleet/{id}/createOrder/{employeeId}")
+@RequestMapping(value = "/fleet/createOrder/{employeeId}")
 public class CreateOrderController {
 
     @Autowired
@@ -39,14 +39,13 @@ public class CreateOrderController {
     OrderService orderService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String createOrder(@PathVariable("id") Integer id, @PathVariable("employeeId") Integer empId, Model model) {
+    public String createOrder( @PathVariable("employeeId") Integer empId, Model model) {
 
 
         try {
-            FleetManager fleetManager = fleetManagerService.findFleetManager(id);
+
             Employee employee = employeeService.findEmployeeById(empId);
 
-                model.addAttribute("fleetManager",fleetManager );
                 CreateOrderViewModel orderViewModel = new CreateOrderViewModel(employee);
                 model.addAttribute("createOrderViewModel", orderViewModel);
 
@@ -61,11 +60,10 @@ public class CreateOrderController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String postOrder(@PathVariable("id")Integer id,@PathVariable("employeeId")Integer empId,@ModelAttribute CreateOrderViewModel createOrderViewModel,Model model)
+    public String postOrder(@PathVariable("employeeId")Integer empId,@ModelAttribute CreateOrderViewModel createOrderViewModel,Model model)
     {
 
         try {
-            FleetManager fleetManager = fleetManagerService.findFleetManager(id);
             Employee employee = employeeService.findEmployeeById(empId);
 
             Order order = orderService.saveNewOrder(employee);
@@ -81,10 +79,9 @@ public class CreateOrderController {
             createOrderViewModel.setEmail(employee.getEmail());
             mailService.sendMail(employee.getEmail(), subj, mail);
 
-            model.addAttribute("fleetManager", fleetManager);
             model.addAttribute("createOrderViewModel",createOrderViewModel);
             model.addAttribute("success","An order was created for "+employee.getUsername());
-            return "redirect:/fleet/"+fleetManager.getId()+"/home";
+            return "redirect:/fleet/home";
            // return "/fleet/ordersuccess";
         }
         catch (Exception e) {
