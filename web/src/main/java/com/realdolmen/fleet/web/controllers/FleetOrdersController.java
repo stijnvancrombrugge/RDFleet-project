@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by SDOAX36 on 9/11/2015.
  */
@@ -24,10 +26,9 @@ public class FleetOrdersController {
     FleetManagerService managerService;
 
     @RequestMapping(value = "/fleet/ordercontrol",method = RequestMethod.GET)
-    public String orderControl(Model model)
-    {
+    public String orderControl(Model model, HttpSession session) throws Exception {
         int pending = orderService.getSizeOfListByStatus(Status.PENDING);
-        int autoChoosen = orderService.getSizeOfListByStatus(Status.CAR_CHOOSEN);
+        int autoChoosen = orderService.getSizeOfListByStatus(Status.CAR_CHOSEN);
         int approved = orderService.getSizeOfListByStatus(Status.APPROVED);
         int denied = orderService.getSizeOfListByStatus(Status.DENIED);
 

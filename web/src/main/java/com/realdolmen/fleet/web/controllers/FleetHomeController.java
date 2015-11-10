@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by SVCAX33 on 28/10/2015.
  */
@@ -36,8 +38,8 @@ public class FleetHomeController {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public String fleetHome(Model model)
-    {
+    public String fleetHome(Model model, HttpSession session) throws Exception {
+
         System.out.println("Fleetmanager goes to index ");
 
         try {

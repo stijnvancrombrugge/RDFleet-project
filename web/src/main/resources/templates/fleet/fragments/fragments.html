@@ -84,13 +84,13 @@
                 </a>
                 <ul class="sub">
                     <li th:class="${activeTab == 'employees'}?'active' : null"><a class="" th:href="@{'/fleet/employees'}">Overview</a></li>
-                    <li th:class="${activeTab == 'employess'}?'active' : null"><a class="" th:href="@{'/fleet/' + ${fleetManager.id} + '/register'}">Register</a></li>
+                    <li th:class="${activeTab == 'employess'}?'active' : null"><a class="" th:href="@{'/fleet/register'}">Register</a></li>
                 </ul>
             </li>
             <li th:class="${activeTab == 'orders'}?'active' : null">
                 <a class="" th:href="@{'/fleet/ordercontrol'}">
                     <i class="icon_document_alt"></i>
-                    <span>orders</span>
+                    <span>Orders</span>
                 </a>
             </li>
         </ul>
