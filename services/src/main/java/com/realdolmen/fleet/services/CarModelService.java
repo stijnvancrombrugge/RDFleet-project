@@ -23,6 +23,10 @@ public class CarModelService {
     public CategoryRepository categoryRepository;
 
 
+   public List<CarModel> findAll(){
+       return carModelRepository.findAll();
+   }
+
     public List<CarModel> findByMarkAndCategory(String mark, Integer categoryClass){
 
         Category category = categoryRepository.findByCategoryClass(categoryClass);
@@ -41,5 +45,11 @@ public class CarModelService {
     {
         carModelRepository.saveAndFlush(carModel);
         return carModel;
+    }
+
+    public void changeCarModelCategory(Integer carModelId, Integer category){
+        Category carModelCategory = carModelRepository.findOne(carModelId).getCategory();
+        carModelCategory.setCategoryClass(category);
+        categoryRepository.saveAndFlush(carModelCategory);
     }
 }

@@ -87,9 +87,15 @@
                     <li th:class="${activeTab == 'employess'}?'active' : null"><a class="" th:href="@{'/fleet/register'}">Register</a></li>
                 </ul>
             </li>
+            <li th:class="${activeTab == 'cars'}?'active' : null">
+                <a class="" th:href="@{'/fleet/cars'}">
+                    <i class="icon_table"></i>
+                    <span>Cars</span>
+                </a>
+            </li>
             <li th:class="${activeTab == 'orders'}?'active' : null">
                 <a class="" th:href="@{'/fleet/ordercontrol'}">
-                    <i class="icon_document_alt"></i>
+                    <i class="icon_documents_alt"></i>
                     <span>Orders</span>
                 </a>
             </li>

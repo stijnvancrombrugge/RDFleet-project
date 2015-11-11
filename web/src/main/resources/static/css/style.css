@@ -4982,6 +4982,15 @@ span.customSelect.changed {
     margin: 30px;
 }
 
+.fleetmodel{
+    width: 400px;
+    height: 275px;
+    padding-top: 10px;
+    border: 1px solid #acdef6;
+    border-radius: 10%;
+    margin: 30px;
+}
+
 .model:hover{
     background-color: #acdef6;
     cursor: pointer;
