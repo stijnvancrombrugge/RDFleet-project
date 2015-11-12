@@ -144,7 +144,7 @@ public class OrderService {
     public Order carChoosenOrder(Integer id)
     {
         Order order = getOrderForId(id);
-        order.setStatus(Status.CAR_CHOOSEN);
+        order.setStatus(Status.CAR_CHOSEN);
         orderRepository.saveAndFlush(order);
         return order;
     }

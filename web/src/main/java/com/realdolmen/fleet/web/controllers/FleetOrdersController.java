@@ -33,7 +33,7 @@ public class FleetOrdersController {
         int denied = orderService.getSizeOfListByStatus(Status.DENIED);
 
         OrderControlModelView ocmv = new OrderControlModelView(pending,autoChoosen,approved,denied);
-        ocmv.fillList(orderService.getAllOrdersByStatus(Status.CAR_CHOOSEN),ocmv.getOrdersCarChosen());
+        ocmv.fillList(orderService.getAllOrdersByStatus(Status.CAR_CHOSEN),ocmv.getOrdersCarChosen());
         ocmv.fillList(orderService.getAllOrdersByStatus(Status.APPROVED),ocmv.getOrdersApproved());
         ocmv.fillList(orderService.getAllOrdersByStatus(Status.DENIED),ocmv.getOrdersDenied());
         try {

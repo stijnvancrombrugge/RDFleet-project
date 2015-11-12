@@ -49,6 +49,12 @@ table tr th { color: #688a7e;}
     height: 100%;
 }
 
+.well
+{
+    color : #1B1919;
+    border : 2px solid #292626;
+}
+
 .Creative-pro, .Creative-pro h3{
     display: block;
     position: fixed;
