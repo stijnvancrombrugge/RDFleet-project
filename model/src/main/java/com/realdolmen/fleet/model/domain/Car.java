@@ -21,6 +21,8 @@ public class Car extends AbstractEntity{
     @NotNull
     private String color;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Integer> kmEvolution;
 
     private int kilometers;
 
@@ -42,6 +44,7 @@ public class Car extends AbstractEntity{
         this.licensePlate = licensePlate;
         this.basicPrice = basicPrice;
         optionPacks = new ArrayList<>();
+        kmEvolution = new ArrayList<>();
     }
 
     protected Car (){}
@@ -96,4 +99,24 @@ public class Car extends AbstractEntity{
         this.optionPacks.add(pack);
     }
 
+    public List<Integer> getKmEvolution() {
+        return kmEvolution;
+    }
+
+    public void setKmEvolution(List<Integer> kmEvolution) {
+        this.kmEvolution = kmEvolution;
+    }
+
+    public void setOptionPacks(List<OptionPack> optionPacks) {
+        this.optionPacks = optionPacks;
+    }
+
+    public void addKmToEvolution(int i)
+    {
+        if(kmEvolution == null)
+        {
+            kmEvolution = new ArrayList<>();
+        }
+        this.kmEvolution.add(i);
+    }
 }

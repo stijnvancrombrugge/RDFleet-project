@@ -38,7 +38,9 @@ public class CurrentCarRepositoryTest extends AbstractRepoTest {
 //this works so I assume that all the others will work too, moving on...
     @Override
     public void shouldCreateEntity() throws Exception {
-        CurrentCar currentCar = new CurrentCar(new Car(new CarModel("A1","Audi",140,1400,11,5,11,"Ecoline",new Category(1)),"Yellow",0,"EES-456",0));
+        CarModel carModel = new CarModel("A1","Audi",140,1400,11,5,11,"Ecoline",new Category(1));
+        getCarModelRepository().save(carModel);
+        CurrentCar currentCar = new CurrentCar(new Car(carModel,"Yellow",0,"EES-456",0));
         getCurrentCarRepository().save(currentCar);
         assertNotNull(currentCar.getId());
 

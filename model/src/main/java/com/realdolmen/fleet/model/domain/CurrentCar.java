@@ -18,10 +18,10 @@ public class CurrentCar extends AbstractEntity{
 
 
     @NotNull
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     private Car car;
 
-    @OneToOne(cascade = CascadeType.PERSIST,mappedBy = "currentCar")
+    @OneToOne(mappedBy = "currentCar")
     private Employee employee;
 
     private boolean renewMailSend;

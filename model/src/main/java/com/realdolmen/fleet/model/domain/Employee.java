@@ -20,13 +20,18 @@ public class Employee extends User{
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "employee")
     private List<Order> orders;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     private CurrentCar currentCar;
+
+    @OneToMany(mappedBy = "employee")
+    private List<Message>messages;
+
 
     public Employee(String username, String password, Date birthDate, String email, Category category) {
         super(username, password, email, birthDate, "ROLE_USER");
         this.category = category;
         orders = new ArrayList<>();
+        messages = new ArrayList<>();
     }
 
     public Employee(String username,String password, String email, Category category, String first,String last)
@@ -35,6 +40,7 @@ public class Employee extends User{
         this.category = category;
         this.setFirstName(first);
         this.setLastName(last);
+        this.messages = new ArrayList<>();
 
     }
 
@@ -72,5 +78,21 @@ public class Employee extends User{
 
     public void setCurrentCar(CurrentCar currentCar) {
         this.currentCar = currentCar;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void addMessage(Message message)
+    {
+        this.messages.add(message);
+    }
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 }

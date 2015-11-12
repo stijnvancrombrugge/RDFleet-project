@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * Created by SDOAX36 on 9/11/2015.
@@ -60,7 +62,7 @@ public class CreateOrderController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String postOrder(@PathVariable("employeeId")Integer empId,@ModelAttribute CreateOrderViewModel createOrderViewModel,Model model)
+    public RedirectView postOrder(@PathVariable("employeeId")Integer empId,@ModelAttribute CreateOrderViewModel createOrderViewModel,Model model, RedirectAttributes attr)
     {
 
         try {
@@ -80,13 +82,14 @@ public class CreateOrderController {
             mailService.sendMail(employee.getEmail(), subj, mail);
 
             model.addAttribute("createOrderViewModel",createOrderViewModel);
-            model.addAttribute("success","An order was created for "+employee.getUsername());
-            return "redirect:/fleet/home";
-           // return "/fleet/ordersuccess";
+            attr.addFlashAttribute("success","An order was created for "+employee.getUsername());
+            return new RedirectView("/fleet/ordercontrol");
+
         }
         catch (Exception e) {
         e.printStackTrace();
     }
-        return "error";
+        attr.addFlashAttribute("warning","An error has occured, mail was not send");
+        return new RedirectView("/fleet/home");
     }
 }

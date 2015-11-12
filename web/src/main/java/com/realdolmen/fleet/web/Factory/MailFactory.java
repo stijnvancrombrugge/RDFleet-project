@@ -86,6 +86,23 @@ public class MailFactory {
 
     }
 
+    public static final String CAR_ORDER_DENIED = "Your order has been denied";
+    public static String createCarOrderDeniedMail(String name, String ordercode ,String comment)
+    {
+        if(comment.equals(""))
+        {
+            comment = "No comments";
+        }
+        String m = "Hello " +name+",\n"+
+                "Your order has been denied.\n"+
+                "Order code : "+ordercode+
+                "\n\nFleetmanager commented : "+comment+
+                "\n\nThank you for using RDFLeet,\n\nFleetmanager";
+
+        return m;
+
+    }
+
 
 
 

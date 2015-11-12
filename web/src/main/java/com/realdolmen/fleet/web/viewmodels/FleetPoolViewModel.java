@@ -3,6 +3,8 @@ package com.realdolmen.fleet.web.viewmodels;
 import com.realdolmen.fleet.model.domain.CurrentCar;
 import com.realdolmen.fleet.services.util.DateUtil;
 
+import java.util.Collection;
+
 /**
  * Created by SDOAX36 on 5/11/2015.
  */
@@ -25,6 +27,7 @@ public class FleetPoolViewModel {
     private String modelType;
     private String endLeasing;
     private String color;
+    private Integer[] kmArray;
 
     private OwnerDetailViewModel ownerDetails;
 
@@ -55,6 +58,8 @@ public class FleetPoolViewModel {
             this.ownerDetails = new OwnerDetailViewModel(car.getEmployee());
         }
 
+        this.kmArray = new Integer[car.getCar().getKmEvolution().size()];
+        car.getCar().getKmEvolution().toArray(kmArray);
 
     }
 
@@ -184,4 +189,11 @@ public class FleetPoolViewModel {
         this.id = id;
     }
 
+    public Integer[] getKmArray() {
+        return kmArray;
+    }
+
+    public void setKmArray(Integer[] kmArray) {
+        this.kmArray = kmArray;
+    }
 }

@@ -33,7 +33,7 @@
                 <div class="bio-graph-heading">
                     <div class="row">
 
-                        <div class="col-lg-6"><img class="my-car-picture" th:src="@{'/image/' + ${model.carModelId}}"/>
+                        <div class="col-lg-6"><img class="my-car-picture" th:src="@{'/image/model/' + ${model.carModelId}}"/>
                         </div>
                         <div class="col-lg-6">
                             <button class="btn btn-danger btn-lg">Remove</button>
@@ -46,7 +46,7 @@
                         <h1>Car Details</h1>
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
 
                                 <span>Mark :</span>
 
@@ -58,18 +58,18 @@
                                 </div>
 
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <span>Model :</span>
 
                                 <div class="well"><p th:text="${model.model}"></p></div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <span>Type :</span>
 
                                 <div class="well"><p th:text="${model.modelType}"></p></div>
 
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <span>Km :</span>
 
                                 <div class="well"><p th:text="${model.km}"> km</p>
@@ -87,19 +87,19 @@
                                 </div>
 
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <span>Color :</span>
 
                                 <div class="well"><p th:text="${model.color}"></p></div>
 
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <span>Start leasing :</span>
 
                                 <div class="well"><p th:text="${model.leasingdate}"></p></div>
 
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <span>Einde leasing :</span>
 
                                 <div class="well"><p th:text="${model.endLeasing}"></p></div>
@@ -110,19 +110,19 @@
                         <h1>Owner Details</h1>
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <span>Last name :</span>
 
                                 <div class="well"><p th:text="${model.ownerDetails.LastName}"></p></div>
 
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <span>Model :</span>
 
                                 <div class="well"><p th:text="${model.ownerDetails.firstName}"></p></div>
 
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <span>Business :</span>
 
                                 <div class="well"><p th:text="${model.ownerDetails.business}"></p></div>
@@ -134,22 +134,49 @@
                                 <div class="well"><p th:text="${model.ownerDetails.email}"></p></div>
 
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <span>Category :</span>
 
                                 <div class="well"><p th:text="${model.ownerDetails.klasse}"></p></div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-6">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                Km history
+                            </header>
+                            <div class="panel-body text-center">
+                                <canvas id="line" height="max" width="max"></canvas>
+                            </div>
+                        </section>
+                    </div>
                 </div>
             </section>
-            <!--details overview end    private OwnerDetailViewModel ownerDetails
-                private String userName;
-    private String email;
-    private String firstName;
-    private String lastName;
-    private String business;
-    private String klasse;-->
+            <div th:replace="fleet/fragments/scripts :: script"></div>
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+
+                console.log([[${model.kmArray}]]);
+                var data = [[${model.kmArray}]];
+                var lineChartData = {
+                    labels : ["","","","","","",""],
+                    datasets : [
+                        {
+                            fillColor : "rgba(220,220,220,0.5)",
+                            strokeColor : "rgba(220,220,220,1)",
+                            pointColor : "rgba(220,220,220,1)",
+                            pointStrokeColor : "#fff",
+                            data : data
+                        }
+                    ]
+
+                };
+
+                new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+
+                /*]]>*/
+            </script>
         </section>
     </section>
 </section>
