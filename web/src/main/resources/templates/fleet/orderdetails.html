@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="panel-body bio-graph-info col-lg-6" th:if="${carOrderDetails != null}">
+                    <div class="panel-body bio-graph-info col-lg-12" th:if="${carOrderDetails != null}">
                         <h1>Car Details</h1>
 
                         <div class="row">
@@ -76,7 +76,7 @@
 
                                 <div class="well"><p th:text="${carOrderDetails.color}"></p></div>
                             </div>
-                            <div class="col-lg-6" th:if="${orderDetails.orderStatus == 'CAR_CHOOSEN'}">
+                            <div class="col-lg-6" th:if="${orderDetails.orderStatus == 'CAR_CHOSEN'}">
                                 <a class="btn btn-success btn-lg" th:href="@{'/fleet/orders/' + ${orderDetails.orderId} +'/approve'}"><i class="fa fa-thumbs-up"></i> Approve</a>
                                 <a class="btn btn-danger btn-lg" th:href="@{'/fleet/orders/' + ${orderDetails.orderId} +'/disapprove'}"><i class="fa fa-thumbs-down"></i> Disapprove</a>
                             </div>
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body bio-graph-info col-lg-6">
+                    <div class="panel-body bio-graph-info col-lg-12">
                         <h1>Employee Details</h1>
 
                         <div class="row">
