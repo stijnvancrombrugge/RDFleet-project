@@ -2,8 +2,7 @@ package com.realdolmen.fleet.services;
 
 import com.realdolmen.fleet.model.domain.*;
 import com.realdolmen.fleet.model.Models.CarModel;
-import com.realdolmen.fleet.repositories.repository.CarRepository;
-import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
+import com.realdolmen.fleet.repositories.repository.*;
 import com.realdolmen.fleet.model.domain.Employee;
 import com.realdolmen.fleet.model.domain.Order;
 import com.realdolmen.fleet.model.domain.Status;
@@ -15,7 +14,6 @@ import com.realdolmen.fleet.model.domain.Employee;
 import com.realdolmen.fleet.model.domain.Order;
 import com.realdolmen.fleet.model.domain.Status;
 import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
-import com.realdolmen.fleet.repositories.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,13 +30,16 @@ public class OrderService {
     public OrderRepository orderRepository;
 
     @Autowired
+    public UserRepository userRepository;
+
+    @Autowired
     public CurrentCarRepository currentCarRepository;
 
     @Autowired
     public CarRepository carRepository;
 
 
-    public void orderNewCar(List<Option> optionList, CarModel carModel, String color, Employee employee){
+    public void orderNewCar(List<Option> optionList, CarModel carModel, String color, Order order){
         List<CurrentCar> existingCars = currentCarRepository.findByCarCarModelMarkAndCarCarModelModelAndCarColorAndEmployeeIsNull(carModel.getMark(), carModel.getModel(), color);
         Car orderedCar;
 
@@ -52,6 +53,9 @@ public class OrderService {
         OptionPack optionPack = new OptionPack("basic pack");
         optionPack.setOptions(optionList);
         orderedCar.addOptionPack(optionPack);
+        order.setCar(orderedCar);
+        order.setStatus(Status.CAR_CHOSEN);
+        orderRepository.saveAndFlush(order);
         carRepository.save(orderedCar);
 
     }
@@ -111,10 +115,11 @@ public class OrderService {
      */
     public Order getOrderWhereEmployeeForApproval(String orderCode,Employee employee)throws NoSuchElementException
     {
-        Optional<Order>optional = orderRepository.findByOrderCodeAndEmployeeAndStatusAndCarIsNull(orderCode, employee, Status.PENDING);
-
-        return optional.get();
-
+        Optional<Order>optional = orderRepository.findByOrderCodeAndEmployeeAndStatusAndCarIsNull(orderCode,employee,Status.PENDING);
+        if(optional.isPresent()) {
+            return optional.get();
+        }
+        else return null;
     }
 
     public List<Order>getAllOrdersByStatus(Status status)
@@ -160,6 +165,13 @@ public class OrderService {
         order.setStatus(Status.POOL);
         orderRepository.saveAndFlush(order);
         return order;
+    }
+
+    public void removeOrder(int carId, int employeeId){
+        Optional order = orderRepository.findByCarAndEmployee(carRepository.findOne(carId), (Employee) userRepository.findOne(employeeId));
+        if(order.isPresent()){
+            orderRepository.delete((Order)order.get());
+        }
     }
 
 

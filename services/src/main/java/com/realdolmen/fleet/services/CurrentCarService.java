@@ -2,9 +2,11 @@ package com.realdolmen.fleet.services;
 
 import com.realdolmen.fleet.model.Models.CarModel;
 import com.realdolmen.fleet.model.domain.*;
+import com.realdolmen.fleet.repositories.repository.CarRepository;
 import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
 import com.realdolmen.fleet.repositories.repository.UserRepository;
 import com.realdolmen.fleet.services.util.DateUtil;
+import org.omg.CORBA.Current;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,9 @@ public class CurrentCarService {
 
     @Autowired
     CurrentCarRepository currentCarRepository;
+
+    @Autowired
+    CarRepository carRepository;
 
     @Autowired
     UserRepository userRepository;

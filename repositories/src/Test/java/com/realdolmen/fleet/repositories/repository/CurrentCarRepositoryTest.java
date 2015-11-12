@@ -98,4 +98,16 @@ public class CurrentCarRepositoryTest extends AbstractRepoTest {
         assertTrue(currentCarOptional.isPresent());
         assertEquals(currentCarOptional.get().getId(),carToCheck.getId());
     }
+
+    @Test
+    public void shouldRemoveEmployeeFromCurrentCarWhenEmployeeIsDeleted() throws Exception
+    {
+        Employee employee = new Employee("stijn", "test", new Date(), "stijn@stijn.be", new Category(2));
+        getUserRepository().save(employee);
+        getCurrentCarRepository().findOne(1).setEmployee(employee);
+        ((Employee)getUserRepository().findOne(1)).setCurrentCar(getCurrentCarRepository().findOne(1));
+        ((Employee) getUserRepository().findOne(1)).getCurrentCar().setEmployee(null);
+        getUserRepository().delete(1);
+        assertEquals(getCurrentCarRepository().findOne(1).getEmployee(), null);
+    }
 }

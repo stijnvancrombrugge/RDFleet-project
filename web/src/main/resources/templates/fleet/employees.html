@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fleet/fragments/fragments :: head">
+</head>
+<body>
+<link href="/css/font-awesome.min.css" rel="stylesheet"/>
+
+<section>
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <header th:replace="fleet/fragments/fragments :: header"></header>
+
+        <aside th:replace="fleet/fragments/fragments :: aside(index)"></aside>
+
+
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+                <!--overview start-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header"><i class="fa fa-list-alt"></i>Employees</h3>
+                        <ol class="breadcrumb">
+                            <li><i class="fa fa-home"></i><a
+                                    th:href="@{'/fleet/' + ${fleetManager.id} + '/home'}">Home</a></li>
+                            <li><i class="fa fa-desktop"></i>Employees</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-8 col-md-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h2><i class="fa fa-flag-o red"></i><strong>Employees</strong></h2>
+                            </div>
+                            <div class="panel-body">
+                                <table id="table" class="table bootstrap-datatable countries">
+                                    <thead>
+                                    <tr>
+                                        <th>First name</th>
+                                        <th>Last name</th>
+                                        <th>E-mail</th>
+                                        <th>Business Unit</th>
+                                        <th>Category</th>
+                                        <th>Info</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:id="@{'row-' + ${owner.id}}" th:each="owner : ${employeeList.owners}">
+                                        <td th:text="${owner.firstName}"></td>
+                                        <td th:text="${owner.lastName}"></td>
+                                        <td th:text="${owner.email}"></td>
+                                        <td th:text="${owner.business}"></td>
+                                        <td th:text="${owner.klasse}"></td>
+                                        <td>
+                                            <a th:href="@{'/fleet/getCars/' + ${owner.id}}"
+                                               class="btn btn-info">Car info<span
+                                                    class="fa fa-arrow-right"></span></a></td>
+                                        <td>
+                                            <a th:id="${owner.id}"
+                                               class="btn btn-danger" onclick="removeEmployee(this.id)">Remove<span
+                                                    class="fa fa-arrow-right"></span></a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section start -->
+<div th:replace="fleet/fragments/scripts :: script"></div>
+
+</body>
+
+<script type="text/javascript">
+
+    function removeEmployee(id){
+        $.getJSON("/fleet/removeEmployee/" + id,
+                function(response) {
+                    $("#row-" + id).hide();
+                }
+        );
+    }
+</script>
+</html>

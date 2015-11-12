@@ -3,6 +3,7 @@ package com.realdolmen.fleet.web.controllers;
 import com.realdolmen.fleet.model.Models.CarModel;
 import com.realdolmen.fleet.model.domain.Employee;
 import com.realdolmen.fleet.model.domain.Option;
+import com.realdolmen.fleet.model.domain.Order;
 import com.realdolmen.fleet.services.CarModelService;
 import com.realdolmen.fleet.services.EmployeeService;
 import com.realdolmen.fleet.services.OptionService;
@@ -70,10 +71,15 @@ public class EmployeeController {
     }
 
 
-    @RequestMapping(value="/employee/checkOrderCode/{code}", method = RequestMethod.GET)
+    @RequestMapping(value="/employee/checkOrderCode/{code:.+}", method = RequestMethod.GET)
     @ResponseBody
-    public boolean checkOrderCode(@PathVariable("code") String code){
-        return true;
+    public boolean checkOrderCode(@PathVariable("code") String code, HttpSession session) throws Exception {
+        Order order =orderService.getOrderWhereEmployeeForApproval(code, employeeService.findEmployeeById((int)session.getAttribute("id")));
+        if(order !=null){
+            session.setAttribute("orderId", order.getId());
+            return true;
+        }
+        else return false;
     }
 
     @RequestMapping(value= "/employee/order", method = RequestMethod.POST)
@@ -117,7 +123,7 @@ public class EmployeeController {
         }
         CarModel carModel = carModelService.findById(carOrderViewModel.getCarModelId());
         String color = carOrderViewModel.getColor();
-        orderService.orderNewCar(optionList, carModel, color, employeeService.findEmployeeById(id));
+        orderService.orderNewCar(optionList, carModel, color, orderService.getOrderForId((Integer) session.getAttribute("orderId")));
         model.addAttribute(carModel);
         model.addAttribute(carOrderViewModel);
         model.addAttribute(optionList);

@@ -2,6 +2,7 @@ package com.realdolmen.fleet.repositories.repository;
 
 import com.realdolmen.fleet.model.domain.Car;
 import com.realdolmen.fleet.model.domain.CurrentCar;
+import com.realdolmen.fleet.model.domain.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
