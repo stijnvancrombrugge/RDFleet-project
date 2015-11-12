@@ -85,10 +85,10 @@ public class FleetControlViewModel {
         volkswagenColor = "#0000FF";
         seatColor = "#FF9980";
         skodaColor = "#009900";
-        pie.add(new PieModelView(audiColor,15));
-        pie.add(new PieModelView(volkswagenColor,16));
-        pie.add(new PieModelView(seatColor,12));
-        pie.add(new PieModelView(skodaColor,23));
+        pie.add(new PieModelView(audiColor,totalAudi));
+        pie.add(new PieModelView(volkswagenColor,totalVolkswagen));
+        pie.add(new PieModelView(seatColor,totalSeat));
+        pie.add(new PieModelView(skodaColor,totalSkoda));
     }
     public FleetControlViewModelPercentage getPercentage() {
         return percentage;
