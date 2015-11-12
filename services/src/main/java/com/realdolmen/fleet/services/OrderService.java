@@ -17,10 +17,7 @@ import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Created by SDOAX36 on 3/11/2015.
@@ -67,6 +64,7 @@ public class OrderService {
 
     public List<Order> getAllOrders()
     {
+
         return orderRepository.findAll();
     }
 
@@ -98,6 +96,16 @@ public class OrderService {
         return order;
     }
 
+    public Order getOrderByOrderCode(String orderCode)
+    {
+        Optional<Order> optional = orderRepository.findByOrderCode(orderCode);
+        if(optional.isPresent())
+        {
+            return optional.get();
+        }
+        return null;
+    }
+
     /**
      *
      * @param orderCode
@@ -124,20 +132,36 @@ public class OrderService {
         return getAllOrdersByStatus(status).size();
     }
 
-    public void approveOrder(Order order)
+    public Order approveOrder(Integer id)
     {
+        Order order = getOrderForId(id);
         order.setStatus(Status.APPROVED);
+        order.setManagerGoedDate(new Date());
         orderRepository.saveAndFlush(order);
+        return order;
     }
 
-    public void deniedOrder(Order order)
+    public Order carChoosenOrder(Integer id)
     {
-        order.setStatus(Status.DENIED);
+        Order order = getOrderForId(id);
+        order.setStatus(Status.CAR_CHOOSEN);
         orderRepository.saveAndFlush(order);
+        return order;
+    }
+
+    public Order deniedOrder(Integer id,String comment)
+    {
+        Order order = getOrderForId(id);
+        order.setStatus(Status.DENIED);
+        order.setManagerGoedDate(new Date());
+        order.setCommentFromManager(comment);
+        orderRepository.saveAndFlush(order);
+        return order;
     }
 
     public Order orderToFleet(Order order)
     {
+
         order.setStatus(Status.POOL);
         orderRepository.saveAndFlush(order);
         return order;

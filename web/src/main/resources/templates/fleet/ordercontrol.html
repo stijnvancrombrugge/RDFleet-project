@@ -27,6 +27,14 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-lg-12" th:if="${success != null}" >
+                    <div th:replace="fleet/fragments/fragments :: infoSuccess"></div>
+                </div>
+                <div class="col-lg-12" th:if="${warning != null}" >
+                    <div th:replace="fleet/fragments/fragments :: infoWarning"></div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="info-box blue-bg">
                         <i class="fa fa-car"></i>
@@ -102,7 +110,7 @@
                                     <td th:text="${om.userName}"></td>
                                     <td th:text="${om.appDate}">Static date</td>
                                     <td>
-                                        <button class="btn btn-info"><i class="fa fa-info-circle"></i> Info</button>
+                                        <a class="btn btn-info" th:href="@{'/fleet/orders/'+ ${om.id}}"><i class="fa fa-info-circle"></i> Info</a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -136,7 +144,7 @@
                                     <td th:text="${om.userName}"></td>
                                     <td th:text="${om.appDate}">Static date</td>
                                     <td>
-                                        <button class="btn btn-info"><i class="fa fa-info-circle"></i> Info</button>
+                                        <a class="btn btn-info" th:href="@{'/fleet/orders/'+ ${om.id}}"><i class="fa fa-info-circle"></i> Info</a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -171,7 +179,7 @@
                                     <td th:text="${om.userName}"></td>
                                     <td th:text="${om.appDate}">Static date</td>
                                     <td>
-                                        <button class="btn btn-info"><i class="fa fa-info-circle"></i> Info</button>
+                                        <a class="btn btn-info" th:href="@{'/fleet/orders/'+ ${om.id}}"><i class="fa fa-info-circle"></i> Info</a>
                                     </td>
                                 </tr>
                                 </tbody>

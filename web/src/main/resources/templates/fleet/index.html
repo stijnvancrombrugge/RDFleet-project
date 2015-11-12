@@ -144,9 +144,9 @@
                                         <td th:text="${order.carModelMark}"></td>
                                         <td th:text="${order.status}"></td>
                                         <td>
-                                            <button class="btn btn-info lg-btn"><span
-                                                    class="fa fa-info-circle"></span>Info
-                                            </button>
+                                            <a class="btn btn-info lg-btn" th:href="@{'/fleet/orders/' + ${order.orderId}}"><i
+                                                    class="fa fa-info-circle"></i>Info
+                                            </a>
                                         </td>
                                     </tr>
                                     </tbody>
