@@ -135,7 +135,9 @@
                     function(response) {
                         $("#model-" + carModelId).attr('class', newCategory);
                         $("#dropdown-" + carModelId).html(newCategory);
-                        $("#model-" + carModelId).hide();
+                        if($("#title").text() != "Fleet Cars") {
+                            $("#model-" + carModelId).hide();
+                        }
                     }
             );
         }

@@ -103,12 +103,14 @@ public class EmployeeService {
         }
     }
 
-    }
+
 
     public void createCurrentCarFromOrder(Employee employee, CurrentCar currentCar)
     {
         employee.setCurrentCar(currentCar);
         userRepository.saveAndFlush(employee);
+    }
+
     public void removeEmployeeById(Integer empId){
         Employee employee = (Employee) userRepository.findOne(empId);
         if(employee.getCurrentCar() != null){

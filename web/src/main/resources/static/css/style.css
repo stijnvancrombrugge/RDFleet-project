@@ -5009,7 +5009,7 @@ label > input:checked + .mark-image{
 
 .model-image{
     width: 22vw;
-    height: 25vh;
+    height: 24vh;
     border-radius: 5%;
     align-self: center;
 }
