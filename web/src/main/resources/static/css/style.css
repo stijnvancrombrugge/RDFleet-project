@@ -269,7 +269,7 @@ table tr th { color: #688a7e;}
     width: 180px;
     height: 100%;
     position: fixed;
-    background: #e6eaec;
+    background: #394a59;
 }
 
 .nav-collapse.collapse {
@@ -4960,12 +4960,12 @@ span.customSelect.changed {
 }
 
 .mark-image{
-    width: 250px;
-    height: 225px;
+    width: 15vw;
+    height: 17vh;
     padding: 20px;
-    border: 1px solid #acdef6;
+    border: 3px solid #acdef6;
     border-radius: 10%;
-    margin: 30px;
+    margin: 10px;
 }
 
 .mark-image:hover{
@@ -4974,21 +4974,21 @@ span.customSelect.changed {
 }
 
 .model{
-    width: 400px;
-    height: 275px;
+    width: 23vw;
+    height: 30vh;
     padding-top: 10px;
-    border: 1px solid #acdef6;
+    border: 3px solid #acdef6;
     border-radius: 10%;
     margin: 30px;
 }
 
 .fleetmodel{
-    width: 400px;
-    height: 275px;
+    width: 23vw;
+    height: 32vh;
     padding-top: 10px;
-    border: 1px solid #acdef6;
+    border: 3px solid #acdef6;
     border-radius: 10%;
-    margin: 30px;
+    margin: 10px;
 }
 
 .model:hover{
@@ -5008,8 +5008,8 @@ label > input:checked + .mark-image{
 }
 
 .model-image{
-    width: 400px;
-    height: 225px;
+    width: 22vw;
+    height: 25vh;
     border-radius: 5%;
     align-self: center;
 }
@@ -5017,16 +5017,16 @@ label > input:checked + .mark-image{
 .color-item{
     width: 150px;
     height: 150px;
-    border: 1px solid #acdef6;
+    border: 3px solid #acdef6;
     border-radius: 3%;
 }
 
 label > input:checked + .color-item{ /* (RADIO CHECKED) IMAGE STYLES */
-     border:6px solid #acdef6;
+     border:8px solid #acdef6;
 }
 
 label > input:hover + .color-item{ /* (RADIO CHECKED) IMAGE STYLES */
-    border:6px solid #acdef6;
+    border:8px solid #acdef6;
     cursor: pointer;
 }
 
@@ -5045,7 +5045,7 @@ label > input[type="radio"]{ /* HIDE RADIO */
     text-align: center;
     color:red;
     font-size: 18px;
-    margin-bottom: 1 vw;
+    margin-bottom: 1vw;
 }
 
 .single-confirm-button{
@@ -5054,8 +5054,8 @@ label > input[type="radio"]{ /* HIDE RADIO */
 }
 
 .choice-category{
-    margin: 10px auto 0;
-    width: 35vw;
+    margin-left: 33%;
+    margin-right: 33%;
 }
 
 

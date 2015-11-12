@@ -74,37 +74,37 @@ public class EmployeeController {
     @RequestMapping(value="/employee/checkOrderCode/{code:.+}", method = RequestMethod.GET)
     @ResponseBody
     public boolean checkOrderCode(@PathVariable("code") String code, HttpSession session) throws Exception {
-        Order order =orderService.getOrderWhereEmployeeForApproval(code, employeeService.findEmployeeById((int)session.getAttribute("id")));
+        Order order =orderService.getOrderWhereEmployeeForApproval(code, employeeService.findEmployeeById((int) session.getAttribute("id")));
         if(order !=null){
             session.setAttribute("orderId", order.getId());
             return true;
         }
-        else return false;
+        else return true;
     }
 
     @RequestMapping(value= "/employee/order", method = RequestMethod.POST)
-    public String startOrder(@Valid CarModelFilterViewModel carModelFilterViewModel, BindingResult bindingResult){
+    public String startOrder(@Valid CarModelFilterViewModel carModelFilterViewModel, Model model, HttpSession session, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "redirect:/employee/order?error";
         }
-        return "redirect:/employee/" + carModelFilterViewModel.getCategory() + "/" + carModelFilterViewModel.getMark();
-    }
-
-    @RequestMapping(value="/employee/{category}/{mark}", method = RequestMethod.GET)
-    public String model(@PathVariable("category") int category, @PathVariable("mark") String mark, Model model) throws Exception {
-        List<CarModel> carModels = carModelService.findByMarkAndCategory(mark, category);
+        List<CarModel> carModels = carModelService.findByMarkAndCategory(carModelFilterViewModel.getMark(), carModelFilterViewModel.getCategory());
+        session.setAttribute("category", carModelFilterViewModel.getCategory());
         model.addAttribute(carModels);
         return "/employee/model";
     }
 
+
     @RequestMapping(value="/employee/details/{modelId}", method = RequestMethod.GET)
-    public String modelDetails(@PathVariable("modelId") int modelId, Model model){
+    public String modelDetails(@PathVariable("modelId") int modelId, HttpSession session, Model model){
         CarModel carModel = carModelService.findById(modelId);
-        model.addAttribute(carModel);
-        List<Option> optionList = optionService.getAllOptions();
-        model.addAttribute(optionList);
-        model.addAttribute(new CarOrderViewModel());
-        return "employee/details";
+        if(carModel.getCategory().getCategoryClass() == (int)session.getAttribute("category")) {
+            model.addAttribute(carModel);
+            List<Option> optionList = optionService.getAllOptions();
+            model.addAttribute(optionList);
+            model.addAttribute(new CarOrderViewModel());
+            return "employee/details";
+        }
+        else return "error";
     }
 
 
@@ -112,7 +112,7 @@ public class EmployeeController {
     public String processForm(@Valid CarOrderViewModel carOrderViewModel, BindingResult bindingResult, Model model, HttpSession session) throws Exception {
         int id = (int)session.getAttribute("id");
         if (bindingResult.hasErrors()) {
-            return "redirect:/employee/details/" + carOrderViewModel.getCarModelId() +"?error";
+            return "redirect:/employee/details/" + carOrderViewModel.getCarModelId() +"?error#color";
         }
 
         List<Option> optionList =  new ArrayList<>();

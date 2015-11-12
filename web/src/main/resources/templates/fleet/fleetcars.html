@@ -57,7 +57,8 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <section th:id="'model-' + ${carModel.id}" th:class="${carModel.category.categoryClass}" th:each="carModel:${carModelList}">
+                                                <ul>
+                                                <li style="float:left; display:inline;" th:id="'model-' + ${carModel.id}" th:class="${carModel.category.categoryClass}" th:each="carModel:${carModelList}">
                                                     <div class="fleetmodel">
                                                         <p class="model-title"><span th:text="${carModel.mark}"></span> <span th:text=" ${carModel.model}"></span></p>
                                                         <div class="dropdown" style="margin: 10px 10px 0">
@@ -75,9 +76,10 @@
                                                                 <li><a id="edit-7" th:class="'model-' + ${carModel.id}" onclick="editCategory(this.id, this)" href="#">Category 7</a></li>
                                                             </ul>
                                                         </div>
-                                                        <img class="model-image" th:src="@{'/image/model/' + ${carModel.id}}"/>
+                                                        <img class="model-image" th:src="@{'/image/model/' + ${carModel.id}}" onerror="this.src='/img/default-car.png'"/>
                                                     </div>
-                                                </section>
+                                                </li>
+                                                </ul>
                                             </div>
                                         </section>
                                     </div>
@@ -125,14 +127,14 @@
     function editCategory(elementId, element){
         var splittedCarModelId = $(element).attr('class').split('-');
         var carModelId = splittedCarModelId[1];
-        var oldCategory = $(element).parent('section').attr('class');
+        var oldCategory = $(element).parent('li').attr('class');
         var splittedNewCategory = elementId.split('-');
         var newCategory = splittedNewCategory[1];
         if(newCategory != oldCategory){
             $.getJSON("/fleet/changeCarModelCategory/" + carModelId + "/" + newCategory,
                     function(response) {
                         $("#model-" + carModelId).attr('class', newCategory);
-                        $("#dropdown-" + carModelId).html('Category' + newCategory);
+                        $("#dropdown-" + carModelId).html(newCategory);
                         $("#model-" + carModelId).hide();
                     }
             );

@@ -20,18 +20,6 @@
         <a href="index.html" class="logo">RD <span class="lite">Fleet</span></a>
         <!--logo end-->
 
-        <div class="nav search-row" id="top_menu">
-            <!--  search form start -->
-            <ul class="nav top-menu">
-                <li>
-                    <form class="navbar-form">
-                        <input class="form-control" placeholder="Search" type="text"/>
-                    </form>
-                </li>
-            </ul>
-            <!--  search form end -->
-        </div>
-
         <div class="top-nav notification-row">
             <!-- notificatoin dropdown start-->
             <ul class="nav pull-right top-menu">
@@ -94,7 +82,7 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" style="width: 50px" th:src="@{'/image/profile/' + ${employeePageViewModel.employeeId}}"/>
+                                <img alt="" style="width: 50px" th:src="@{'/image/profile/' + ${employeePageViewModel.employeeId}}" onerror="this.src='/img/default-profile.png'"/>
                             </span>
                         <span class="username" th:text="${employeePageViewModel.firstName}"></span> <span class="username" th:text="${employeePageViewModel.lastName}"></span>
                         <b class="caret"></b>
@@ -102,10 +90,7 @@
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
                         <li class="eborder-top">
-                            <a href="#"><i class="icon_profile"></i> My Profile</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
+                            <a href="/employee/home#profile"><i class="icon_profile"></i>Home</a>
                         </li>
                         <li>
                             <a th:href="@{/logout}"><i class="icon_key_alt"></i> Log Out</a>
@@ -127,7 +112,7 @@
                 <li class="active">
                     <a class="" th:href="@{'/employee/home'}">
                         <i class="icon_house_alt"></i>
-                        <span>Profile</span>
+                        <span>Home</span>
                     </a>
                 </li>
                 <li class="sub-menu">
@@ -151,7 +136,7 @@
                             <div class="col-lg-2 col-sm-2">
                                 <h4><span th:text="${employeePageViewModel.firstName} "></span> <span th:text="${employeePageViewModel.lastName}"></span></h4>
                                 <div class="follow-ava">
-                                    <img th:src="@{'/image/profile/' + ${employeePageViewModel.employeeId}}" alt=""/>
+                                    <img th:src="@{'/image/profile/' + ${employeePageViewModel.employeeId}}" onerror="this.src='/img/default-profile.png'" alt=""/>
                                 </div>
                                 <h6>Employee</h6>
                             </div>
@@ -170,6 +155,7 @@
         <!-- container section end -->
         <!-- javascripts -->
         <script src="/js/jquery.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
         <!-- nice scroll -->
         <script src="/js/owl.carousel.js"></script>
         <script src="/js/jquery.scrollTo.min.js"></script>

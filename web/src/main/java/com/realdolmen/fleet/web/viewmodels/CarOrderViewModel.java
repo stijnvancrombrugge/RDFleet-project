@@ -15,7 +15,7 @@ public class CarOrderViewModel {
 
     private int carModelId;
 
-    @NotNull
+    @NotNull(message = "Please choose a color")
     private String color;
     List<Integer> optionList;
 

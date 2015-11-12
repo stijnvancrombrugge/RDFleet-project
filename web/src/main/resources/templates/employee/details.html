@@ -63,47 +63,55 @@
                                 <div id="recent-activity" class="tab-pane active">
                                     <section class="panel">
                                         <div class="panel-body bio-graph-info">
-                                            <div class="bio-graph-heading"> <div class="row"><img class="my-car-picture" th:src="@{'/image/model/' + ${carModel.id}}"/></div></div>
+                                            <div class="bio-graph-heading"> <div class="row"><img class="my-car-picture" th:src="@{'/image/model/' + ${carModel.id}}" onerror="this.src='/img/default-car.png'"/></div></div>
                                             <div class="panel-body bio-graph-info">
                                                 <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
                                                     <h1>Details <span th:text="${carModel.mark}"></span> <span th:text="${carModel.model}"></span></h1>
                                                 </div>
                                                 <div class="row">
-
-                                                    <div class="bio-row">
-                                                        <p><span>Mark </span>: <th th:text="${carModel.mark}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Mark: </span>
+                                                        <div class="well"><p><th th:text="${carModel.mark}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Model </span>: <th th:text="${carModel.model}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Model: </span>
+                                                        <div class="well"><p><th th:text="${carModel.model}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Category </span>: <th th:text="${carModel.category.categoryClass}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Category: </span>
+                                                        <div class="well"><p><th th:text="${carModel.category.categoryClass}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Line </span>: <th th:text="${carModel.line}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Line: </span>
+                                                        <div class="well"><p><th th:text="${carModel.line}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Horsepower </span>: <th th:text="${carModel.horsePower}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Horse Power: </span>
+                                                        <div class="well"><p><th th:text="${carModel.horsePower}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Cilinder </span>: <th th:text="${carModel.cilinder}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Cilinder: </span>
+                                                        <div class="well"><p><th th:text="${carModel.cilinder}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Motor Type </span>: <th th:text="${carModel.motorType}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Motor Type: </span>
+                                                        <div class="well"><p><th th:text="${carModel.motorType}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Gears </span>: <th th:text="${carModel.gears}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Gears: </span>
+                                                        <div class="well"><p><th th:text="${carModel.gears}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Emission </span>: <th th:text="${carModel.emission}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Emission: </span>
+                                                        <div class="well"><p><th th:text="${carModel.emission}"></th></p></div>
                                                     </div>
                                                 </div>
                                                 <form name="f" th:action="@{'/employee/details'}" th:object="${carOrderViewModel}" method="POST">
                                                     <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
                                                         <h1>Choose a color</h1>
                                                     </div>
-                                                    <div class="row">
-                                                    <div class="form-group" style="margin-left: 17vw">
+                                                    <div class="row" id="color">
+                                                    <div class="form-group" style="margin-left: 3vw">
                                                         <div class="row">
                                                             <ul>
                                                                 <li class="color-list-item">
@@ -140,19 +148,19 @@
                                                     <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
                                                         <h1>Choose options for <span th:text="${carModel.mark}"></span> <span th:text="${carModel.model}"></span></h1>
                                                     </div>
-                                                    <div class="form-group" style="margin-left: 30vw" th:each="option: ${optionList}">
-                                                        <label class="col-lg-2 control-label"><th th:text="${option.optionName}"></th></label>
-                                                        <div class="col-lg-6">
+                                                    <div class="col-lg-6" style="margin-left: 20vw" th:each="option: ${optionList}">
+                                                        <label class="col-lg-3 control-label"><th th:text="${option.optionName}"></th></label>
+                                                        <div class="col-lg-3">
                                                             <input type="checkbox" name="option" th:field="*{optionList}" th:value="${option.id}" class="form-control"/>
                                                         </div>
                                                     </div>
-                                                <div class="row">
-                                                    <div class="col-lg-offset-5 col-lg-9">
-                                                        <input style="visibility:hidden;" name="carModelId" th:value="${carModel.id}" class="form-control"/>
-                                                        <input type="submit" name="submit" class="btn btn-primary" value="Order Car"/>
-                                                        <a href="javascript:history.back()"><button type="button" class="btn btn-danger">Cancel</button></a>
+                                                    <div class="row">
+                                                        <div class="single-confirm-button">
+                                                            <input style="visibility:hidden;" name="carModelId" th:value="${carModel.id}" class="form-control"/>
+                                                            <input type="submit" name="submit" class="btn btn-primary" value="Order Car"/>
+                                                            <a href="javascript:history.back()"><button type="button" class="btn btn-danger">Cancel</button></a>
+                                                        </div>
                                                     </div>
-                                                </div>
                                                     </form>
                                             </div>
                                         </div>

@@ -90,55 +90,67 @@
                                                   <h1>My Car</h1>
                                               </div>
                                               <div class="row">
-                                                <div class="bio-row">
-                                                  <p><span>Mark </span>: <th th:text="${employeePageViewModel.mark}"></th></p>
-                                                </div>
-                                                <div class="bio-row">
-                                                  <p><span>Model </span>: <th th:text="${employeePageViewModel.model}"></th></p>
-                                                </div>
-                                                <div class="bio-row">
-                                                  <p><span>Category </span>: <th th:text="${employeePageViewModel.carCategory.categoryClass}"></th></p>
-                                                </div>
-                                                  <div class="bio-row">
-                                                      <p><span>Line </span>: <th th:text="${employeePageViewModel.line}"></th></p>
+                                                  <div class="col-lg-3">
+                                                    <span>Mark: </span>
+                                                        <div class="well"><p><th th:text="${employeePageViewModel.mark}"></th></p></div>
+                                                    </div>
+                                                  <div class="col-lg-3">
+                                                      <span>Model: </span>
+                                                      <div class="well"><p><th th:text="${employeePageViewModel.model}"></th></p></div>
                                                   </div>
-                                                  <div class="bio-row">
-                                                      <p><span>License Plate </span>: <th th:text="${employeePageViewModel.licensePlate}"></th> </p>
+                                                  <div class="col-lg-3">
+                                                      <span>Category: </span>
+                                                      <div class="well"><p><th th:text="${employeePageViewModel.carCategory}"></th></p></div>
                                                   </div>
-                                                  <div class="bio-row">
-                                                      <p><span>Color </span>: <th th:text="${employeePageViewModel.color}"></th></p>
+                                                  <div class="col-lg-3">
+                                                      <span>Line: </span>
+                                                      <div class="well"><p><th th:text="${employeePageViewModel.line}"></th></p></div>
                                                   </div>
-                                                  <div class="bio-row">
-                                                      <p><span>Kilometers</span>: <th th:text="${employeePageViewModel.kilometers}"></th></p>
+                                                  <div class="col-lg-3">
+                                                      <span>License Plate: </span>
+                                                      <div class="well"><p><th th:text="${employeePageViewModel.licensePlate}"></th></p></div>
                                                   </div>
-                                                  <div class="bio-row">
-                                                      <p><span>Horsepower </span>: <th th:text="${employeePageViewModel.horsePower}"></th></p>
+                                                  <div class="col-lg-3">
+                                                      <span>Color: </span>
+                                                      <div class="well"><p><th th:text="${employeePageViewModel.color}"></th></p></div>
                                                   </div>
-                                                  <div class="bio-row">
-                                                      <p><span>Cilinder </span>: <th th:text="${employeePageViewModel.cilinder}"></th></p>
+                                                  <div class="col-lg-3">
+                                                      <span>Kilometers: </span>
+                                                      <div class="well"><p><th th:text="${employeePageViewModel.kilometers}"></th></p></div>
                                                   </div>
-                                                  <div class="bio-row">
-                                                      <p><span>Motor Type </span>: <th th:text="${employeePageViewModel.motorType}"></th></p>
+                                                  <div class="col-lg-3">
+                                                      <span>Horse Power: </span>
+                                                      <div class="well"><p><th th:text="${employeePageViewModel.horsePower}"></th></p></div>
                                                   </div>
-                                                  <div class="bio-row">
-                                                      <p><span>Gears </span>: <th th:text="${employeePageViewModel.gears}"></th></p>
+                                                  <div class="col-lg-3">
+                                                      <span>Cilinder: </span>
+                                                      <div class="well"><p><th th:text="${employeePageViewModel.cilinder}"></th></p></div>
                                                   </div>
-                                                  <div class="bio-row">
-                                                      <p><span>Emission </span>: <th th:text="${employeePageViewModel.emission}"></th></p>
+                                                  <div class="col-lg-3">
+                                                      <span>Motor Type: </span>
+                                                      <div class="well"><p><th th:text="${employeePageViewModel.motorType}"></th></p></div>
                                                   </div>
-                                              </div>
-                                              <div class="row"  style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
-                                                  <h1>Options</h1>
+                                                  <div class="col-lg-3">
+                                                      <span>Gears: </span>
+                                                      <div class="well"><p><th th:text="${employeePageViewModel.gears}"></th></p></div>
+                                                  </div>
+                                                  <div class="col-lg-3">
+                                                      <span>Emission: </span>
+                                                      <div class="well"><p><th th:text="${employeePageViewModel.emission}"></th></p></div>
+                                                  </div>
                                               </div>
                                               <div th:each="optionPack:${employeePageViewModel.optionPacks}">
-                                                  <h1 style="margin-left: 200px;" th:text="${optionPack.name}"></h1>
-                                                  <div class="row">
-                                                  <div class="bio-row" th:each="option:${optionPack.optionList}">
-                                                      <p><span th:text="${option.amount}"></span><span th:text="${option.optionName}"></span> </p>
+                                                  <div class="row"  style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
+                                                      <h1>Options</h1>
                                                   </div>
+                                                  <div class="col-lg-3" th:if="${not #lists.isEmpty(optionPack)}" th:each="option:${optionPack.options}">
+                                                      <div class="well"><p><span th:text="${option.amount}"></span><span th:text="${option.optionName}"></span> </p></div>
                                                   </div>
+                                                  <div class="bio-row" th:if="${#lists.isEmpty(optionPack)}" th:each="option:${optionPack.options}">
+                                                      <p>No options selected</p>
+                                                  </div>
+                                                </div>
                                               </div>
-                                          </div>
                                       </section>
                                       <section th:if="${employeePageViewModel.currentCar == null}">
                                           <div class="bio-graph-heading">You currently don't own a fleet car</div>
@@ -149,37 +161,46 @@
                                   <div id="profile" class="tab-pane">
                                     <section class="panel">
                                       <div class="bio-graph-heading">
-                                          <img th:src="@{'/image/profile/' + ${employeePageViewModel.employeeId}}" class="large-profile-picture" alt=""/>
+                                          <img th:src="@{'/image/profile/' + ${employeePageViewModel.employeeId}}" onerror="this.src='/img/default-profile.png'" class="large-profile-picture" alt=""/>
                                       </div>
                                       <div class="panel-body bio-graph-info">
                                           <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
                                             <h1>Profile Info</h1>
                                           </div>
                                           <div class="row">
-                                              <div class="bio-row">
-                                                  <p><span>First Name </span>: <th th:text="${employeePageViewModel.firstName}"></th></p>
+                                              <div class="col-lg-3">
+                                                  <span>First Name: </span>
+                                                  <div class="well"><p><th th:text="${employeePageViewModel.firstName}"></th></p></div>
                                               </div>
-                                              <div class="bio-row">
-                                                  <p><span>Last Name </span>: <th th:text="${employeePageViewModel.lastName}"></th></p>
+                                              <div class="col-lg-3">
+                                                  <span>Last Name: </span>
+                                                  <div class="well"><p><th th:text="${employeePageViewModel.lastName}"></th></p></div>
                                               </div>
-                                              <div class="bio-row">
-                                                  <p><span>Business Unit </span>: <th th:text="${employeePageViewModel.businessUnit}"></th></p>
+                                              <div class="col-lg-3">
+                                                  <span>Business Unit: </span>
+                                                  <div class="well"><p><th th:text="${employeePageViewModel.businessUnit}"></th></p></div>
                                               </div>
-                                              <div class="bio-row">
-                                                  <p><span>Category</span>: <th th:text="${employeePageViewModel.userCategory}"></th></p>
+                                              <div class="col-lg-3">
+                                                  <span>Category: </span>
+                                                  <div class="well"><p><th th:text="${employeePageViewModel.userCategory}"></th></p></div>
                                               </div>
-                                              <div class="bio-row">
-                                                  <p><span>Username </span>: <th th:text="${employeePageViewModel.username}"></th></p>
+                                              <div class="col-lg-3">
+                                                  <span>Username: </span>
+                                                  <div class="well"><p><th th:text="${employeePageViewModel.username}"></th></p></div>
                                               </div>
-                                              <div class="bio-row">
-                                                  <p><span>Email </span>: <th th:text="${employeePageViewModel.email}"></th></p>
+                                              <div class="col-lg-3">
+                                                  <span>E-mail: </span>
+                                                  <div class="well"><p><th th:text="${employeePageViewModel.email}"></th></p></div>
                                               </div>
-                                              <div class="bio-row">
-                                                  <p><span>Birth Date</span>: <th th:text="${employeePageViewModel.birthDate}"></th></p>
+                                              <div class="col-lg-3">
+                                                  <span>Birth Date: </span>
+                                                  <div class="well"><p><th th:text="${employeePageViewModel.birthDate}"></th></p></div>
                                               </div>
-                                              <div class="bio-row">
-                                                  <p><span>Mobile </span>: <th th:text="${employeePageViewModel.phoneNumber}"></th></p>
+                                              <div class="col-lg-3">
+                                                  <span>Phone Number: </span>
+                                                  <div class="well"><p><th th:text="${employeePageViewModel.phoneNumber}"></th></p></div>
                                               </div>
+
                                           </div>
                                       </div>
                                     </section>

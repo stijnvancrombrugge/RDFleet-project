@@ -38,7 +38,9 @@
                                 <div class="tab-content">
                                     <div id="recent-activity" class="tab-pane active">
                                         <section id="car-found-section" class="panel" th:if="${employeeCarsViewModel.currentCar != null}">
-                                                <div class="bio-graph-heading"> <div class="row"><img class="my-car-picture" th:src="@{'/image/model/' + ${employeeCarsViewModel.currentCarModel.id}}"/></div></div>
+                                                <div class="bio-graph-heading"> <div class="row">
+                                                    <img class="my-car-picture" th:src="@{'/image/model/' + ${employeeCarsViewModel.currentCarModel.id}}" onerror="this.src='/img/default-car.png'"/>
+                                                </div></div>
                                                 <div class="panel-body bio-graph-info">
                                                     <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
                                                         <h1>Current car of <span th:text="${employeeCarsViewModel.employeeName}"></span></h1>

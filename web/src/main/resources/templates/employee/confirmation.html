@@ -73,43 +73,54 @@
                                                     <h1>Order details</h1>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="bio-row">
-                                                        <p><span>Mark </span>: <th th:text="${carModel.mark}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Mark: </span>
+                                                        <div class="well"><p><th th:text="${carModel.mark}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Model </span>: <th th:text="${carModel.model}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Model: </span>
+                                                        <div class="well"><p><th th:text="${carModel.model}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Category </span>: <th th:text="${carModel.category.categoryClass}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Category: </span>
+                                                        <div class="well"><p><th th:text="${carModel.category.categoryClass}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Line </span>: <th th:text="${carModel.line}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Line: </span>
+                                                        <div class="well"><p><th th:text="${carModel.line}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Horsepower </span>: <th th:text="${carModel.horsePower}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Horse Power: </span>
+                                                        <div class="well"><p><th th:text="${carModel.horsePower}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Cilinder </span>: <th th:text="${carModel.cilinder}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Cilinder: </span>
+                                                        <div class="well"><p><th th:text="${carModel.cilinder}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Motor Type </span>: <th th:text="${carModel.motorType}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Motor Type: </span>
+                                                        <div class="well"><p><th th:text="${carModel.motorType}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Gears </span>: <th th:text="${carModel.gears}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Gears: </span>
+                                                        <div class="well"><p><th th:text="${carModel.gears}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Emission </span>: <th th:text="${carModel.emission}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Emission: </span>
+                                                        <div class="well"><p><th th:text="${carModel.emission}"></th></p></div>
                                                     </div>
-                                                    <div class="bio-row">
-                                                        <p><span>Color </span>: <th th:text="${carOrderViewModel.color}"></th></p>
+                                                    <div class="col-lg-3">
+                                                        <span>Color: </span>
+                                                        <div class="well"><p><th th:text="${carOrderViewModel.color}"></th></p></div>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
                                                     <h1>Options chosen</h1>
                                                 </div>
-                                                    <div class="bio-row" th:each="option: ${optionList}">
-                                                        <p><span>Option </span>: <th th:text="${option.optionName}"></th></p>
-                                                    </div>
+                                                <div class="col-lg-3" style="margin-left: 20vw" th:each="option: ${optionList}">
+                                                    <span>Option: </span>
+                                                    <div class="well"><p><th th:text="${option.optionName}"></th></p></div>
+                                                </div>
                                                     <div class="row">
                                                         <div class="single-confirm-button">
                                                             <a href="/employee"><button type="button" class="btn btn-primary" style="width:25vw;">Home</button></a>

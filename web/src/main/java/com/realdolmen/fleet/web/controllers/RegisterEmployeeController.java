@@ -4,6 +4,7 @@ import com.realdolmen.fleet.model.domain.Category;
 import com.realdolmen.fleet.model.domain.Employee;
 import com.realdolmen.fleet.model.domain.FleetManager;
 import com.realdolmen.fleet.security.config.Config.UserDetailService;
+import com.realdolmen.fleet.services.CategoryService;
 import com.realdolmen.fleet.services.EmployeeService;
 import com.realdolmen.fleet.services.FleetManagerService;
 import com.realdolmen.fleet.services.MailService;
@@ -38,6 +39,9 @@ public class RegisterEmployeeController {
     UserDetailService userDetailService;
 
     @Autowired
+    CategoryService categoryService;
+
+    @Autowired
     MailService mailService;
 
     @Autowired
@@ -67,6 +71,10 @@ public class RegisterEmployeeController {
 
             String encodedPassword = userDetailService.encoder().encode(password);
             validator.validate(creationModel, errors);
+            Category category = categoryService.findByCategoryClass(1);
+            if( category == null){
+                category = new Category(1);
+            }
             Employee employee = EmployeeFactory.createNewSimpleEmployee(creationModel.getFirstName(), creationModel.getLastName(), creationModel.geteMail(), new Category(1), encodedPassword);
             if (employeeService.isEmployeePresent(employee.getUsername())) {
                 errors.rejectValue("eMail", "errors.eMail", "User name is already in use!");

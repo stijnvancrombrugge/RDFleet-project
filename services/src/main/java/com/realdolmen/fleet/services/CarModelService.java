@@ -29,7 +29,10 @@ public class CarModelService {
 
     public List<CarModel> findByMarkAndCategory(String mark, Integer categoryClass){
 
-        Category category = categoryRepository.findByCategoryClass(categoryClass);
+        Category category = null;
+        if(categoryRepository.findByCategoryClass(categoryClass).isPresent()){
+            category = categoryRepository.findByCategoryClass(categoryClass).get();
+        }
         return carModelRepository.findByMarkAndCategory(mark, category);
     }
 
@@ -48,8 +51,16 @@ public class CarModelService {
     }
 
     public void changeCarModelCategory(Integer carModelId, Integer category){
-        Category carModelCategory = carModelRepository.findOne(carModelId).getCategory();
-        carModelCategory.setCategoryClass(category);
-        categoryRepository.saveAndFlush(carModelCategory);
+        Category newCategory;
+        if(categoryRepository.findByCategoryClass(category).isPresent()){
+           newCategory = categoryRepository.findByCategoryClass(category).get();
+        }
+        else{
+            newCategory = new Category(category);
+            categoryRepository.save(newCategory);
+        }
+        CarModel carModel = carModelRepository.findOne(carModelId);
+        carModel.setCategory(newCategory);
+        carModelRepository.saveAndFlush(carModel);
     }
 }

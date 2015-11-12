@@ -67,16 +67,17 @@
                                                 <h1>Submit your order code</h1>
                                             </div>
                                             <div class="row" style="margin-bottom: 30px;">
-                                                <div class="form-group">
+                                                <div id="code-form" class="form-group">
                                                     <div class="single-confirm-button">
                                                         <input type="text" id="code" class="form-control" style="width:25vw;"/>
+                                                        <span id="code-error" style="display: none" class="help-block">This order code is incorrect</span>
                                                     </div>
                                                 </div>
                                                 <div class="single-confirm-button">
                                                     <button id="start-order-button" class="btn btn-primary" style="width:25vw;">Start Order</button>
                                                 </div>
                                             </div>
-                                            <form th:action="@{'/employee/order'}" th:object="${carModelFilterViewModel}" method="POST">
+                                            <form id="order-form" th:action="@{'/employee/order'}" th:object="${carModelFilterViewModel}" method="POST">
                                             <div id="category-choice" style="display:none;">
                                                 <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
                                                     <h1>Select a category</h1>
@@ -84,7 +85,7 @@
                                                 <div class="row">
                                                     <div class="row" style="margin-bottom: 30px;">
                                                         <div id="choice-category" class="choice-category">
-                                                            <label>
+                                                            <label th:if="${employeePageViewModel.userCategory} != 1">
                                                                 <input type="radio" name="category" th:field="*{category}" th:value="${employeePageViewModel.userCategory} -1"/>
                                                                 <div class="category-button">Downgrade(<span th:text="${employeePageViewModel.userCategory} -1"></span>)</div>
                                                             </label>
@@ -92,7 +93,7 @@
                                                                 <input type="radio" name="category" th:field="*{category}" th:value="${employeePageViewModel.userCategory}"/>
                                                                 <div class="category-button">Default(<span th:text="${employeePageViewModel.userCategory}"></span>)</div>
                                                             </label>
-                                                            <label>
+                                                            <label th:if="${employeePageViewModel.userCategory} != 7">
                                                                 <input type="radio" name="category" th:field="*{category}" th:value="${employeePageViewModel.userCategory} +1"/>
                                                                 <div class="category-button">Upgrade(<span th:text="${employeePageViewModel.userCategory} +1"></span>)</div>
                                                             </label>
@@ -104,29 +105,25 @@
                                                         <div class="row" style="border-bottom: 1px solid #263a4f; color: #263a4f; text-align: center; margin-bottom: 20px;">
                                                             <h1>Choose a mark</h1>
                                                         </div>
-                                                        <div class="row">
+                                                        <div class="row" style="margin-left:6%">
                                                             <label>
-                                                                <input type="radio" name="mark" th:field="*{mark}" th:value="skoda" value="skoda"/>
+                                                                <input type="radio" onclick="document.getElementById('order-form').submit();" name="mark" th:field="*{mark}" th:value="skoda" value="skoda"/>
                                                                 <img class="mark-image" src="/img/skoda_logo.png"/>
                                                             </label>
                                                             <label>
-                                                                <input type="radio" name="mark" th:field="*{mark}" th:value="seat" value="seat"/>
+                                                                <input type="radio" onclick="document.getElementById('order-form').submit();" name="mark" th:field="*{mark}" th:value="seat" value="seat"/>
                                                                 <img class="mark-image" src="/img/seat_logo.png"/>
                                                             </label>
                                                             <label>
-                                                                <input type="radio" name="mark" th:field="*{mark}" th:value="volkswagen" value="volkswagen"/>
+                                                                <input type="radio" onclick="document.getElementById('order-form').submit();" name="mark" th:field="*{mark}" th:value="volkswagen" value="volkswagen"/>
                                                                 <img class="mark-image" src="/img/volkswagen_logo.png"/>
                                                             </label>
                                                             <label>
-                                                                <input type="radio" name="mark" th:field="*{mark}" th:value="audi" value="audi"/>
+                                                                <input type="radio" onclick="document.getElementById('order-form').submit();" name="mark" th:field="*{mark}" th:value="audi" value="audi"/>
                                                                 <img class="mark-image" src="/img/audi_logo.png"/>
                                                             </label>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="single-confirm-button">
-                                                                <input type="submit" class="btn btn-primary" style="width:25vw;" value="Proceed"/>
-                                                            </div>
-                                                        </div>
+
                                                     </div>
                                                 </form>
                                         </div>
@@ -152,15 +149,30 @@
         if(orderCode){
             $.getJSON("/employee/checkOrderCode/" + orderCode,
                 function(response) {
-                   $("#category-choice").show(1000);
+                    if(response){
+                        $("#code-error").hide();
+                        $("#code").hide(1000);
+                        $("#start-order-button").removeClass('btn-primary').addClass('btn-success');
+                        $('#start-order-button').html('Order started');
+                        $("#category-choice").show(1000);
+                    }
+                    else{
+                        $("#code-form").removeClass('success').addClass('has-error');
+                        $("#code-error").show();
+                    }
                 }
             );
+        }
+        else{
+            $("#code-form").removeClass('success').addClass('has-error');
+            $("#code-error").show();
         }
     });
 
     $("#choice-category label input[name='category']").click(function(){
         $("#mark-choice").show(1000);
     });
+
 
 
 
