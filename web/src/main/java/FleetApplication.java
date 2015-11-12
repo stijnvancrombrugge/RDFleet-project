@@ -11,7 +11,7 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
  */
 @SpringBootApplication
 @ComponentScan(basePackages = "com.realdolmen.fleet")
-//@EnableScheduling
+@EnableScheduling
 public class FleetApplication{
 
 

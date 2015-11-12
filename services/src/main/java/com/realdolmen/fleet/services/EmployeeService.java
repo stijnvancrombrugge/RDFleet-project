@@ -1,9 +1,6 @@
 package com.realdolmen.fleet.services;
 
-import com.realdolmen.fleet.model.domain.Employee;
-import com.realdolmen.fleet.model.domain.Order;
-import com.realdolmen.fleet.model.domain.Status;
-import com.realdolmen.fleet.model.domain.User;
+import com.realdolmen.fleet.model.domain.*;
 import com.realdolmen.fleet.repositories.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,25 +51,16 @@ public class EmployeeService {
     {
        List<Employee> employees = findAllEmployees();
         List<Employee>employeeListToRemove = new ArrayList<>();
+        //think with me
        for(Employee e : employees)
        {
-           if(e.getCurrentCar() != null)
+           //if employee has a car?? He can't get an order
+           if(e.getCurrentCar() != null || e.getOrders().size()!=0)
            {
+               //so we put him in the list to remove
                employeeListToRemove.add(e);
            }
-           else {
-               List<Boolean> orderList = new ArrayList<>();
-               for (Order o : e.getOrders()) {
-                   if (o.getStatus().equals(Status.PENDING)) {
-                       orderList.add(true);
-                   } else {
-                       orderList.add(false);
-                   }
-               }
-               if (orderList.contains(true)) {
-                   employeeListToRemove.add(e);
-               }
-           }
+
        }
         employees.removeAll(employeeListToRemove);
 
@@ -100,6 +88,12 @@ public class EmployeeService {
             return 0;
         }
 
+    }
+
+    public void createCurrentCarFromOrder(Employee employee, CurrentCar currentCar)
+    {
+        employee.setCurrentCar(currentCar);
+        userRepository.saveAndFlush(employee);
     }
 
     //More if needed

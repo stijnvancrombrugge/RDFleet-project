@@ -26,4 +26,6 @@ public interface OrderRepository extends JpaRepository<Order,Integer> {
     public Optional<Order>findByOrderCodeAndEmployeeAndStatusAndCarIsNull(String orderCode,Employee employee,Status status);
 
     public List<Order>findAllByStatus(Status status);
+
+    public Optional<Order>findByOrderCode(String orderCode);
 }

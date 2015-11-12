@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.spi.CurrencyNameProvider;
 
 /**
@@ -117,16 +118,24 @@ public class CurrentCarService {
         currentCarRepository.delete(currentCar);
     }
 
-    public void createNewCurrentCarFromOrder(Order order)
+    public CurrentCar createNewCurrentCarFromOrder(Order order)
     {
         CurrentCar c = new CurrentCar(order.getCar());
-        c.setEmployee(order.getEmployee());
         currentCarRepository.saveAndFlush(c);
+        return c;
     }
 
     public CurrentCar findByCar(Car car)
     {
-        return currentCarRepository.findByCar(car).get();
+        Optional<CurrentCar> optional = currentCarRepository.findByCar(car);
+        if(optional.isPresent())
+        {
+            return optional.get();
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public boolean isCarAlmostDone(CurrentCar car)

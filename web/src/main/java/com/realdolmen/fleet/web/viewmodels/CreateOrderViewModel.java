@@ -28,13 +28,12 @@ public class CreateOrderViewModel {
     {
         orderId = o.getOrderCode();
         oId = o.getId();
-        orderDate = DateUtil.dateToString(o.getOrderDate(),DateUtil.DAY_MONTH_YEAR);
+        orderDate = DateUtil.dateToString(o.getOrderDate(), DateUtil.DAY_MONTH_YEAR);
         status = o.getStatus().toString();
         firstName = e.getFirstName();
         lastName = e.getLastName();
         email = e.getEmail();
         employeeId = e.getId();
-
 
     }
 
@@ -51,6 +50,22 @@ public class CreateOrderViewModel {
     public CreateOrderViewModel()
     {
 
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getoId() {
+        return oId;
+    }
+
+    public void setoId(Integer oId) {
+        this.oId = oId;
     }
 
     public String getOrderId() {

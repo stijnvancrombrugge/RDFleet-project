@@ -8,6 +8,7 @@ import com.realdolmen.fleet.repositories.repository.CarRepository;
 import com.realdolmen.fleet.repositories.repository.CurrentCarRepository;
 import com.realdolmen.fleet.repositories.repository.OrderRepository;
 import com.realdolmen.fleet.services.CurrentCarService;
+import com.realdolmen.fleet.services.EmployeeService;
 import com.realdolmen.fleet.services.MailService;
 import com.realdolmen.fleet.services.OrderService;
 import com.realdolmen.fleet.services.util.DateUtil;
@@ -38,13 +39,16 @@ public class KilometerScheduler {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    EmployeeService employeeService;
+
     @Scheduled(fixedRate = 360000)
     public void addRandomKilometersToCar() {
         iterateList();
     }
 
 //every 200 seconds we are going to perform a lottery
-    @Scheduled(fixedRate = 200)
+    @Scheduled(fixedRate = 2000)
     public void orderChecker()
     {
         checkOrdersApproved();
@@ -53,9 +57,16 @@ public class KilometerScheduler {
     private void checkOrdersApproved()
     {
        List<Order>orders = orderService.getAllOrdersByStatus(Status.APPROVED);
-        Random random = new Random();
-        Order order = orderService.orderToFleet(orders.get(random.nextInt(orders.size() - 1)));
-        currentCarService.createNewCurrentCarFromOrder(order);
+        if(orders.size()!=0)
+        {
+            Random random = new Random();
+            Order order = orderService.orderToFleet(orders.get(random.nextInt(orders.size())));
+            CurrentCar c = currentCarService.createNewCurrentCarFromOrder(order);
+            employeeService.createCurrentCarFromOrder(order.getEmployee(),c);
+            mailService.sendMail(order.getEmployee().getEmail(), MailFactory.CAR_ORDER_DELIVERD, MailFactory.createCarOrdeDeliveredMail(order.getEmployee().getFirstName(), "Order : "+order.getOrderCode()));
+
+        }
+
 
     }
 
@@ -63,6 +74,7 @@ public class KilometerScheduler {
         for (Car c : repository.findAll()) {
 
             int km = randomKilometers();
+            c.addKmToEvolution(km);
             c.setKilometers(c.getKilometers() + randomKilometers());
             System.out.println("Car " + c.getId() + " km + " + km);
             repository.save(c);

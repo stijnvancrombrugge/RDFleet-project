@@ -98,14 +98,24 @@ public class OrderControlModelView {
         private String orderCode;
         private String userName;
         private String appDate;
+        private Integer id;
 
         public OrderControlList(Order o) {
             this.orderCode = o.getOrderCode();
             this.userName = o.getEmployee().getUsername();
+            this.id = o.getId();
             if(o.getManagerGoedDate()!=null)
             {
                 this.appDate = DateUtil.dateToString(o.getManagerGoedDate(),DateUtil.DAY_MONTH_YEAR);
             }
+        }
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
         }
 
         public String getOrderCode() {
