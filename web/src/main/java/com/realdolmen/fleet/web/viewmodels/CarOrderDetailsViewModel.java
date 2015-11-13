@@ -5,6 +5,7 @@ import com.realdolmen.fleet.model.domain.Car;
 import com.realdolmen.fleet.model.domain.Option;
 import com.realdolmen.fleet.model.domain.OptionPack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +24,7 @@ public class CarOrderDetailsViewModel {
         model = car.getCarModel().typeString();
         modelId = car.getCarModel().getId();
         color = car.getColor();
+        options = new ArrayList<String>();
 
         filloptionsList(car);
     }

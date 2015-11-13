@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -101,13 +102,19 @@ public class EmployeeService {
         if (employee.getCurrentCar() != null) {
             employee.getCurrentCar().setEmployee(null);
         }
-        if (employee.getOrders() != null && !employee.getOrders().isEmpty()) {
-            for (Order order : employee.getOrders()) {
-                employee.removeOrder(order);
-            }
 
+        List<Order> orders = employee.getOrders();
+            if (orders != null && !orders.isEmpty()) {
+                synchronized (orders) {
+                Iterator<Order> iter = orders.iterator();
+                while (iter.hasNext()) {
+                    orderRepository.delete(iter.next());
+                }
+            }
         }
-        userRepository.delete(empId);
+        employee.setOrders(null);
+        userRepository.saveAndFlush(employee);
+        userRepository.delete(employee);
     }
 
     //More if needed
